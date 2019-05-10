@@ -1,0 +1,96 @@
+
+{% extends "body.html" %}
+
+{% block content_wrapper %}
+
+<ul class="ullist">
+  <strong>
+  <li><a class="ullista" href="{% url 'settings' %}">Menu Principal</a></li>
+  <li><a class="ullista" href="{% url 'users_list' %}">Pacientes</a></li>
+  <li><a class="ullista" href="{% url 'gallery' %}">Contenido</a></li>
+  <li><a class="ullista" href="{% url 'therapists_list' %}">Especialistas </a></li>
+  <li><a class="ullista" href="{% url 'treatments_list' %}">Tratamientos </a></li>
+  <li><a class="ullista" href="{% url 'therapies_list' %}">Terapias </a></li>
+  <li><a class="ullista" href="{% url 'activity_settings' %}">Actividades</a></li>
+  <li><a class="ullista" href="{% url 'results' %}">Resultados</a></li>
+  <li><a class="ullistactive" href="{% url 'summary' %}">Inf. General</a></li>
+</strong>
+</ul>
+
+<div class="col-sm-12 QRM_box {{QRM_color}}">
+	<div class="QRM_box_in">
+		<div class="QRM_wrapper_table">
+
+			<table class="table table-hover">
+				<thead>
+					<tr>
+						<th>Nombre</th>
+						<th>Tratamientos</th>
+						<th>Terapias</th>
+						<th>Actividades</th>
+						<th>Diagnósticos</th>                        					
+			    	</tr>
+				</thead>
+				<tbody>
+					{% for object in patients %}
+						<tr>
+		      				<td style="width: 5%; vertical-align: middle;">{{ object.nombre }}</td>
+
+		      				<td style="width: 25%; vertical-align: middle;">
+           					{% for i in treatments %}
+                               {% if i.paciente == object %}
+                                <small><a>{{ i }},</a></small>
+                                {% endif %}
+					        {% endfor %}
+                            </td>
+		      				<td style="width: 25%; vertical-align: middle;"> 
+          					{% for i in therapies %}
+                               {% if i.tratamiento.paciente == object %}
+                                <small><a> {% for j in i.terapia.all %}{{j}},{%endfor%}</a></small>
+                                {% endif %}
+					        {% endfor %}
+                            </td>
+
+		      				<td style="width: 25%; vertical-align: middle;"> 
+          					{% for i in therapies %}
+                               {% if i.tratamiento.paciente == object %}
+                                {% for k in i.terapia.all %}
+                  					{% for j in activities %}
+                                       {% if k == j.terapia %}
+                                <small><a>{{ j.actividad }},</a></small>
+                                       {% endif %}
+		        			        {% endfor %}
+		        			     {% endfor %}
+                                {% endif %}
+					        {% endfor %}
+                            </td>
+       
+		      				<td style="width: 20%; vertical-align: middle;">
+
+                            <form action="{% url 'diagnostic_list' object.id %}" method="post">
+									    {% csrf_token %}
+                            <button type="submit"  class="btn btn-primary">Diagnósticos</button>
+                            </form>
+                            </td>
+		    			</tr>
+					{% endfor %}
+				</tbody>
+			</table>
+		</div>
+  </div>
+
+</div>
+
+
+	</div>
+</div>
+
+<script>
+function  toggle_select(id) {
+    var object = document.getElementById(id);
+ 	object.enabled = !object.enabled;
+}	
+
+</script>
+
+{% endblock content_wrapper %}

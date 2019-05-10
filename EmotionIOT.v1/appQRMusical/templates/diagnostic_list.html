@@ -1,0 +1,62 @@
+
+{% extends "body.html" %}
+
+{% block content_wrapper %}
+
+<div class="col-sm-12 QRM_box {{QRM_color}}">
+		<a href="{% url 'create_diagnostic' ide %}">
+			<div class="btn btn-sm btn-info">
+				<p>Añadir Diagnóstico</p>
+			</div>	
+		</a>
+	<div class="QRM_box_in">
+		<div class="QRM_wrapper_table">
+
+			<table class="table table-hover">
+				<thead>
+					<tr>
+						<th>Fecha</th>
+						<th>Valoración</th>
+						<th>Notas</th>				
+						<th>Eliminar</th>				
+			    	</tr>
+				</thead>
+				<tbody>
+					{% for object in object_list %}
+						<tr onclick="document.location = '{% url 'update_diagnostic' object.id_diagnostico %}';">
+		      				<th scope="row" style="width: 20%; vertical-align: middle;">
+                                {{ object.fecha }}
+                            </th>
+
+		      				<td style="width: 30%; vertical-align: middle;">
+		      					{{ object.valoracion }}  					
+		      				</td>
+
+		      				<td style="width: 30%; vertical-align: middle;">{{ object.notas }}</td>
+
+		      				
+							<td style=" vertical-align: middle;">
+								<form action="{% url 'delete_diagnostic' object.id_diagnostico %}" method="post">
+									{% csrf_token %}
+
+										<input type="hidden" name="object_id" value="{{ object.id_diagnostico }}"/>
+										<button type="submit" class="btn btn-danger btn-sm">
+											<p>✖</p>
+										</button>
+
+								</form>
+							</td>	
+
+		    			</tr>
+					{% endfor %}
+				</tbody>
+			</table>
+		</div>
+
+		<a href="{% url 'create_diagnostic' ide %}">
+			<div class="btn btn-sm btn-info">
+				<p>Añadir Diagnóstico</p>
+			</div>	
+		</a>
+
+{% endblock content_wrapper %}

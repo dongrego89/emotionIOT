@@ -1,0 +1,64 @@
+
+{% extends "body.html" %}
+
+{% block content_wrapper %}
+
+<div class="col-sm-12 QRM_box {{QRM_color}}">
+<ul>
+  <strong><li>
+  <li><a href="{% url 'settings' %}">Menú Principal</a></li>
+  <li><a><i class="glyphicon glyphicon-arrow-right" ></i></a></li>
+  <li><a href="{% url 'activity_settings' %}">Actividades</a></li>
+  <li><a><i class="glyphicon glyphicon-arrow-right" ></i></a></li>
+  <li><a class="active" href="{% url 'therapy_player' %}">Lista Terapia-Actividad</a></li>
+</strong>
+</ul>
+	<div class="QRM_box_in">
+		<a href="{% url 'add_therapy_player' %}">
+			<div class="btn btn-sm btn-info">
+				<p>Vincular terapia con actividad</p>
+			</div>	
+		</a>
+		<div class="QRM_wrapper_table">
+
+			<table class="table table-hover">
+				<thead>
+					<tr>
+						<th>Actividad</th>
+						<th>Therapia//Desvincular</th>
+
+			    	</tr>
+				</thead>
+				<tbody>
+					{% for son in activities %}
+						<tr onclick="document.location = ;">
+		      				<td scope="row" style="width: 20%;">{{ son }}</td>
+		      				<td style="width: 80%;">
+           					{% for i in object_list %}
+                                {% if i.actividad == son %}
+                                    {{ i.terapia }}
+								    <form action="{% url 'delete_therapy_player' i.id %}" style="display:inline" method="post">
+									    {% csrf_token %}
+										    <input type="hidden" name="son_id" value="{{ i.id }}"/>
+										    <button type="submit" class="btn btn-danger btn-sm"><p>✖</p></button>
+								    </form>
+            					{% endif %}
+			        		{% endfor %}
+                            </td>							
+		    			</tr>
+					{% endfor %}
+				</tbody>
+			</table>
+		</div>
+
+		<a href="{% url 'add_therapy_player' %}">
+			<div class="btn btn-sm btn-info">
+				<p>Vincular terapia con actividad</p>
+			</div>	
+		</a>
+</div>
+
+	</div>
+</div>
+
+{% endblock content_wrapper %}

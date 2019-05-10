@@ -1,0 +1,346 @@
+{% extends "body.html" %}
+
+{% block content_wrapper %}
+
+{% for i in objects_treat %}
+<center><strong><h1>PACIENTE : {{i.paciente}} <> TRATAMIENTO : {{i}}</h1></strong></center>
+{% endfor %}
+<div style="overflow-x:auto;font-size:10px" class="col-sm-5 QRM_box {{QRM_color}}">
+    <strong><p style="color:white">Aciertos/Fallos</p></strong>
+	<div class="QRM_box_in">
+		<div class="QRM_wrapper_table">
+
+			<table class="table table-hover">
+				<thead>
+					<tr>
+						<th>#</th>
+						<th>Añadir</th>
+						<th>Actividad</th>
+						<th>Fecha y hora de la sesión</th>
+			    	</tr>
+				</thead>
+				<tbody>
+
+{% for i in success %}
+    {% for j in failures %}
+
+        {%if i.sesion.id_sesion == j.sesion.id_sesion %}
+<tr>
+		 	<td style="width: 5%; vertical-align: middle;">{{ i.sesion.id_sesion }}</td>
+
+            <td style="width: 10%; vertical-align: left;">
+            <p><button class="btn btn-info glyphicon glyphicon-plus-sign" onclick="addCorrectData({{i.resultado}}, '{{j.resultado}}', '{{i.sesion.fecha}}')"></button></p>
+            </td>
+
+		 	<td style="width: 15%; vertical-align: middle;">{{ i.actividad }}</td>
+
+		 	<td style="width: 70%; vertical-align: middle;">{{i.sesion.fecha}}</td>
+
+
+</tr>
+        {%endif%}
+
+    {% endfor %}
+{% endfor %}
+
+            </tbody>
+			</table>
+		</div>
+	</div>
+</div>
+
+<div style="overflow-x:auto;font-size:10px" class="col-sm-5 QRM_box {{QRM_color}}">
+    <strong><p style="color:white">Tiempo</p></strong>
+	<div class="QRM_box_in">
+		<div class="QRM_wrapper_table">
+
+			<table class="table table-hover">
+				<thead>
+					<tr>
+						<th>#</th>
+						<th>Añadir</th>
+						<th>Actividad</th>
+						<th>Fecha y hora de la sesión</th>
+			    	</tr>
+				</thead>
+				<tbody>
+
+{% for i in time %}
+<tr>
+		 	<td style="width: 5%; vertical-align: middle;">{{ i.sesion.id_sesion }}</td>
+
+            <td style="width: 10%; vertical-align: left;">
+            <p><button class="btn btn-info glyphicon glyphicon-plus-sign" onclick="addDataTiming({{i.resultado}}, '{{i.sesion.fecha}}')"></button></p>
+            </td>
+
+		 	<td style="width: 15%; vertical-align: middle;">{{ i.actividad }}</td>
+
+		 	<td style="width: 70%; vertical-align: middle;">{{i.sesion.fecha}}</td>
+
+
+</tr>
+{% endfor %}
+                </tbody>
+			</table>
+		</div>
+	</div>
+</div>
+
+<div style="overflow-x:auto;font-size:8px" class="col-sm-2 QRM_box {{QRM_color}}">
+	<strong><p style="color:white">Mostrar/Ocultar</p></strong>
+	<div class="QRM_box_in">
+		<div class="QRM_wrapper_table" style="overflow-x:auto">
+			<table class="table table-hover">
+				<thead>
+					<tr>
+						<th>Aciertos/Fallos</th>
+						<th>Tiempo</th>
+			    	</tr>
+				</thead>
+				<tbody>
+                    <tr>
+                        <td style="width: 50%; vertical-align: middle;"><button class="btn btn-info btn-lg" onclick="HideHits()">
+                        <span class="glyphicon glyphicon-eye-open"></span></button></td>
+                        <td style="width: 50%; vertical-align: middle;"><button class="btn btn-info btn-lg" onclick="HideTime()">
+                        <span class="glyphicon glyphicon-eye-open"></span></button></td>
+                    </tr>
+            </tbody>
+			</table>
+		</div>
+	</div>
+</div>
+
+<div class="col-sm-12" id="Hits" style="overflow-x:auto;">
+<h1>Tipo de diagrama</h1>
+  <p class="btn btn-warning" value="bar" onclick="ChangeType(1)">Barras</p>
+  <p class="btn btn-warning" value="horizontalbar" onclick="ChangeType(2)">Barras Horizontales</p>
+  <p class="btn btn-warning" value="pie" onclick="ChangeType(3)">Pastel</p>
+  <p class="btn btn-warning" value="doughnut" onclick="ChangeType(4)">Donut</p>
+        <canvas id="myChart"></canvas>
+ <p><input class="btn btn-danger" value="Remove Data" onclick="removeData()"></input></p>
+</div>
+
+<div class="col-sm-12" id="Time">
+<h1>Tipo de diagrama</h1>
+  <p class="btn btn-warning" value="bar" onclick="ChangeTypeTiming(1)">Barras</p>
+  <p class="btn btn-warning" value="horizontalbar" onclick="ChangeTypeTiming(2)">Barras horizontales</p>
+
+        <canvas id="myChartTiming"></canvas>
+
+ <p><input class="btn btn-danger" value="Remove Data" onclick="removeDataTiming()"></input></p>
+</div>
+<script>
+
+function HideHits() {
+    var x = document.getElementById("Hits");
+    if (x.style.display === "none") {
+        x.style.display = "block";
+    } else {
+        x.style.display = "none";
+    }
+}
+
+function HideTime() {
+    var x = document.getElementById("Time");
+    if (x.style.display === "none") {
+        x.style.display = "block";
+    } else {
+        x.style.display = "none";
+    }
+}
+
+var ctx = document.getElementById("myChart").getContext('2d');
+var colorF = 'rgba(255, 99, 132, 0.85)';
+var colorFB = 'rgba(255, 99, 132, 1)';
+var chartData = {
+        labels: [],
+        datasets: [
+        {
+            label: 'Respuestas acertadas',
+            data: [],
+            backgroundColor: [
+                'rgba(54, 162, 235, 0.85)'
+            ],
+            borderColor: [
+                'rgba(54, 162, 235, 1)'
+            ],
+            borderWidth: 1
+        },{
+            label: 'Respuestas falladas',
+            data: [],
+            backgroundColor: [
+               colorF
+            ],
+            borderColor: [
+                colorFB
+            ],
+            borderWidth: 1
+        }
+            ]
+    };
+var chartOptions = {
+
+        scales: {
+            xAxes: [{
+                ticks: {
+                    min: 0
+                }
+            }],
+            yAxes: [{
+                ticks: {
+                    min: 0
+                }
+            }]
+        }
+    
+
+};
+
+
+
+var myChart = new Chart(ctx, {
+    type: 'bar',
+    data: chartData,
+    options: chartOptions,
+});
+
+function ChangeType(x){
+myChart.destroy()
+//var temp = jQuery.extend(true, {}, config);
+//temp.type='bar';
+    if(x==1){
+        myChart=new Chart(ctx, {
+            type:'bar',
+            data: chartData,
+            options: chartOptions,
+        });
+    }
+    if(x==2){
+        myChart=new Chart(ctx, {
+            type:'horizontalBar',
+            data: chartData,
+            options: chartOptions,
+        });
+    }
+    if(x==3){
+        myChart=new Chart(ctx, {
+            type:'pie',
+            data: chartData,
+            options: chartOptions,
+        });
+    }
+    if(x==4){
+        myChart=new Chart(ctx, {
+            type:'doughnut',
+            data: chartData,
+            options: chartOptions,
+        });
+    }
+}
+
+function addCorrectData(x,y,z){
+myChart.data.labels.push(z);
+myChart.data.datasets[0].data.push(x);
+myChart.data.datasets[1].data.push(y);
+//myChart.data.datasets.forEach((dataset) => {
+//dataset.data.push(x);
+myChart.data.datasets[0].backgroundColor.push('rgba(54, 162, 235, 0.85)');
+myChart.data.datasets[0].borderColor.push('rgba(255, 255, 0, 1)');
+myChart.data.datasets[1].backgroundColor.push('rgba(255, 99, 132, 0.85)');
+myChart.data.datasets[1].borderColor.push('rgba(255,255,0,1)');
+//});
+//myChart.data.backgroundColor.push('rgba(54, 162, 235, 0.2)');
+myChart.update();
+}
+
+function removeData(){
+myChart.data.labels.pop();
+myChart.data.datasets.forEach((dataset) => {
+dataset.data.pop();
+});
+myChart.update();
+}
+
+
+var ctxTiming = document.getElementById("myChartTiming").getContext('2d');
+var chartDataTiming = {
+        labels: [],
+        datasets: [
+        {
+            label: 'Duracion de la actividad',
+            data: [],
+            backgroundColor: [
+                'rgba(75, 192, 192, 0.85)'
+            ],
+            borderColor: [
+                'rgba(75, 192, 192, 1)'
+            ],
+            borderWidth: 1
+        },
+            ]
+    };
+
+var chartOptionsTiming = {
+
+        scales: {
+            xAxes: [{
+                ticks: {
+                    min: 0
+                }
+            }],
+            yAxes: [{
+                ticks: {
+                    min: 0
+                }
+            }]
+        }
+    
+
+};
+var myChartTiming = new Chart(ctxTiming, {
+    type: 'bar',
+    data: chartDataTiming,
+    options: chartOptionsTiming,
+});
+
+function ChangeTypeTiming(x){
+myChartTiming.destroy()
+//var temp = jQuery.extend(true, {}, config);
+//temp.type='bar';
+    if(x==1){
+        myChartTiming=new Chart(ctxTiming, {
+            type:'bar',
+            data: chartDataTiming,
+            options: chartOptionsTiming,
+        });
+    }
+    if(x==2){
+        myChartTiming=new Chart(ctxTiming, {
+            type:'horizontalBar',
+            data: chartDataTiming,
+            options: chartOptionsTiming,
+        });
+    }
+}
+
+function addDataTiming(x,z){
+myChartTiming.data.labels.push(z);
+myChartTiming.data.datasets[0].data.push(x);
+
+myChartTiming.data.datasets[0].backgroundColor.push('rgba(75, 192, 192, 0.85)');
+myChartTiming.data.datasets[0].borderColor.push('rgba(75, 192, 192, 1)');
+myChartTiming.update();
+}
+
+function removeDataTiming(){
+myChartTiming.data.labels.pop();
+myChartTiming.data.datasets.forEach((dataset) => {
+dataset.data.pop();
+});
+myChartTiming.update();
+}
+
+
+
+</script>
+{% endblock content_wrapper %}

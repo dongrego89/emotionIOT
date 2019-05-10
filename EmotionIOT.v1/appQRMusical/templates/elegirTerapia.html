@@ -1,0 +1,43 @@
+{% extends "body.html" %}
+
+{% block titulo %}{{titulo}}{% endblock titulo %}
+
+{% block content_wrapper %}
+
+<div class="col-sm-12 QRM_box {{QRM_color}}">
+  <p style="font-size:30px;color:white;">{{mensaje}}</p>
+	<div class="QRM_box_in">
+		<div style='text-align:center; margin: 0 auto; width: 90%'>
+
+{% if asignaTerapias|length > 0 %}
+  <h1>Numero de elementos: {{asignaTerapias|length}}</h1>
+  {% for i in asignaTerapias %}
+    <a href="{% url 'elegirActividad' i.terapia i.id_asign_therapy %}">
+      <div class="QRM_btn QRM_btn_home">
+        <img class="QRM_btn_image" src="/files/static/game_match.png">
+        <h5>{{ i.terapia__nombre }}</h5>
+      </div>
+    </a>
+    {% comment %}
+    <div style="border:1pt solid white;">
+      ID. Asign Therapy [{{i.id_asign_therapy}}]<br>
+      ID. Terapia [{{i.terapia}}]<br>
+      ID. Tratamiento [{{i.tratamiento}}]<br>
+    </div>
+     <hr>
+     {% endcomment %}
+
+  {% endfor %}
+{% else %}
+  <a>
+    <div class="QRM_btn QRM_btn_home">
+      <img class="QRM_btn_image" src="/files/static/error.png">
+      <h5>{{mensaje_error}}</h5>
+    </div>
+  </a>
+{% endif %}
+		</div>
+	</div>
+</div>
+
+{% endblock content_wrapper %}

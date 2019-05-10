@@ -1,0 +1,26 @@
+{% extends "body.html" %}
+
+{% block content_wrapper %}
+
+<div style='text-align:center; margin: 0 auto; width: 90%'>
+    <h1 class="page-header">Inicio de sesión para RFIDMusic</h1>
+    <div class="jumbotron {{QRM_color}}">
+        	<a href="{% url 'settings' %}">
+    			<p align="right">Jugar : <img src="/files/static/game.png" width="75" style="border-radius: 40px"></p>
+    		</a>
+        <h2 class="form-signin-heading">Por favor, identifiquese</h2>
+        <form id="login_form" method="post" action="/login/" class="form-signin">
+            {% csrf_token %}
+            <p style="color: #333 !important;">Usuario:</p><input class="form-control" placeholder="Usuario" type="text" name="username" value="" size="50" required autofocus=""/>
+
+            <br />
+            <p style="color: #333 !important;">Contraseña:</p> <input class="form-control" placeholder="Contraseña" type="password" name="password" value="" size="50" />
+            <br />
+            <input class="btn btn-primary" type="submit" value="Enviar" />
+
+        </form>
+    </div>
+
+</div>
+
+{% endblock content_wrapper %}

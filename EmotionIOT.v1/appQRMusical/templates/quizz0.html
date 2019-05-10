@@ -1,0 +1,48 @@
+
+{% extends "body.html" %}
+{% load staticfiles %}
+
+{% block titulo %}{{titulo}}{% endblock titulo %}
+
+{% block content_wrapper %}
+<div class="col-sm-12 QRM_box {{QRM_color}}">
+	{% comment %}
+	<div class="QRM_box_in">
+		<div style='text-align:center; margin: 0 auto; width: 90%'>
+			<h1>Prueba</h1>
+			<form method="POST" action="prueba">
+			{% csrf_token %}
+					<input type="text" name="nombre">
+					<input type="text" name="apellidos">
+					<input type="password" name="password">
+					<input type="submit">
+			</form>
+		</div>
+	</div>
+	{% endcomment %}
+{% for i in object_list %}
+	<h1>{{i.pregunta}}</h1>
+	<h2>Formato de pregunta: {{i.formato}}</h2>
+	<h2>Visualización de pregunta: {{i.visualizacion}}</h2>
+	<div>
+		{% if i.visualizacion == "Unica" %}
+
+			<img style="width:300px;" src="/{{i.multimediaCorrecto.imagen.url}}">
+			<div>{{i.multimediaCorrecto.nombre}}</div>
+
+			{% for j in i.multimediaIncorrecto.all %}
+			<div>{{j.nombre}}</div>
+			{% endfor %}
+		{% else %}
+			{{i.multimediaCorrecto.nombre}}
+			<img style="width:100px;" src="/{{i.multimediaCorrecto.imagen.url}}">
+			{% for j in i.multimediaIncorrecto.all %}
+			{{j.nombre}}
+			<img style="width:100px;" src="/{{j.imagen.url}}">
+			{% endfor %}
+
+		{% endif %}
+	</div>
+{% endfor %}
+</div>
+{% endblock content_wrapper %}
