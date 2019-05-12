@@ -1,4 +1,6 @@
-from django.conf.urls import include, url
+from django.conf.urls import url, include
+from django.contrib import admin
+
 from appQRMusical.views import Desconectar, Settings, Game_settings, ElegirActividad, Gallery, Multimedia_detail, Multimedia_delete, Actividads_list, Users_list, Update_player, Update_user, User_ID, Multi_ID, Multi_ID_delete, Create_player, Create_user, Multimedia_update, Actividad_delete, ID_delete, User_delete, User, Especialistas_list, Tratamientos_list, Therapies_list, Create_therapist, Create_treatment, Tratamiento_delete, Update_treatment, Diagnostico_list, Create_diagnostic, Update_diagnostic, Delete_diagnostic, Create_therapy, Update_therapy, Terapia_delete, Activity_settings,Lista_Indicadores, Create_indicator, Update_indicator, Indicador_delete, Categories_list, Update_category, Categoria_delete, Create_category, Add_category_player, Resultados, Resultados_details, Add_therapy_player, Terapia_player_list,  Delete_therapy_player, Summary, ResultadosTratamiento, ElegirTerapia, LoginPacientes
 
 from . import views

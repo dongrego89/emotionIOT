@@ -1,4 +1,4 @@
-import sys, time, serial
+import sys, time, serial, serial.tools.list_ports, warnings
 import threading
 
 from appQRMusical.Audio import *
@@ -6,6 +6,34 @@ from appQRMusical.Funciones import *
 from . import global_vars
 from django.conf import settings
 
+
+def listarPuertos():
+    """!
+    @brief Devuelve los nombres de los puertos serial que contienen un elemento Arduino conectado
+    @return Tupla con la lista de puertos y la lista correspondiente a las descripciones de los dispositivos Arduino asociados
+    """
+
+    ports = list( serial.tools.list_ports.comports() )
+
+    resultPorts = []
+    descriptions = []
+    for port in ports:
+        if not port.description.startswith( "Arduino" ):
+            # correct for the somewhat questionable design choice for the USB
+            # description of the Arduino Uno
+            if port.manufacturer is not None:
+                if port.manufacturer.startswith( "Arduino" ) and \
+                   port.device.endswith( port.description ):
+                    port.description = "Arduino Uno"
+                else:
+                    continue
+            else:
+                continue
+        if port.device:
+            resultPorts.append( port.device )
+            descriptions.append( str( port.description ) )
+
+    return (resultPorts, descriptions)
 
 def conexionSerial(puerto,baudios,timeout):
 	"""!
@@ -18,8 +46,7 @@ def conexionSerial(puerto,baudios,timeout):
 	time.sleep(3)
 	return conexionArduino
 
-
-conexionArduino=conexionSerial("/dev/ttyACM0",9600,1,)
+conexionArduino=conexionSerial(listarPuertos()[0][0],9600,1,)
 
 def encenderAvisoSerial():
 	"""!

@@ -292,7 +292,7 @@ def Matching(request,idActividad,idAsignaTerapia):
 		preguntasDeActividad=Actividad_Pregunta.objects.filter(actividad=idActividad).values("pregunta__id")
 
 		print(preguntasDeActividad)
-		
+
 		preguntasMatching=Pregunta_Matching.objects.filter(id__in=preguntasDeActividad)
 
 		if(aleatorio): # Si la actividad ordena las preguntas aleatoriamente
@@ -876,7 +876,7 @@ class Multimedia_update(LoginRequiredMixin, UpdateView):
 	redirect_field_name = "/login/"
 
 	def get_success_url(self):
-		return reverse('multimedia_update', kwargs={'pk': self.object.id_contenido})
+		return reverse_lazy('multimedia_update', kwargs={'pk': self.object.id_contenido})
 
 #Vista para la eliminacion de multimedia existente
 
@@ -1338,7 +1338,7 @@ class Update_indicator(LoginRequiredMixin, UpdateView):
 	redirect_field_name = "/login/"
 
 	def get_success_url(self):
-		return reverse('indicators_list')
+		return reverse_lazy('indicators_list')
 
 #Vista que elimina un Indicador
 
@@ -1561,7 +1561,7 @@ class Update_category(LoginRequiredMixin, UpdateView):
 	redirect_field_name = "/login/"
 
 	def get_success_url(self):
-		return reverse('categories_list')
+		return reverse_lazy('categories_list')
 
 #Vista que elimina una Categoría
 
