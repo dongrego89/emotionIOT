@@ -1,0 +1,93 @@
+<!DOCTYPE html>
+
+{% load staticfiles %}
+
+<!DOCTYPE html>
+
+<html lang="es">
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+<meta http-equiv="x-ua-compatible" content="ie=edge">
+	<head>
+		<title>EmotionIOT | {% block titulo %}{% endblock titulo %}</title>
+		<!-- Font Awesome -->
+	  <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.8.1/css/all.css">
+	  <!-- Bootstrap core CSS -->
+		<link href="{% static 'material/css/bootstrap.min.css' %}" rel="stylesheet" type="text/css">
+	  <!-- Material Design Bootstrap -->
+		<link href="{% static 'material/css/mdb.min.css' %}" rel="stylesheet" type="text/css">
+	  <!-- Your custom styles (optional) -->
+		<link href="{% static 'material/css/style.css' %}" rel="stylesheet" type="text/css">
+
+		<link rel=”shortcut icon” type=”image/jpg href=”{% static 'favicon.jpg' %}/>
+	</head>
+	<body>
+		{% if user.is_authenticated %}
+	  <!--Navbar-->
+	  <nav class="navbar navbar-expand-lg navbar-dark primary-color-dark animated bounceInDown">
+
+	    <!-- Navbar brand -->
+
+
+
+			<a class="navbar-brand" href="#">
+				<img class="img-fluid" style="height:50px;" src="/files/static/RFIDMusic.png">
+			</a>
+
+			<img src="https://mdbootstrap.com/img/Photos/Avatars/img%20(27).jpg" style="height:50px;" class="rounded-circle ml-auto">
+
+
+
+
+	    <!-- Collapsible content -->
+		</nav>
+
+		{% endif %}
+	  <!--/.Navbar-->
+		<!--Grid row-->
+
+<div class="container">
+	<div class="d-flex flex-row ">
+		<div class="p-2 mr-auto ">Elemento 1</div>
+		<div class="p-2 ">Elemento 2</div>
+	</div>
+</div>
+<div class=" d-flex justify-content-center">
+
+  <!--Grid column-->
+  <div class="col-md-6">
+		<img class="animated zoomIn img-fluid" src="/files/static/RFIDMusic.png" style="margin-top:20%;">
+  </div>
+
+
+  <!--Grid column-->
+
+</div>
+
+
+
+{% if user.is_authenticated %}
+<!-- Footer -->
+<footer class="page-footer font-small fixed-bottom primary-color-dark animated bounceInUp">
+
+	<!-- Copyright -->
+	<div class="footer-copyright text-center py-3">GitHub
+		<a href="https://github.com/dongrego89/emotionIOT">EmotionIOT</a>
+	</div>
+	<!-- Copyright -->
+
+</footer>
+{% endif %}
+<!-- Footer -->
+
+<!-- JQuery -->
+<script type="text/javascript" src="{% static 'material/js/jquery-3.4.0.min.js' %}"></script>
+<!-- Bootstrap tooltips -->
+<script type="text/javascript" src="{% static 'material/js/popper.min.js' %}"></script>
+<!-- Bootstrap core JavaScript -->
+<script type="text/javascript" src="{% static 'material/js/bootstrap.min.js' %}"></script>
+<!-- MDB core JavaScript -->
+<script type="text/javascript" src="{% static 'material/js/mdb.min.js' %}"></script>
+
+
+</html>

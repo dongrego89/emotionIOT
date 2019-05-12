@@ -119,7 +119,7 @@ def prueba(request):
 		return redirect('home')
 	else:
 		context['titulo'] = "Prueba"
-		return render(request,'prueba.html',context)
+		return render(request,'baseMaterial.html',context)
 
 class LoginPacientes(TemplateView):
 	"""!
