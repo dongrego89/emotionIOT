@@ -101,19 +101,20 @@ from math import *
 
 from appQRMusical.Funciones import *
 
-
-
-
-
-
-
-
 arranqueMQTT(("Boton","Tarjeta"))
 arranqueSerial(conexionArduino)
 arranqueReproductor()
 
 def prueba(request):
 	context = {}
+	try:
+		player = Paciente.objects.get(online="si")
+
+	except Paciente.DoesNotExist:
+		player = None
+	print(player)	
+	context['player'] = player
+	context['titulo'] = "Inicio"
 	if request.method == "POST":
 		context['titulo'] = "Recibido"
 		return redirect('home')

@@ -9,7 +9,7 @@
 <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
 <meta http-equiv="x-ua-compatible" content="ie=edge">
 	<head>
-		<title>EmotionIOT | {% block titulo %}{% endblock titulo %}</title>
+		<title>EmotionIOT | {% block titulo %}{{titulo}}{% endblock titulo %}</title>
 		<!-- Font Awesome -->
 	  <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.8.1/css/all.css">
 	  <!-- Bootstrap core CSS -->
@@ -21,52 +21,37 @@
 
 		<link rel=”shortcut icon” type=”image/jpg href=”{% static 'favicon.jpg' %}/>
 	</head>
+
 	<body>
-		{% if user.is_authenticated %}
-	  <!--Navbar-->
+		{% if player.online == "si" %}
+
 	  <nav class="navbar navbar-expand-lg navbar-dark primary-color-dark animated bounceInDown">
-
-	    <!-- Navbar brand -->
-
-
-
 			<a class="navbar-brand" href="#">
 				<img class="img-fluid" style="height:50px;" src="/files/static/RFIDMusic.png">
 			</a>
 
-			<img src="https://mdbootstrap.com/img/Photos/Avatars/img%20(27).jpg" style="height:50px;" class="rounded-circle ml-auto">
+			<p class="ml-auto button blue">{{player}}
 
-
-
-
-	    <!-- Collapsible content -->
-		</nav>
-
+			{% if player.imagen %}
+						<img class="cursor-pointer rounded-circle ml-auto" onclick="logoutUser()" class="img-circle" src="/{{ player.imagen.url }}" style="height:50px;background-color:white;">
+			{% else %}
+						<img class="cursor-pointer rounded-circle ml-auto" onclick="logoutUser()" src="/files/static/log_g.png" style="height:50px;background-color:white;">
+			{% endif %}
+			</p>
 		{% endif %}
-	  <!--/.Navbar-->
-		<!--Grid row-->
+	</nav>
 
-<div class="container">
-	<div class="d-flex flex-row ">
-		<div class="p-2 mr-auto ">Elemento 1</div>
-		<div class="p-2 ">Elemento 2</div>
-	</div>
-</div>
+
 <div class=" d-flex justify-content-center">
-
-  <!--Grid column-->
   <div class="col-md-6">
 		<img class="animated zoomIn img-fluid" src="/files/static/RFIDMusic.png" style="margin-top:20%;">
+		<h1 class="text-center animated fadeIn slow delay-1s mt-4">Acerca tu tarjeta/pulsera al lector</h1>
   </div>
-
-
-  <!--Grid column-->
-
 </div>
 
 
 
-{% if user.is_authenticated %}
+{% if player.online == "si" %}
 <!-- Footer -->
 <footer class="page-footer font-small fixed-bottom primary-color-dark animated bounceInUp">
 
@@ -79,6 +64,31 @@
 </footer>
 {% endif %}
 <!-- Footer -->
+
+
+<script type="text/javascript">
+
+function logoutUser() {
+	//Desconexion de usuario
+		var txt;
+		var r = confirm("Desconexión user\n¿Estas seguro de que deseas desconectarte?");
+		if (r == true) {
+				window.location.replace('/desconectar');
+		} else {
+		}
+}
+
+function logoutAdmin() {
+	//Desconexion de admin
+		var txt;
+		var r = confirm("Desconexión admin\n¿Estas seguro de que deseas desconectarte?");
+		if (r == true) {
+				 document.location.href ="/logout/"
+		} else {
+		}
+}
+
+</script>
 
 <!-- JQuery -->
 <script type="text/javascript" src="{% static 'material/js/jquery-3.4.0.min.js' %}"></script>
