@@ -20,40 +20,37 @@
 		<link href="{% static 'material/css/style.css' %}" rel="stylesheet" type="text/css">
 
 		<link rel=”shortcut icon” type=”image/jpg href=”{% static 'favicon.jpg' %}/>
+
 	</head>
 
 	<body>
-		{% if player.online == "si" %}
+		{% if jugador.online == "si" %}
 
-	  <nav class="navbar navbar-expand-lg navbar-dark primary-color-dark animated bounceInDown">
-			<a class="navbar-brand" href="#">
+	  <nav class="navbar navbar-expand-lg navbar-dark primary-color-dark {% if titulo == "Terapias" %} animated bounceInDown {% endif %}">
+			<a class="navbar-brand" href="/">
 				<img class="img-fluid" style="height:50px;" src="/files/static/RFIDMusic.png">
 			</a>
-
-			<p class="ml-auto button blue">{{player}}
-
-			{% if player.imagen %}
-						<img class="cursor-pointer rounded-circle ml-auto" onclick="logoutUser()" class="img-circle" src="/{{ player.imagen.url }}" style="height:50px;background-color:white;">
+			{% if idTerapia %} <button class="btn btn-primary" onClick="window.location='/'">Terapias</button> {% endif %}
+			{% if idActividad %} <button class="btn btn-primary" onClick="window.location='/elegirActividad/{{idTerapia}}/{{idTerapiaTratamiento}}'">Actividades</button> {% endif %}
+			<div class="ml-auto button rounded-pill primary-color text-left text-white font-weight-bold pl-4 border" arylw=!>
+				{{jugador}} ({{jugador.edad}} a&ntilde;os) &nbsp;
+			{% if jugador.imagen %}
+						<img class="cursor-pointer rounded-circle ml-auto" onclick="logoutUser()" class="img-circle" src="/{{ jugador.imagen.url }}" style="height:50px;background-color:white;">
 			{% else %}
 						<img class="cursor-pointer rounded-circle ml-auto" onclick="logoutUser()" src="/files/static/log_g.png" style="height:50px;background-color:white;">
 			{% endif %}
-			</p>
+		</div>
+
 		{% endif %}
 	</nav>
 
+{% block body %}
 
-<div class=" d-flex justify-content-center">
-  <div class="col-md-6">
-		<img class="animated zoomIn img-fluid" src="/files/static/RFIDMusic.png" style="margin-top:20%;">
-		<h1 class="text-center animated fadeIn slow delay-1s mt-4">Acerca tu tarjeta/pulsera al lector</h1>
-  </div>
-</div>
+{% endblock %}
 
-
-
-{% if player.online == "si" %}
+{% if jugador.online == "si" %}
 <!-- Footer -->
-<footer class="page-footer font-small fixed-bottom primary-color-dark animated bounceInUp">
+<footer class="page-footer font-small fixed-bottom primary-color-dark {% if titulo == "Terapias" %} animated bounceInUp {% endif %}">
 
 	<!-- Copyright -->
 	<div class="footer-copyright text-center py-3">GitHub

@@ -7,8 +7,8 @@ matchingInicializado=False
 
 sesionGuardada=False
 pilaPreguntas=[]
-indiceRespuesta=None
-indicePreguntaActual=None
+indiceRespuesta=0
+indicePreguntaActual=0
 
 indicadorErrores=0
 indicadorAciertos=0
@@ -19,6 +19,9 @@ indicadorTiempoTotal=0
 pilaSonidos=[]
 avisoSerial=False
 
+jugador=None
+
+primerSonidoPila=False
 
 boton_mqtt = ""
 mensajeFinal = False

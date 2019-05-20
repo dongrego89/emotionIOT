@@ -55,7 +55,7 @@ from .models import Especialista
 from .forms import FormularioEspecialista
 
 # Terapia
-from .models import Terapia, Asigna_Terapia, Especialista_Asigna_Terapia, Terapia_Actividad
+from .models import Terapia, Terapia_Tratamiento, Especialista_Terapia_Tratamiento, Terapia_Actividad
 from .forms import UploadTherapyForm, UploadAsign, UploadTherapyFormActividad, UploadAsignTherapyForm, UploadOneActividadTherapyForm, UploadOnePlayerTerapiaForm
 
 # Tratamiento
@@ -107,39 +107,33 @@ arranqueReproductor()
 
 def prueba(request):
 	context = {}
-	try:
-		player = Paciente.objects.get(online="si")
 
-	except Paciente.DoesNotExist:
-		player = None
-	print(player)	
-	context['player'] = player
+	context['jugador'] = global_vars.jugador
 	context['titulo'] = "Inicio"
 	if request.method == "POST":
 		context['titulo'] = "Recibido"
 		return redirect('home')
 	else:
 		context['titulo'] = "Prueba"
-		return render(request,'baseMaterial.html',context)
+		return render(request,'prueba.html',context)
 
 class LoginPacientes(TemplateView):
 	"""!
 	@brief Vista de la pantalla de login para pacientes
 	@param TemplateView Clase genérica de Django para las vistas
 	"""
-	global_vars.boton_mqtt=""
 	template_name="loginPacientes.html"
 	def get_context_data(self, **kwargs):
 		context = super(LoginPacientes, self).get_context_data(**kwargs)
 		try:
-			player = Paciente.objects.get(online="si")
+			global_vars.jugador = Paciente.objects.get(online="si")
+
 			apagarAvisoSerial()
 		except Paciente.DoesNotExist:
-			player = None
+			global_vars.jugador = None
 			encenderAvisoSerial()
 
-		context['QRM_color'] = "QRM_blue"
-		context['player'] = player
+		context['jugador'] = global_vars.jugador
 		context['titulo'] = "Login Pacientes"
 
 		return context
@@ -158,13 +152,18 @@ def RFIDLogin(request):
 			paciente = Paciente.objects.get(codigo=codigo)
 			paciente.online = "si"
 			paciente.save()
+			global_vars.jugador=paciente
 			context['redireccionar'] = True
+			context['tiempoPausa'] = 2000
+			context['direccion'] = "/elegirTerapia"
+			context['mensaje'] = "Bienvenido {}".format(paciente)
 
 
 		except Paciente.DoesNotExist:
+			global_vars.jugador=None
 			context['redireccionar'] = False
 			context['codigoMQTT']= codigo
-			context['mensaje'] = "No existe ningun usuario con el codigo"
+			context['mensaje'] = "No existe el usuario con el codigo"
 
 
 	return JsonResponse(context)
@@ -181,6 +180,7 @@ def Desconectar(request):
 		user = Paciente.objects.get(online="si")
 		user.online = "no"
 		user.save()
+		global_vars.jugador=None
 
 	except Paciente.DoesNotExist:
 
@@ -214,15 +214,16 @@ class ElegirTerapia(TemplateView):
 		tratamientos = Tratamiento.objects.filter(activado=True).filter(paciente_id=paciente.id)
 
 		#Tomar las terapias que coincidan con el filtrado previo
-		asignaTerapias=Asigna_Terapia.objects.filter(tratamiento_id__in=tratamientos).values("id_asign_therapy","terapia","terapia__nombre")
+		terapiaTratamiento=Terapia_Tratamiento.objects.filter(tratamiento_id__in=tratamientos).values("id","terapia","terapia__nombre")
 
+		print(terapiaTratamiento)
 
 		context['mensaje'] = "Selecciona una Terapia"
 		context['mensaje_error'] = "No existen terapias disponibles"
 		context['titulo'] = "Terapias"
-		context['asignaTerapias'] = asignaTerapias
+		context['terapiaTratamiento'] = terapiaTratamiento
 		context['QRM_color'] = "QRM_orange"
-		context['player'] = paciente
+		context['jugador'] = global_vars.jugador
 
 		lanzarNarracion([context['mensaje']])
 
@@ -233,7 +234,7 @@ class ElegirTerapia(TemplateView):
 
 
 #Vista de la elección de actividad una vez seleccionado terapia
-def ElegirActividad(request, idTerapia, idAsignaTerapia):
+def ElegirActividad(request, idTerapia, idTerapiaTratamiento):
 	"""
 	@brief Vista para elegir una actividad
 	@param request Peticion http
@@ -254,24 +255,26 @@ def ElegirActividad(request, idTerapia, idAsignaTerapia):
 	global_vars.quizzInicializado = False
 	global_vars.matchingInicializado = False
 
+
 	terapia=Terapia.objects.get(id=idTerapia)
 
 	context = {}
 	context['idTerapia'] = idTerapia
-	context['idAsignaTerapia'] = idAsignaTerapia
+	context['idTerapiaTratamiento'] = idTerapiaTratamiento
 	context['mensaje'] = "Selecciona una Actividad"
 	context['mensaje_error'] = "No existen actividades disponibles"
 	context['titulo'] =  "%s | %s" %  (terapia," Actividades")
 	context['actividades'] = actividades
 	context['QRM_color'] = "QRM_orange"
-	context['player'] = paciente
+	context['jugador'] = global_vars.jugador
 
 	lanzarNarracion([context['mensaje']])
 
 	apagarAvisoSerial()
+
 	return render(request, 'elegirActividad.html', context)
 
-def Matching(request,idActividad,idAsignaTerapia):
+def Matching(request,idActividad,idTerapiaTratamiento,idTerapia):
 	"""!
 	@brief Método para juegos tipo Matching
 	@param request Peticion http
@@ -279,6 +282,12 @@ def Matching(request,idActividad,idAsignaTerapia):
 	@param idAsignaTerapia Id de la tupla Asigna_Terapia para usar en la sesión
 	"""
 	context={}
+	encenderAvisoSerial()
+
+	context['jugador'] = global_vars.jugador
+	context['idActividad'] = idActividad
+	context['idTerapia'] = idTerapia
+	context['idTerapiaTratamiento'] = idTerapiaTratamiento
 
 	if global_vars.matchingInicializado == False:
 		"""
@@ -323,8 +332,11 @@ def Matching(request,idActividad,idAsignaTerapia):
 
 		preguntaMatching=global_vars.pilaPreguntas[global_vars.indicePreguntaActual]
 
+
 		#Buscar
-		global_vars.indiceRespuesta=preguntaMatching.multimediaCorrecto.codigo
+		global_vars.indiceRespuesta=preguntaMatching.respuesta.multimedia.codigo
+
+		#print("La pregunta '{}' tiene por respuesta {}".format(preguntaMatching))
 
 		print("La respuesta correcta es: {}".format(global_vars.indiceRespuesta))
 
@@ -334,8 +346,9 @@ def Matching(request,idActividad,idAsignaTerapia):
 
 		context['titulo'] = "Matching | Pregunta: {} ({})".format(preguntaMatching.pregunta,global_vars.indiceRespuesta)
 		context['pregunta'] = preguntaMatching.pregunta
-		context['opcion'] = preguntaMatching.multimediaCorrecto
-		context['codigo'] = preguntaMatching.multimediaCorrecto.codigo
+		context['preguntaMultimedia'] = preguntaMatching.multimediaPregunta
+		context['opcion'] = preguntaMatching.respuesta.multimedia
+		context['codigo'] = preguntaMatching.respuesta.multimedia.codigo
 		context['formato'] = preguntaMatching.formato
 	else:
 		"""
@@ -352,31 +365,31 @@ def Matching(request,idActividad,idAsignaTerapia):
 		if global_vars.sesionGuardada == False:
 			global_vars.indicadorTiempoTotal=round(global_vars.indicadorTiempoFin - global_vars.indicadorTiempoInicio,2)
 			sesionActividad = Sesion()
-			sesionActividad.asigna_Terapia = Asigna_Terapia.objects.get(id_asign_therapy=idAsignaTerapia)
+			sesionActividad.terapia_tratamiento = Terapia_Tratamiento.objects.get(id=idTerapiaTratamiento)
 			sesionActividad.save()
 
 			indicadoresActividad=actividad.indicador.all()
 
 			for i in indicadoresActividad:
-				print("Indicador con id : ",i.id_indicador)
+				print("Indicador con id : ",i.id)
 				resultadoSesion = Resultado_Sesion()
-				resultadoSesion.sesion = Sesion.objects.get(id_sesion=sesionActividad.id_sesion)
+				resultadoSesion.sesion = Sesion.objects.get(id=sesionActividad.id_sesion)
 				resultadoSesion.actividad = Actividad.objects.get(id=idActividad)
 
-				if i.id_indicador == 4:
+				if i.id == 4:
 					resultadoSesion.resultado = global_vars.indicadorErrores
 					print("Fallos")
 
-				if i.id_indicador == 5:
+				if i.id == 5:
 					resultadoSesion.resultado = global_vars.indicadorAciertos
 					print("Aciertos")
 
 
-				if i.id_indicador == 6:
+				if i.id == 6:
 					resultadoSesion.resultado = global_vars.indicadorTiempoTotal
 					print("Tiempo")
 
-				resultadoSesion.indicador = Indicador.objects.get(id_indicador=i.id_indicador)
+				resultadoSesion.indicador = Indicador.objects.get(id=i.id)
 				print(resultadoSesion.resultado)
 				resultadoSesion.save()
 				global_vars.sesionGuardada=True
@@ -385,11 +398,16 @@ def Matching(request,idActividad,idAsignaTerapia):
 		context['resultados'] = True
 		context['errores'] = global_vars.indicadorErrores
 		context['aciertos'] = global_vars.indicadorAciertos
-		context['tiempo'] = global_vars.indicadorTiempoTotal
+		m, s = divmod(global_vars.indicadorTiempoTotal, 60)
+		context['tiempo'] = "{:02d}:{:02d}".format(int(m),int(s))
+
+		apagarAvisoSerial()
 
 		context['titulo'] = "Matching | {} | Resultados".format(actividad)
 
-	return render(request,'match.html',context)
+
+	#return render(request,'match.html',context)
+	return render(request,'Matching.html',context)
 
 def MatchingCallBack(request):
 	"""!
@@ -399,6 +417,7 @@ def MatchingCallBack(request):
 	context={}
 	context['indicePreguntaActual'] = global_vars.indicePreguntaActual+1
 	context['numeroTotalPreguntas'] = len(global_vars.pilaPreguntas)
+	context['primerSonidoPila'] = global_vars.primerSonidoPila
 
 	tarjeta = global_vars.tarjeta
 	global_vars.tarjeta=None
@@ -412,6 +431,7 @@ def MatchingCallBack(request):
 
 			global_vars.indicePreguntaActual+=1
 			global_vars.indicadorAciertos+=1
+
 
 			mensaje=lineaCentrada(1,"Respuesta") + lineaCentrada(2,"Correcta")
 			publicarMQTT("Pantalla",mensaje,1)
@@ -434,6 +454,8 @@ def MatchingCallBack(request):
 			music = settings.MEDIA_ROOT + '/songs/incorrecto.ogg'
 			cargarAudios([music])
 
+	context['aciertos'] = "{:02d}".format(global_vars.indicadorAciertos)
+	context['fallos'] = "{:02d}".format(global_vars.indicadorErrores)
 	return JsonResponse(context)
 
 def Quizz(request,idActividad,idAsignaTerapia):
@@ -525,31 +547,31 @@ def Quizz(request,idActividad,idAsignaTerapia):
 
 		if global_vars.sesionGuardada == False:
 			sesionActividad = Sesion()
-			sesionActividad.asigna_Terapia = Asigna_Terapia.objects.get(id_asign_therapy=idAsignaTerapia)
+			sesionActividad.asigna_Terapia = Asigna_Terapia.objects.get(id=idAsignaTerapia)
 			sesionActividad.save()
 
 			indicadoresActividad=actividad.indicador.all()
 
 			for i in indicadoresActividad:
-				print("Indicador con id : ",i.id_indicador)
+				print("Indicador con id : ",i.id)
 				resultadoSesion = Resultado_Sesion()
-				resultadoSesion.sesion = Sesion.objects.get(id_sesion=sesionActividad.id_sesion)
+				resultadoSesion.sesion = Sesion.objects.get(id=sesionActividad.id_sesion)
 				resultadoSesion.actividad = Actividad.objects.get(id=idActividad)
 
-				if i.id_indicador == 4:
+				if i.id == 4:
 					resultadoSesion.resultado = global_vars.indicadorErrores
 					print("Fallos")
 
-				if i.id_indicador == 5:
+				if i.id == 5:
 					resultadoSesion.resultado = global_vars.indicadorAciertos
 					print("Aciertos")
 
 
-				if i.id_indicador == 6:
+				if i.id == 6:
 					resultadoSesion.resultado = indicadorTiempo
 					print("Tiempo")
 
-				resultadoSesion.indicador = Indicador.objects.get(id_indicador=i.id_indicador)
+				resultadoSesion.indicador = Indicador.objects.get(id=i.id)
 				print(resultadoSesion.resultado)
 				resultadoSesion.save()
 				global_vars.sesionGuardada=True
@@ -877,7 +899,7 @@ class Multimedia_update(LoginRequiredMixin, UpdateView):
 	redirect_field_name = "/login/"
 
 	def get_success_url(self):
-		return reverse_lazy('multimedia_update', kwargs={'pk': self.object.id_contenido})
+		return reverse_lazy('multimedia_update', kwargs={'pk': self.object.id})
 
 #Vista para la eliminacion de multimedia existente
 
@@ -1647,7 +1669,7 @@ def add_multimedia_to_player(request, id):
 	content1 = list(content)
 	for obj in content:
 		for i in listcont:
-			if i.contenido.id_contenido == obj.id_contenido:
+			if i.contenido.id == obj.id:
 				content1.remove(obj)
 	context = {
 		'object_list' 	:content1,
@@ -1666,7 +1688,7 @@ def add_multimedia_to_player(request, id):
 @login_required(login_url='login')
 def add_multimedia_to_player_function(request, id_player, id_multimedia):
 	player_to_add = Actividad.objects.get(id=id_player)
-	mults = Contenido.objects.get(id_contenido=id_multimedia)
+	mults = Contenido.objects.get(id=id_multimedia)
 	new_content = Actividad_Contenido()
 	new_content.actividad = player_to_add
 	new_content.contenido = mults

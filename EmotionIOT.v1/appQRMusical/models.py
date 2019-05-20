@@ -1,3 +1,10 @@
+"""!
+@package models.py
+@brief Archivo de models
+@author Gregorio Corpas Prieto
+@date 13/03/2019
+"""
+
 # -*- coding: utf-8 -*-
 from __future__ import unicode_literals
 
@@ -43,32 +50,11 @@ Visualizacion= [
     ("Unica","Unica"),
 ]
 
-
-#Entidad que guarda los indicadores presentes en las actividades
-
-class Indicador(models.Model):
-    id_indicador =  models.AutoField(primary_key=True)
-    nombre = models.CharField(max_length=50, blank=True)
-    descripcion = models.TextField(blank=True)
-    def __str__(self):
-        return self.nombre
-
-#Entidad que guarda las actividades
-
-class Actividad(models.Model):
-	id = models.AutoField(primary_key=True)
-	nombre = models.CharField(max_length=100)
-	descripcion = models.CharField(max_length=200, blank=True)
-	proposito = models.CharField(max_length=100, blank=True)
-	indicador = models.ManyToManyField(Indicador, blank=True)
-	juego = models.CharField(max_length=20, choices=Juego, default="Matching")
-	aleatorio = models.BooleanField(default=False)
-	narracion = models.BooleanField(default=True)
-	def __str__(self):
-		return self.nombre
-
-
-#Directorio donde se suben los ficheros
+Resultado = [
+    ("True","True"),
+    ("False","False"),
+    ("",""),
+]
 
 def generarDirectorioSubida(self, file):
     nombre, extension = os.path.splitext(file)
@@ -90,7 +76,37 @@ def calcularEdad(self,fecha_de_nacimiento):
     hoy = date.today()
     return hoy.year - fecha_de_nacimiento.year - ((hoy.month, hoy.day) < (fecha_de_nacimiento.month, fecha_de_nacimiento.day))
 
-#Entidad que guarda los pacientes existentes en el sistema
+@receiver(post_save, sender=User)
+def create_therapist_profile(sender, instance, created, **kwargs):
+    if created:
+        Especialista.objects.create(user=instance)
+
+@receiver(post_save, sender=User)
+def save_therapist_profile(sender, instance, **kwargs):
+    instance.especialista.save()
+
+class Indicador(models.Model):
+    id =  models.AutoField(primary_key=True)
+    nombre = models.CharField(max_length=50, blank=True)
+    descripcion = models.TextField(blank=True)
+    class Meta:
+        verbose_name_plural = "Indicador"
+    def __str__(self):
+        return self.nombre
+
+class Actividad(models.Model):
+    id = models.AutoField(primary_key=True)
+    nombre = models.CharField(max_length=100)
+    descripcion = models.CharField(max_length=200, blank=True)
+    proposito = models.CharField(max_length=100, blank=True)
+    indicador = models.ManyToManyField(Indicador, blank=True)
+    juego = models.CharField(max_length=20, choices=Juego, default="Matching")
+    aleatorio = models.BooleanField(default=False)
+    narracion = models.BooleanField(default=True)
+    class Meta:
+        verbose_name_plural = "Actividad"
+    def __str__(self):
+        return self.nombre
 
 class Paciente(models.Model):
     id = models.AutoField(primary_key=True)
@@ -103,28 +119,18 @@ class Paciente(models.Model):
     nivel = models.IntegerField(choices = Nivel,default=1)
     codigo = models.CharField(max_length=8, blank=True)
     online = models.CharField(max_length=10, choices=Valores_Online, default="no")
+    class Meta:
+        verbose_name_plural = "Paciente"
     def __str__(self):
         return self.nombre
-
-#Entidad que guarda los especialistas
 
 class Especialista(models.Model):
     user = models.OneToOneField(User, on_delete=models.CASCADE)
     nombre = models.CharField("Nombre",max_length=50)
     apellido = models.CharField("Apellido",max_length=50)
     email = models.EmailField()
-
-@receiver(post_save, sender=User)
-def create_therapist_profile(sender, instance, created, **kwargs):
-    if created:
-        Especialista.objects.create(user=instance)
-
-@receiver(post_save, sender=User)
-def save_therapist_profile(sender, instance, **kwargs):
-    instance.especialista.save()
-
-
-#Entidad que guarda los tratamientos
+    class Meta:
+        verbose_name_plural = "Especialista"
 
 class Tratamiento(models.Model):
     id = models.AutoField(primary_key=True)
@@ -134,88 +140,69 @@ class Tratamiento(models.Model):
     fecha_fin = models.DateField(null=True,blank=True)
     descripcion = models.TextField(blank=True)
     activado = models.BooleanField(default=False)
+    class Meta:
+        verbose_name_plural = "Tratamiento"
     def __str__(self):
         return self.nombre
-
-
-#Entidad que guarda las terapias
 
 class Terapia(models.Model):
     id = models.AutoField(primary_key=True)
     nombre = models.CharField("Nombre",max_length=50)
     descripcion = models.TextField(blank=True)
     tipo = models.CharField("Tipo",max_length=50)
+    class Meta:
+        verbose_name_plural = "Terapia"
     def __str__(self):
         return self.nombre
 
-#Entidad que guarda las asiganaciones de las terapias y los tratamientos
-
-class Asigna_Terapia(models.Model):
-    id_asign_therapy = models.AutoField(primary_key=True)
+class Terapia_Tratamiento(models.Model):
+    id = models.AutoField(primary_key=True)
     terapia = models.ManyToManyField(Terapia)
     tratamiento = models.ForeignKey(Tratamiento,on_delete=models.CASCADE)
+    class Meta:
+        verbose_name_plural = "Terapia_Tratamiento"
     def __str__(self):
         return str(self.terapia)
     def getNombre(id):
         return Terapia.objects.filter(id=id)
-#Entidad que guarda el especialista ya la terapia asignada.
 
-class Especialista_Asigna_Terapia(models.Model):
-    asigna_terapia = models.ForeignKey(Asigna_Terapia,on_delete=models.CASCADE)
+class Especialista_Terapia_Tratamiento(models.Model):
+    terapia_tratamiento = models.ForeignKey(Terapia_Tratamiento,on_delete=models.CASCADE)
     especialista = models.ForeignKey(Especialista,on_delete=models.CASCADE)
     fecha = models.DateField(null=True,blank=True)
     class Meta:
-        unique_together = ("asigna_terapia","especialista","fecha")
-
-#Entidad que guarda el especialista que supervisa un tratamiento
+        verbose_name_plural = "Especialista_Terapia_Tratamiento"
+        unique_together = ("terapia_tratamiento","especialista","fecha")
 
 class Supervisa(models.Model):
     especialista = models.ForeignKey(Especialista,on_delete=models.CASCADE)
     tratamiento = models.ForeignKey(Tratamiento,on_delete=models.CASCADE)
     class Meta:
+        verbose_name_plural = "Supervisa"
         unique_together = ("especialista","tratamiento")
 
-#Entidad que guarda las actividades
-
 class Diagnostico(models.Model):
-    id_diagnostico = models.AutoField(primary_key=True)
+    id = models.AutoField(primary_key=True)
     paciente = models.ForeignKey(Paciente,on_delete=models.CASCADE)
     fecha = datetime.today()
     valoracion = models.CharField(max_length=50, blank=True)
     notas = models.TextField(blank=True)
-
-#Entidad que guarda las sesiones de los pacientes
+    class Meta:
+        verbose_name_plural = "Diagnostico"
 
 class Sesion(models.Model):
-    id_sesion = models.AutoField(primary_key=True)
-    asigna_Terapia = models.ForeignKey(Asigna_Terapia,on_delete=models.CASCADE)
+    id = models.AutoField(primary_key=True)
+    terapia_tratamiento = models.ForeignKey(Terapia_Tratamiento,on_delete=models.CASCADE)
     fecha = models.DateTimeField(auto_now_add=True)
-
-#Entidad que almacena los indicadores asociados a una actividad
-"""
-class Actividad_Indicador(models.Model):
-    actividad = models.ForeignKey(Actividad,on_delete=models.CASCADE)
-    indicador = models.ForeignKey(Indicador,on_delete=models.CASCADE)
     class Meta:
-        unique_together = ("actividad","indicador")
-"""
-#Entidad que guarda las actividades
+        verbose_name_plural = "Sesion"
 
 class Terapia_Actividad(models.Model):
     actividad = models.ForeignKey(Actividad,on_delete=models.CASCADE)
     terapia = models.ForeignKey(Terapia,on_delete=models.CASCADE)
     class Meta:
+        verbose_name_plural = "Terapia_Actividad"
         unique_together = ("actividad","terapia")
-
-#Entidad que guarda las actividades
-"""
-class Terapia_Indicador(models.Model):
-    terapia = models.ForeignKey(Terapia,on_delete=models.CASCADE)
-    indicador = models.ForeignKey(Indicador,on_delete=models.CASCADE)
-    class Meta:
-        unique_together = ("terapia","indicador")
-"""
-#Entidad que guarda las actividades
 
 class Resultado_Sesion(models.Model):
     sesion = models.ForeignKey(Sesion,on_delete=models.CASCADE)
@@ -223,88 +210,89 @@ class Resultado_Sesion(models.Model):
     actividad = models.ForeignKey(Actividad,on_delete=models.CASCADE)
     resultado =  models.TextField(blank=True)
     class Meta:
+        verbose_name_plural = "Resultado_Sesion"
         unique_together = ("sesion","indicador","actividad")
 
-#Entidad que guarda las actividades
-
 class Categoria(models.Model):
-    id_categoria =  models.AutoField(primary_key=True)
+    id =  models.AutoField(primary_key=True)
     nombre = models.CharField(max_length=50, blank=True)
+    class Meta:
+        verbose_name_plural = "Categoria"
     def __str__(self):
         return self.nombre
-
-#Entidad que guarda las actividades
 
 class Categoria_Actividad(models.Model):
     categoria = models.ForeignKey(Categoria,on_delete=models.CASCADE)
     actividad = models.ForeignKey(Actividad,on_delete=models.CASCADE)
     class Meta:
+        verbose_name_plural = "Categoria_Actividad"
         unique_together = ("categoria","actividad")
 
-#Entidad que guarda las actividades
-
 class Contenido(models.Model):
-    id_contenido =  models.AutoField(primary_key=True)
-    desripcion =  models.CharField(max_length=50, blank=True)
+    id =  models.AutoField(primary_key=True)
+    descripcion =  models.CharField(max_length=50, blank=True)
     codigo = models.CharField(max_length=8, blank=True)
+    class Meta:
+        verbose_name_plural = "Contenido"
     def __str__(self):
-        return self.desripcion
-#Entidad que guarda las actividades
-"""
-class Texto(Contenido):
-    data =  models.CharField(max_length=50, blank=True)
-"""
-"""
-class Qui(Contenido):
-    pregunta =  models.TextField(null=True,blank=True)
-    verdadero = models.ForeignKey(Contenido,related_name="verdadero+",blank=False,on_delete=models.CASCADE)
-    falso = models.ManyToManyField(Contenido,related_name="falso+",blank=False)
-class Quises(Contenido):
-    pregunta =  models.TextField(null=True,blank=True)
-    verdadero = models.ForeignKey("Multimedia",related_name="verdadero1+",blank=False,on_delete=models.CASCADE)
-    falso = models.ManyToManyField("Multimedia",related_name="falso1+",blank=False)
-    """
-
+        return self.descripcion
 
 class Multimedia(Contenido):
-	nombre = models.CharField(max_length=100)
-	audio = models.FileField(upload_to=generarDirectorioSubida, null=True, blank=True)
-	video = models.FileField(upload_to=generarDirectorioSubida, null=True, blank=True)
-	imagen = models.ImageField(upload_to='images/')
-	filetype = models.CharField(max_length=3)
-	datetime = models.DateTimeField(auto_now_add=True)
+    nombre = models.CharField(max_length=100)
+    audio = models.FileField(upload_to=generarDirectorioSubida, null=True, blank=True)
+    video = models.FileField(upload_to=generarDirectorioSubida, null=True, blank=True)
+    imagen = models.ImageField(upload_to='images/', null=True, blank=True)
+    datetime = models.DateTimeField(auto_now_add=True)
 
-	class Meta:
-		ordering = ('datetime',)
+    class Meta:
+        verbose_name_plural = "Multimedia"
+        ordering = ('datetime',)
 
-	def __str__(self):
-		return self.nombre
-
-
-#Entidad que guarda las actividades
+    def __str__(self):
+        return self.nombre
 
 class Actividad_Contenido(models.Model):
     actividad= models.ForeignKey(Actividad,on_delete=models.CASCADE)
     contenido = models.ForeignKey(Contenido,on_delete=models.CASCADE)
     class Meta:
+        verbose_name_plural = "Actividad_Contenido"
         unique_together = ("actividad","contenido")
 
 class Pregunta(models.Model):
     pregunta = models.TextField(blank=False,null=False)
     formato = models.CharField(max_length=20, choices=Formato, default="Imagen")
+    class Meta:
+        verbose_name_plural = "Pregunta"
     def __str__(self):
         return self.pregunta
 
 class Pregunta_Matching(Pregunta):
-    multimediaCorrecto = models.ForeignKey("Multimedia",related_name="multimediaCorrecto+",blank=False,on_delete=models.CASCADE)
+    multimediaPregunta = models.ForeignKey("Multimedia",related_name="multimedia+",blank=False,on_delete=models.CASCADE)
+    respuesta = models.ForeignKey("Respuesta",related_name="respuesta+",blank=False,on_delete=models.CASCADE)
+    class Meta:
+        verbose_name_plural = "Pregunta_Matching"
+    def __str__(self):
+        return "{} : {} : {}".format(self.pregunta,self.multimediaPregunta,self.respuesta)
 
 class Pregunta_Quizz(Pregunta):
-    multimediaCorrecto = models.ForeignKey("Multimedia",related_name="multimediaCorrecto+",blank=False,on_delete=models.CASCADE)
-    multimediaIncorrecto = models.ManyToManyField("Multimedia",related_name="multimediaIncorrecto+",blank=False)
+    multimediaPregunta = models.ForeignKey("Multimedia",related_name="pregunta+",blank=False,on_delete=models.CASCADE)
+    respuestas = models.ManyToManyField("Respuesta",related_name="respuestas+",blank=False)
     visualizacion = models.CharField(max_length=20, choices=Visualizacion, default="Unica")
+    class Meta:
+        verbose_name_plural = "Pregunta_Quizz"
 
 class Actividad_Pregunta(models.Model):
+    id =  models.AutoField(primary_key=True)
     actividad= models.ForeignKey(Actividad,on_delete=models.CASCADE)
     pregunta = models.ForeignKey(Pregunta,on_delete=models.CASCADE)
     class Meta:
         unique_together = ("actividad","pregunta")
+        verbose_name_plural = "Actividad_Pregunta"
+
+class Respuesta(models.Model):
+    multimedia = models.ForeignKey("Multimedia",related_name="multimedia",blank=False,on_delete=models.CASCADE)
+    resultado =  models.CharField(max_length=20, choices=Resultado, default="")
+    class Meta:
+        verbose_name_plural = "Respuesta"
+    def __str__(self):
+        return "{} : {}".format(self.multimedia,self.resultado)

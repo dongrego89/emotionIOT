@@ -1,44 +1,47 @@
+{% extends "baseMaterial.html" %}
 
-{% extends "body.html" %}
 {% load staticfiles %}
 
 {% block titulo %}{{titulo}}{% endblock titulo %}
 
-{% block content_wrapper %}
-<div class="col-sm-12 QRM_box {{QRM_color}}">
-	<div class="QRM_box_in">
-		<div style='text-align:center; margin: 0 auto; width: 90%'>
+{% block body %}
 
-		{% if player.online == "si" %}
+{% if jugador.online != "si" %}
 
-		<script>
-				window.location='/elegirTerapia'
-		</script>
 
-		{% else %}
-
-      <img src="/files/static/RFIDMusic.png" >
-			<h1><div id="mensaje"></div></h1>
-
-		{% endif %}
-
-		</div>
-	</div>
+<div class=" d-flex justify-content-center">
+  <div class="col-md-6">
+		<img class="animated zoomIn img-fluid" src="/files/static/RFIDMusic.png" style="margin-top:20%;">
+		<h1 class="text-center animated fadeIn slow delay-1s mt-4">Acerca tu tarjeta/pulsera al lector</h1>
+    <h3 class="text-center"><div id="mensaje"></div></h3>
+  </div>
 </div>
 
-<script src="{% static 'js/jquery.min.js' %}"></script>
+{% endif %}
+
+
 
 <script type="text/javascript">
 
 function iniciarSesionRfid(){
+  $('#mensaje').one('webkitAnimationEnd mozAnimationEnd MSAnimationEnd oanimationend animationend', function(){
+    $('#mensaje').removeClass('animated bounceIn');
+    $('#mensaje').addClass('animated bounceOut delay-2s');
+  });
+
 	$.get('{% url 'rfidlogin' %}', function(data) {
 
 		if(data.redireccionar){
-			window.location="/elegirTerapia"
+      setTimeout(function(){window.location=data.direccion}, data.tiempoPausa)
 		}
+
 		else{
 			if(data.mensaje){
-				$("#mensaje").html(data.mensaje + "<br>" + data.codigoMQTT)
+        $("#mensaje").html(data.mensaje + " " + data.codigoMQTT)
+
+        $('#mensaje').removeClass('animated bounceOut delay-2s');
+        $('#mensaje').addClass('animated bounceIn');
+        //$('#mensaje').addClass('animated bounceOut delay-2s');
 			}
 		}
 	})
@@ -46,8 +49,14 @@ function iniciarSesionRfid(){
 
 setInterval( "iniciarSesionRfid()", 500 );
 
-
-
 </script>
 
-{% endblock content_wrapper %}
+{% if jugador.online == "si" %}
+
+<script>
+    window.location='/elegirTerapia'
+</script>
+
+{% endif %}
+
+{% endblock %}

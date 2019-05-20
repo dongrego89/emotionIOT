@@ -1,44 +1,48 @@
-{% extends "body.html" %}
+{% extends "baseMaterial.html" %}
+
+{% load staticfiles %}
 
 {% block titulo %}{{titulo}}{% endblock titulo %}
 
-{% block content_wrapper %}
+{% block body %}
 
-<div class="col-sm-12 QRM_box {{QRM_color}}">
-  <p style="font-size:30px;color:white;">{{mensaje}}</p>
-	<div class="QRM_box_in">
-		<div style='text-align:center; margin: 0 auto; width: 90%'>
 
 {% if actividades|length > 0 %}
-  <h1>Numero de elementos: {{actividades|length}}</h1>
-  {% for i in actividades %}
-    {% if i.juego == "Matching" %}
-      <a href="{% url 'matching' i.id idAsignaTerapia %}">
+  <h1 class="text-center animated flipInX fast delay-1s mt-5 mb-5">{{mensaje}} <!--{{terapiaTratamiento|length}}--></h1>
 
-    {% endif %}
-    {% if i.juego == "Quizz" %}
-      <a href="{% url 'quizz' i.id idAsignaTerapia %}">
-    {% endif %}
-    <div class="QRM_btn QRM_btn_home">
-    <h2>{{ i.juego }} </h2>
-    <img class="QRM_btn_image" src="/files/static/{{i.juego}}.png">
-    <h5>{{ i.nombre }}</h5>
+  <div class="container-fluid ml-md-auto col-md-8" >
+
+    <div class="row animated flipInX delay-1s">
+    {% for i in actividades %}
+
+
+    <div class="col-xl-2 ml-auto mr-auto">
+        <div class="card text-white bg-primary">
+          {% if i.juego == "Matching" %}
+          <a href="{% url 'matching' i.id idTerapiaTratamiento idTerapia%}" class="text-center link text-white">
+          {% endif %}
+          {% if i.juego == "Quizz" %}
+          <a href="{% url 'quizz' i.id idTerapiaTratamiento idTerapia%}" class="text-center link text-white">
+          {% endif %}
+
+            <div class="card-header primary-color-dark">{{ i.nombre }}</div>
+            <div class="card-body white">
+              <img class="img-fluid w-75" src="/files/static/{{i.juego}}.png">
+            </div>
+          </a>
+        </div>
     </div>
-    </a>
-  {% endfor %}
-{% else %}
-<a>
-  <div class="QRM_btn QRM_btn_home">
-    <img class="QRM_btn_image" src="/files/static/error.png">
-    <h5>{{mensaje_error}}</h5>
-  </div>
-</a>
 
+    {% if forloop.first != True and forloop.counter|divisibleby:6 %}
+      <div class="w-100 mb-4 d-none d-lg-none d-xl-block"></div>
+    {% endif %}
+
+    {% endfor %}
+    </div>
+</div>
+{% else %}
+  <h1 class="text-center animated zoomIn slow delay-1s mt-5 mb-5">{{mensaje_error}} <!--{{terapiaTratamiento|length}}--></h1>
 {% endif %}
 
 
-		</div>
-	</div>
-</div>
-
-{% endblock content_wrapper %}
+{% endblock %}

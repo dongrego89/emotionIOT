@@ -16,7 +16,6 @@ def iniciarPilaDeAudios():
     while True:
 
         if len(global_vars.pilaSonidos) > 0:
-
             pygame.mixer.music.load(global_vars.pilaSonidos.pop()) #Cargar el primer elemento de la lista
             pygame.mixer.music.play() #Reproducir el elemento
 
@@ -32,48 +31,50 @@ def iniciarPilaDeAudios():
                             pygame.mixer.music.play() #Reproducir la pista
                         else:
                             pendiente=False
+                        global_vars.primerSonidoPila = True
 
 
 def arranqueReproductor():
-	"""!
-	@brief Función que libera un hilo que arranca el reproductor de audios
-	"""
-	hiloReproductor=threading.Thread(name="hiloReproductor",target=iniciarPilaDeAudios,args=())
-	hiloReproductor.start()
+    """!
+    @brief Función que libera un hilo que arranca el reproductor de audios
+    """
+    hiloReproductor=threading.Thread(name="hiloReproductor",target=iniciarPilaDeAudios,args=())
+    hiloReproductor.start()
 
 def vaciarPilaAudios():
-	"""!
-	@brief Función que limpia la pila actual de audios
-	"""
-	global_vars.pilaSonidos.clear()
+    """!
+    @brief Función que limpia la pila actual de audios
+    """
+    global_vars.pilaSonidos.clear()
 
 def cargarAudios(listaAudios):
-	"""!
-	@brief Función que anexa a la pila actual de audios, los audios pasados por parámetro
-	@param listaSonidos Lista de audios a añadir a la pila del sistema
-	"""
-	global_vars.pilaSonidos.extend(listaAudios)
+    """!
+    @brief Función que anexa a la pila actual de audios, los audios pasados por parámetro
+    @param listaSonidos Lista de audios a añadir a la pila del sistema
+    """
+    global_vars.primerSonidoPila = False
+    global_vars.pilaSonidos.extend(listaAudios)
 
 
 def narrarTTS(textos):
-	"""!
-	@brief Función que transforma la lista de textos pasada por parámetro en archivos de audio y luego los carga en la pila
-	@param textos Lista de textos a convertir en audios
-	"""
-	vaciarPilaAudios()
-	listaAudios=list()
+    """!
+    @brief Función que transforma la lista de textos pasada por parámetro en archivos de audio y luego los carga en la pila
+    @param textos Lista de textos a convertir en audios
+    """
+    vaciarPilaAudios()
+    listaAudios=list()
 
-	for i in textos:
-		listaAudios.append(tts(i))
+    for i in textos:
+        listaAudios.append(tts(i))
 
-	listaAudios.reverse()
+    listaAudios.reverse()
 
-	cargarAudios(listaAudios)
+    cargarAudios(listaAudios)
 
 def lanzarNarracion(textos):
-	"""!
-	@brief Función que libera un hilo que invoca a la función de narración de textos
-	@param textos Lista de textos a narrar
-	"""
-	hiloNarracion=threading.Thread(name="hiloNarracion",target=narrarTTS,args=(textos,))
-	hiloNarracion.start()
+    """!
+    @brief Función que libera un hilo que invoca a la función de narración de textos
+    @param textos Lista de textos a narrar
+    """
+    hiloNarracion=threading.Thread(name="hiloNarracion",target=narrarTTS,args=(textos,))
+    hiloNarracion.start()

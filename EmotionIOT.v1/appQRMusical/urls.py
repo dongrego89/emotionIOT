@@ -19,7 +19,7 @@ urlpatterns = [
 
 	# Play-Songs
 	url(r'^elegirTerapia/$', ElegirTerapia.as_view(), name='elegirTerapia'),
-	url(r'^elegirActividad/(?P<idTerapia>\d+)/(?P<idAsignaTerapia>\d+)/$', ElegirActividad, name='elegirActividad'),
+	url(r'^elegirActividad/(?P<idTerapia>\d+)/(?P<idTerapiaTratamiento>\d+)/$', ElegirActividad, name='elegirActividad'),
 
     # Login
 	url(r'^login/$', views.Login, name='login'),
@@ -29,7 +29,7 @@ urlpatterns = [
 	url(r'^quizz/(?P<idActividad>\d+)/(?P<idAsignaTerapia>\d+)/$', views.Quizz, name='quizz'),
 	url(r'^quizz/$', views.QuizzCallBack, name='quizzCallBack'),
 
-	url(r'^matching/(?P<idActividad>\d+)/(?P<idAsignaTerapia>\d+)/$', views.Matching, name='matching'),
+	url(r'^matching/(?P<idActividad>\d+)/(?P<idTerapiaTratamiento>\d+)/(?P<idTerapia>\d+)/$', views.Matching, name='matching'),
 	url(r'^matching/$', views.MatchingCallBack, name='matchingCallBack'),
 
 

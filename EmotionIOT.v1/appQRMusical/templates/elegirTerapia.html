@@ -1,43 +1,40 @@
-{% extends "body.html" %}
+{% extends "baseMaterial.html" %}
+
+{% load staticfiles %}
 
 {% block titulo %}{{titulo}}{% endblock titulo %}
 
-{% block content_wrapper %}
+{% block body %}
 
-<div class="col-sm-12 QRM_box {{QRM_color}}">
-  <p style="font-size:30px;color:white;">{{mensaje}}</p>
-	<div class="QRM_box_in">
-		<div style='text-align:center; margin: 0 auto; width: 90%'>
 
-{% if asignaTerapias|length > 0 %}
-  <h1>Numero de elementos: {{asignaTerapias|length}}</h1>
-  {% for i in asignaTerapias %}
-    <a href="{% url 'elegirActividad' i.terapia i.id_asign_therapy %}">
-      <div class="QRM_btn QRM_btn_home">
-        <img class="QRM_btn_image" src="/files/static/game_match.png">
-        <h5>{{ i.terapia__nombre }}</h5>
-      </div>
-    </a>
-    {% comment %}
-    <div style="border:1pt solid white;">
-      ID. Asign Therapy [{{i.id_asign_therapy}}]<br>
-      ID. Terapia [{{i.terapia}}]<br>
-      ID. Tratamiento [{{i.tratamiento}}]<br>
+{% if terapiaTratamiento|length > 0 %}
+  <h1 class="text-center animated flipInX fast delay-1s mt-5 mb-5">{{mensaje}} <!--{{terapiaTratamiento|length}}--></h1>
+
+  <div class="container-fluid ml-md-auto col-md-8" >
+
+    <div class="row animated flipInX delay-1s">
+    {% for i in terapiaTratamiento %}
+    <div class="col-xl-2 ml-auto mr-auto">
+        <div class="card text-white bg-primary">
+          <a href="{% url 'elegirActividad' i.terapia i.id %}" class="text-center link text-white">
+            <div class="card-header primary-color-dark">{{ i.terapia__nombre }}</div>
+            <div class="card-body white">
+              <img class="img-fluid w-75" src="/files/static/game_match.png">
+            </div>
+          </a>
+        </div>
     </div>
-     <hr>
-     {% endcomment %}
 
-  {% endfor %}
-{% else %}
-  <a>
-    <div class="QRM_btn QRM_btn_home">
-      <img class="QRM_btn_image" src="/files/static/error.png">
-      <h5>{{mensaje_error}}</h5>
+    {% if forloop.first != True and forloop.counter|divisibleby:6 %}
+      <div class="w-100 mb-4 d-none d-lg-none d-xl-block"></div>
+    {% endif %}
+
+    {% endfor %}
     </div>
-  </a>
-{% endif %}
-		</div>
-	</div>
 </div>
+{% else %}
+  <h1 class="text-center animated zoomIn slow delay-1s mt-5 mb-5">{{mensaje_error}} <!--{{terapiaTratamiento|length}}--></h1>
+{% endif %}
 
-{% endblock content_wrapper %}
+
+{% endblock %}

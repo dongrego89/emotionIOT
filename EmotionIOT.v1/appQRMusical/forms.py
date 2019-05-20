@@ -2,7 +2,8 @@
 from __future__ import unicode_literals
 
 from django import forms
-from .models import Multimedia, Actividad, Paciente, Especialista, Tratamiento, Diagnostico, Terapia, Asigna_Terapia, Indicador, Contenido, Categoria, Categoria_Actividad, Terapia_Actividad
+from .models import Multimedia, Actividad, Paciente, Especialista, Tratamiento, Diagnostico, Terapia, Terapia_Tratamiento
+from .models import Indicador, Contenido, Categoria, Categoria_Actividad, Terapia_Actividad
 from django.contrib.auth.models import User
 from django.contrib.auth.forms import UserCreationForm
 
@@ -103,7 +104,7 @@ class UploadTherapyForm(forms.ModelForm):
 class UploadAsignTherapyForm(forms.ModelForm):
     terapia = forms.ModelMultipleChoiceField(queryset=Terapia.objects.all(),required=False)
     class Meta:
-        model = Asigna_Terapia
+        model = Terapia_Tratamiento
         fields = ['terapia']
 
     def __init__(self, *args, **kwargs):
@@ -116,7 +117,7 @@ class UploadAsignTherapyForm(forms.ModelForm):
 class UploadAsign(forms.ModelForm):
     tratamiento = forms.ModelChoiceField(queryset=Tratamiento.objects.all(),required=False)
     class Meta:
-        model = Asigna_Terapia
+        model = Terapia_Tratamiento
         fields = ['tratamiento']
 
     def __init__(self, *args, **kwargs):
