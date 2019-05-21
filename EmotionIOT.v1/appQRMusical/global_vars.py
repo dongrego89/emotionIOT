@@ -6,6 +6,7 @@ quizzInicializado=False
 matchingInicializado=False
 
 sesionGuardada=False
+sesionActividad=None
 pilaPreguntas=[]
 indiceRespuesta=0
 indicePreguntaActual=0

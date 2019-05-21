@@ -162,7 +162,7 @@ class Terapia_Tratamiento(models.Model):
     class Meta:
         verbose_name_plural = "Terapia_Tratamiento"
     def __str__(self):
-        return str(self.terapia)
+        return "{}:{}".format(self.terapia,self.tratamiento)
     def getNombre(id):
         return Terapia.objects.filter(id=id)
 
@@ -193,9 +193,12 @@ class Diagnostico(models.Model):
 class Sesion(models.Model):
     id = models.AutoField(primary_key=True)
     terapia_tratamiento = models.ForeignKey(Terapia_Tratamiento,on_delete=models.CASCADE)
+    actividad = models.ForeignKey(Actividad,on_delete=models.CASCADE)
     fecha = models.DateTimeField(auto_now_add=True)
     class Meta:
         verbose_name_plural = "Sesion"
+    def __str__(self):
+        return "{}:{}".format(self.terapia_tratamiento,self.fecha)
 
 class Terapia_Actividad(models.Model):
     actividad = models.ForeignKey(Actividad,on_delete=models.CASCADE)
@@ -296,3 +299,15 @@ class Respuesta(models.Model):
         verbose_name_plural = "Respuesta"
     def __str__(self):
         return "{} : {}".format(self.multimedia,self.resultado)
+
+class Registro_Sesion(models.Model):
+    id = models.AutoField(primary_key=True)
+    sesion = models.ForeignKey("Sesion",related_name="sesion+",blank=False,on_delete=models.CASCADE)
+    pregunta = models.ForeignKey(Pregunta,on_delete=models.CASCADE)
+    multimediaRespuesta = models.ForeignKey("Multimedia",related_name="multimediaRespuesta+",blank=False,on_delete=models.CASCADE)
+    fecha = models.DateTimeField(auto_now_add=True)
+
+    class Meta:
+        verbose_name_plural = "Registro_Sesion"
+    def __str__(self):
+        return "{}:{}:{}".format(self.sesion,self.pregunta,self.fecha)

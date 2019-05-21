@@ -7,12 +7,15 @@ from .models import Terapia_Tratamiento, Especialista_Terapia_Tratamiento, Super
 from .models import Sesion, Indicador, Terapia_Actividad, Resultado_Sesion, Categoria, Categoria_Actividad
 from .models import Contenido, Actividad_Contenido
 from .models import Pregunta, Pregunta_Matching, Pregunta_Quizz, Actividad_Pregunta, Respuesta
+from .models import Registro_Sesion
+
 
 #, Terapia_Indicador  Texto,
 
 
 # Register your models here. Qui,Quises,
 admin.site.register(Actividad)
+admin.site.register(Registro_Sesion)
 admin.site.register(Respuesta)
 admin.site.register(Multimedia)
 admin.site.register(Paciente)

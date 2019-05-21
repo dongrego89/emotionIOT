@@ -68,6 +68,7 @@ from .forms import UploadDiagnosticForm
 
 # Indicador
 from .models import Indicador
+
 #, Terapia_Indicador
 from .forms import UploadIndicatorForm
 
@@ -76,7 +77,7 @@ from .models import Categoria, Categoria_Actividad
 from .forms import UploadCategoryForm, FormularioCategoriaActividad
 
 #Sesion
-from .models import Sesion, Resultado_Sesion
+from .models import Sesion, Resultado_Sesion, Registro_Sesion
 
 #Player Game
 import threading
@@ -322,6 +323,12 @@ def Matching(request,idActividad,idTerapiaTratamiento,idTerapia):
 		global_vars.indicadorAciertos=0
 		global_vars.indicadorTiempoInicio=time.time()
 		global_vars.matchingInicializado = True
+
+		global_vars.sesionActividad = Sesion()
+		global_vars.sesionActividad.terapia_tratamiento = Terapia_Tratamiento.objects.get(id=idTerapiaTratamiento)
+		global_vars.sesionActividad.actividad = Actividad.objects.get(id=idActividad)
+		global_vars.sesionActividad.save()
+
 		global_vars.sesionGuardada = False
 
 	if global_vars.indicePreguntaActual < len(global_vars.pilaPreguntas):
@@ -364,28 +371,27 @@ def Matching(request,idActividad,idTerapiaTratamiento,idTerapia):
 
 		if global_vars.sesionGuardada == False:
 			global_vars.indicadorTiempoTotal=round(global_vars.indicadorTiempoFin - global_vars.indicadorTiempoInicio,2)
-			sesionActividad = Sesion()
-			sesionActividad.terapia_tratamiento = Terapia_Tratamiento.objects.get(id=idTerapiaTratamiento)
-			sesionActividad.save()
+			#sesionActividad = Sesion()
+			#sesionActividad.terapia_tratamiento = Terapia_Tratamiento.objects.get(id=idTerapiaTratamiento)
+			#sesionActividad.save()
 
 			indicadoresActividad=actividad.indicador.all()
 
 			for i in indicadoresActividad:
 				print("Indicador con id : ",i.id)
 				resultadoSesion = Resultado_Sesion()
-				resultadoSesion.sesion = Sesion.objects.get(id=sesionActividad.id_sesion)
+				resultadoSesion.sesion = Sesion.objects.get(id=global_vars.sesionActividad.id)
 				resultadoSesion.actividad = Actividad.objects.get(id=idActividad)
 
-				if i.id == 4:
-					resultadoSesion.resultado = global_vars.indicadorErrores
-					print("Fallos")
-
-				if i.id == 5:
+				if i.id == 1:
 					resultadoSesion.resultado = global_vars.indicadorAciertos
 					print("Aciertos")
 
+				if i.id == 2:
+					resultadoSesion.resultado = global_vars.indicadorErrores
+					print("Fallos")
 
-				if i.id == 6:
+				if i.id == 3:
 					resultadoSesion.resultado = global_vars.indicadorTiempoTotal
 					print("Tiempo")
 
@@ -421,13 +427,20 @@ def MatchingCallBack(request):
 
 	tarjeta = global_vars.tarjeta
 	global_vars.tarjeta=None
+	preguntaMatching=global_vars.pilaPreguntas[global_vars.indicePreguntaActual]
 
 	if tarjeta:
 		context['tarjeta'] = tarjeta
 		context['tiempoPausa'] = 500
 		context['indiceRespuesta'] = global_vars.indiceRespuesta
 
+		registroSesion = Registro_Sesion()
+		registroSesion.pregunta=preguntaMatching
+		registroSesion.sesion=global_vars.sesionActividad
+
 		if formateaCodigo(tarjeta) == formateaCodigo(str(global_vars.indiceRespuesta)):
+
+			registroSesion.multimediaRespuesta=preguntaMatching.respuesta.multimedia
 
 			global_vars.indicePreguntaActual+=1
 			global_vars.indicadorAciertos+=1
@@ -449,10 +462,13 @@ def MatchingCallBack(request):
 			mensaje=lineaCentrada(1,"Respuesta") + lineaCentrada(2,"Incorrecta")
 			publicarMQTT("Pantalla",mensaje,0)
 
+			registroSesion.multimediaRespuesta=Multimedia.objects.get(codigo=formateaCodigo(tarjeta))
 
 			context['mensaje'] = "Respuesta incorrecta"
 			music = settings.MEDIA_ROOT + '/songs/incorrecto.ogg'
 			cargarAudios([music])
+
+		registroSesion.save()
 
 	context['aciertos'] = "{:02d}".format(global_vars.indicadorAciertos)
 	context['fallos'] = "{:02d}".format(global_vars.indicadorErrores)
