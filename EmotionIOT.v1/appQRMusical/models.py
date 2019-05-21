@@ -304,7 +304,7 @@ class Registro_Sesion(models.Model):
     id = models.AutoField(primary_key=True)
     sesion = models.ForeignKey("Sesion",related_name="sesion+",blank=False,on_delete=models.CASCADE)
     pregunta = models.ForeignKey(Pregunta,on_delete=models.CASCADE)
-    multimediaRespuesta = models.ForeignKey("Multimedia",related_name="multimediaRespuesta+",blank=False,on_delete=models.CASCADE)
+    multimediaRespuesta = models.ForeignKey("Multimedia",related_name="multimediaRespuesta+",null=True,blank=True,on_delete=models.CASCADE)
     fecha = models.DateTimeField(auto_now_add=True)
 
     class Meta:

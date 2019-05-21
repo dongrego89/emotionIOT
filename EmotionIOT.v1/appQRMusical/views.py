@@ -428,6 +428,7 @@ def MatchingCallBack(request):
 	tarjeta = global_vars.tarjeta
 	global_vars.tarjeta=None
 	preguntaMatching=global_vars.pilaPreguntas[global_vars.indicePreguntaActual]
+	print("Indice pregunta actual: {}".format(global_vars.indicePreguntaActual))
 
 	if tarjeta:
 		context['tarjeta'] = tarjeta
@@ -441,10 +442,10 @@ def MatchingCallBack(request):
 		if formateaCodigo(tarjeta) == formateaCodigo(str(global_vars.indiceRespuesta)):
 
 			registroSesion.multimediaRespuesta=preguntaMatching.respuesta.multimedia
+			registroSesion.save()
 
 			global_vars.indicePreguntaActual+=1
 			global_vars.indicadorAciertos+=1
-
 
 			mensaje=lineaCentrada(1,"Respuesta") + lineaCentrada(2,"Correcta")
 			publicarMQTT("Pantalla",mensaje,1)
@@ -462,13 +463,18 @@ def MatchingCallBack(request):
 			mensaje=lineaCentrada(1,"Respuesta") + lineaCentrada(2,"Incorrecta")
 			publicarMQTT("Pantalla",mensaje,0)
 
-			registroSesion.multimediaRespuesta=Multimedia.objects.get(codigo=formateaCodigo(tarjeta))
-
-			context['mensaje'] = "Respuesta incorrecta"
-			music = settings.MEDIA_ROOT + '/songs/incorrecto.ogg'
+			try:
+				registroSesion.multimediaRespuesta=Multimedia.objects.get(codigo=formateaCodigo(tarjeta))
+				context['mensaje'] = "Respuesta incorrecta"
+				registroSesion.save()
+				music = settings.MEDIA_ROOT + '/songs/incorrecto.ogg'
+			except Multimedia.DoesNotExist:
+				registroSesion.multimediaRespuesta = None
+				context['mensaje'] = "Multimedia no registrado"
+				#music = settings.MEDIA_ROOT + '/songs/error.ogg'
 			cargarAudios([music])
 
-		registroSesion.save()
+
 
 	context['aciertos'] = "{:02d}".format(global_vars.indicadorAciertos)
 	context['fallos'] = "{:02d}".format(global_vars.indicadorErrores)
