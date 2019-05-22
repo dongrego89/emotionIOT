@@ -198,7 +198,7 @@ class Sesion(models.Model):
     class Meta:
         verbose_name_plural = "Sesion"
     def __str__(self):
-        return "{}:{}".format(self.terapia_tratamiento,self.fecha)
+        return "{}:{}".format(self.terapia_tratamiento,self.fecha.strftime("%b-%d-%Y %H:%M:%S"))
 
 class Terapia_Actividad(models.Model):
     actividad = models.ForeignKey(Actividad,on_delete=models.CASCADE)

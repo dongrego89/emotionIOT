@@ -4,7 +4,7 @@
 
 <!DOCTYPE html>
 
-<html lang="es">
+<html lang="es" style="height:100%;">
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
 <meta http-equiv="x-ua-compatible" content="ie=edge">
@@ -21,9 +21,17 @@
 
 		<link rel=”shortcut icon” type=”image/jpg href=”{% static 'favicon.jpg' %}/>
 
+		<style type="text/css">
+		    .mi-container{
+		    min-height: 90%;
+		    height:90%;
+		    overflow:hidden;
+		    }
+		</style>
+
 	</head>
 
-	<body>
+	<body style="height:100%;">
 		{% if jugador.online == "si" %}
 
 	  <nav class="navbar navbar-expand-lg navbar-dark primary-color-dark {% if titulo == "Terapias" %} animated bounceInDown {% endif %}">
@@ -44,9 +52,11 @@
 		{% endif %}
 	</nav>
 
+
 {% block body %}
 
 {% endblock %}
+
 
 {% if jugador.online == "si" %}
 <!-- Footer -->

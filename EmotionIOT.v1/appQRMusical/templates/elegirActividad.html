@@ -6,43 +6,66 @@
 
 {% block body %}
 
-
 {% if actividades|length > 0 %}
-  <h1 class="text-center animated flipInX fast delay-1s mt-5 mb-5">{{mensaje}} <!--{{terapiaTratamiento|length}}--></h1>
+<div class="container-fluid mi-container">
+  <div class="row justify-content-center align-items-center text-center animated flipInX faster delay-1s" style="height:10%;">
+    <div class="col-lg-8">
+        <h1>{{titulo}}</h1>
+    </div>
+  </div>
+  <div class="row justify-content-center align-items-center text-center animated flipInX fast delay-1s" style="height:5%;">
+    <div class="col-lg-8">
+        <h2>{{mensaje}}</h2>
+    </div>
+  </div>
+  <div class="row justify-content-center align-items-start text-center" style="height:85%;">
+    <div class="col-md-12 col-lg-12 col-xl-8">
+      {% for i in actividades %}
 
-  <div class="container-fluid ml-md-auto col-md-8" >
+      {% if forloop.first == True %}
+        <div class="row justify-content-center mb-4 mt-4">
+      {% endif %}
 
-    <div class="row animated flipInX delay-1s">
-    {% for i in actividades %}
 
+        <div class="col-xl-2 animated flipInX delay-2s">
+          <div class="card text-white bg-primary">
+            {% if i.juego == "Matching" %}
+            <a href="{% url 'matching' i.id idTerapiaTratamiento idTerapia%}" class="text-center link text-white">
+              {% endif %}
+              {% if i.juego == "Quizz" %}
+              <a href="{% url 'quizz' i.id idTerapiaTratamiento idTerapia%}" class="text-center link text-white">
+                {% endif %}
 
-    <div class="col-xl-2 ml-auto mr-auto">
-        <div class="card text-white bg-primary">
-          {% if i.juego == "Matching" %}
-          <a href="{% url 'matching' i.id idTerapiaTratamiento idTerapia%}" class="text-center link text-white">
-          {% endif %}
-          {% if i.juego == "Quizz" %}
-          <a href="{% url 'quizz' i.id idTerapiaTratamiento idTerapia%}" class="text-center link text-white">
-          {% endif %}
-
-            <div class="card-header primary-color-dark">{{ i.nombre }}</div>
-            <div class="card-body white">
-              <img class="img-fluid w-75" src="/files/static/{{i.juego}}.png">
-            </div>
-          </a>
+              <div class="card-header primary-color-dark" style="height:4.5rem;">{{i.nombre}}</div>
+              <div class="card-body white">
+                <img class="img-fluid w-75" src="/files/static/game_match.png">
+              </div>
+            </a>
+          </div>
         </div>
-    </div>
 
-    {% if forloop.first != True and forloop.counter|divisibleby:6 %}
-      <div class="w-100 mb-4 d-none d-lg-none d-xl-block"></div>
-    {% endif %}
+        {% if forloop.first != True and forloop.counter|divisibleby:6 %}
+          </div>
+          <div class="row justify-content-center mb-4 mt-4">
+        {% endif %}
+        {% if forloop.last == True %}
+          </div>
+        {% endif %}
 
-    {% endfor %}
+      {% endfor %}
+
     </div>
+  </div>
 </div>
 {% else %}
-  <h1 class="text-center animated zoomIn slow delay-1s mt-5 mb-5">{{mensaje_error}} <!--{{terapiaTratamiento|length}}--></h1>
-{% endif %}
 
+<div class="container-fluid mi-container">
+  <div class="row justify-content-center align-items-center text-center animated zoomIn slow delay-1s" style="height:100%;">
+    <div class="col-xl-12">
+      <h1>{{mensaje_error}}</h1>
+    </div>
+  </div>
+</div>
+{% endif %}
 
 {% endblock %}

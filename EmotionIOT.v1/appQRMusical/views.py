@@ -111,12 +111,17 @@ def prueba(request):
 
 	context['jugador'] = global_vars.jugador
 	context['titulo'] = "Inicio"
+	context['actividad'] = "Reconocimiento de emociones"
+	context['resultados'] = True
+	context['errores'] = 3
+	context['aciertos'] = 6
+	context['tiempo'] = "02:15"
 	if request.method == "POST":
 		context['titulo'] = "Recibido"
 		return redirect('home')
 	else:
 		context['titulo'] = "Prueba"
-		return render(request,'prueba.html',context)
+		return render(request,'matching_nueva.html',context)
 
 class LoginPacientes(TemplateView):
 	"""!
@@ -264,7 +269,7 @@ def ElegirActividad(request, idTerapia, idTerapiaTratamiento):
 	context['idTerapiaTratamiento'] = idTerapiaTratamiento
 	context['mensaje'] = "Selecciona una Actividad"
 	context['mensaje_error'] = "No existen actividades disponibles"
-	context['titulo'] =  "%s | %s" %  (terapia," Actividades")
+	context['titulo'] =  "{} | {}".format(terapia,"Actividades")
 	context['actividades'] = actividades
 	context['QRM_color'] = "QRM_orange"
 	context['jugador'] = global_vars.jugador
@@ -289,12 +294,14 @@ def Matching(request,idActividad,idTerapiaTratamiento,idTerapia):
 	context['idActividad'] = idActividad
 	context['idTerapia'] = idTerapia
 	context['idTerapiaTratamiento'] = idTerapiaTratamiento
+	actividad=Actividad.objects.get(id=idActividad)
+	context['actividad'] = actividad
 
 	if global_vars.matchingInicializado == False:
 		"""
 		Inicialización de variables globales
 		"""
-		actividad=Actividad.objects.get(id=idActividad)
+
 
 		global_vars.narrarPreguntas=actividad.narracion
 		global_vars.indicePreguntaActual=0
@@ -412,8 +419,8 @@ def Matching(request,idActividad,idTerapiaTratamiento,idTerapia):
 		context['titulo'] = "Matching | {} | Resultados".format(actividad)
 
 
-	#return render(request,'match.html',context)
-	return render(request,'Matching.html',context)
+	#return render(request,'Matching.html',context)
+	return render(request,'matching_nueva.html',context)
 
 def MatchingCallBack(request):
 	"""!
@@ -421,19 +428,21 @@ def MatchingCallBack(request):
 	@param request Peticion http
 	"""
 	context={}
+
 	context['indicePreguntaActual'] = global_vars.indicePreguntaActual+1
 	context['numeroTotalPreguntas'] = len(global_vars.pilaPreguntas)
 	context['primerSonidoPila'] = global_vars.primerSonidoPila
 
 	tarjeta = global_vars.tarjeta
 	global_vars.tarjeta=None
-	preguntaMatching=global_vars.pilaPreguntas[global_vars.indicePreguntaActual]
 	print("Indice pregunta actual: {}".format(global_vars.indicePreguntaActual))
 
 	if tarjeta:
 		context['tarjeta'] = tarjeta
 		context['tiempoPausa'] = 500
 		context['indiceRespuesta'] = global_vars.indiceRespuesta
+
+		preguntaMatching=global_vars.pilaPreguntas[global_vars.indicePreguntaActual]
 
 		registroSesion = Registro_Sesion()
 		registroSesion.pregunta=preguntaMatching
@@ -458,26 +467,24 @@ def MatchingCallBack(request):
 			cargarAudios([music])
 
 		else:
-			global_vars.indicadorErrores+=1
-
-			mensaje=lineaCentrada(1,"Respuesta") + lineaCentrada(2,"Incorrecta")
-			publicarMQTT("Pantalla",mensaje,0)
 
 			try:
 				registroSesion.multimediaRespuesta=Multimedia.objects.get(codigo=formateaCodigo(tarjeta))
 				context['mensaje'] = "Respuesta incorrecta"
 				registroSesion.save()
-				music = settings.MEDIA_ROOT + '/songs/incorrecto.ogg'
+				global_vars.indicadorErrores+=1
+				mensaje=lineaCentrada(1,"Respuesta") + lineaCentrada(2,"Incorrecta")
+				publicarMQTT("Pantalla",mensaje,0)
+
 			except Multimedia.DoesNotExist:
 				registroSesion.multimediaRespuesta = None
 				context['mensaje'] = "Multimedia no registrado"
-				#music = settings.MEDIA_ROOT + '/songs/error.ogg'
+
+			music = settings.MEDIA_ROOT + '/songs/incorrecto.ogg'
 			cargarAudios([music])
 
-
-
-	context['aciertos'] = "{:02d}".format(global_vars.indicadorAciertos)
-	context['fallos'] = "{:02d}".format(global_vars.indicadorErrores)
+	context['aciertos'] = "{:d}".format(global_vars.indicadorAciertos)
+	context['fallos'] = "{:d}".format(global_vars.indicadorErrores)
 	return JsonResponse(context)
 
 def Quizz(request,idActividad,idAsignaTerapia):
