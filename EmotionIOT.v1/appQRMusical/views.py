@@ -302,7 +302,6 @@ def Matching(request,idActividad,idTerapiaTratamiento,idTerapia):
 		Inicialización de variables globales
 		"""
 
-
 		global_vars.narrarPreguntas=actividad.narracion
 		global_vars.indicePreguntaActual=0
 		aleatorio=actividad.aleatorio
@@ -346,11 +345,7 @@ def Matching(request,idActividad,idTerapiaTratamiento,idTerapia):
 
 		preguntaMatching=global_vars.pilaPreguntas[global_vars.indicePreguntaActual]
 
-
-		#Buscar
 		global_vars.indiceRespuesta=preguntaMatching.respuesta.multimedia.codigo
-
-		#print("La pregunta '{}' tiene por respuesta {}".format(preguntaMatching))
 
 		print("La respuesta correcta es: {}".format(global_vars.indiceRespuesta))
 
@@ -487,14 +482,22 @@ def MatchingCallBack(request):
 	context['fallos'] = "{:d}".format(global_vars.indicadorErrores)
 	return JsonResponse(context)
 
-def Quizz(request,idActividad,idAsignaTerapia):
+def Quizz(request,idActividad,idTerapiaTratamiento,idTerapia):
 	"""!
 	@brief Método para juegos tipo Quizz
 	@param request Peticion http
 	@param idActividad Id de la actividad a realizar
-	@param idAsignaTerapia Id de la tupla Asigna_Terapia para usar en la sesión
+	@param idTerapiaTratamiento Id de la tupla Asigna_Terapia para usar en la sesión
 	"""
 	context={}
+	encenderAvisoSerial()
+
+	context['jugador'] = global_vars.jugador
+	context['idActividad'] = idActividad
+	context['idTerapia'] = idTerapia
+	context['idTerapiaTratamiento'] = idTerapiaTratamiento
+	actividad=Actividad.objects.get(id=idActividad)
+	context['actividad'] = actividad
 
 	if global_vars.quizzInicializado == False:
 		"""
@@ -517,32 +520,71 @@ def Quizz(request,idActividad,idAsignaTerapia):
 
 		global_vars.pilaPreguntas=list(preguntasQuizz)
 
-		print(global_vars.pilaPreguntas)
+		#print(global_vars.pilaPreguntas)
 
-		for i in global_vars.pilaPreguntas:
-			print("{}".format(i.pregunta))
+		#for i in global_vars.pilaPreguntas:
+			#print("{}".format(i.pregunta))
 
 		global_vars.indiceRespuesta=None
 		global_vars.indicadorErrores=0
 		global_vars.indicadorAciertos=0
 		global_vars.indicadorTiempoInicio=time.time()
 		global_vars.quizzInicializado = True
-		global_vars.sesionGuardada = True
 
+		global_vars.sesionActividad = Sesion()
+		global_vars.sesionActividad.terapia_tratamiento = Terapia_Tratamiento.objects.get(id=idTerapiaTratamiento)
+		global_vars.sesionActividad.actividad = Actividad.objects.get(id=idActividad)
+		global_vars.sesionActividad.save()
+
+		global_vars.sesionGuardada = False
 
 	if global_vars.indicePreguntaActual < len(global_vars.pilaPreguntas):
+		"""
+		Si aun quedan preguntas por responder
+		"""
+		"""
+		global_vars.tarjeta=None
+
+		preguntaMatching=global_vars.pilaPreguntas[global_vars.indicePreguntaActual]
+
+		global_vars.indiceRespuesta=preguntaMatching.respuesta.multimedia.codigo
+
+		print("La respuesta correcta es: {}".format(global_vars.indiceRespuesta))
+
+		if global_vars.narrarPreguntas:
+			narracion=[preguntaMatching.pregunta]
+			lanzarNarracion(narracion)
+
+		context['titulo'] = "Matching | Pregunta: {} ({})".format(preguntaMatching.pregunta,global_vars.indiceRespuesta)
+		context['pregunta'] = preguntaMatching.pregunta
+		context['preguntaMultimedia'] = preguntaMatching.multimediaPregunta
+		context['opcion'] = preguntaMatching.respuesta.multimedia
+		context['codigo'] = preguntaMatching.respuesta.multimedia.codigo
+		context['formato'] = preguntaMatching.formato
+		"""
+		# De aqui a arriba es ejemplo
+
 		"""
 		Si aun quedan preguntas por responder
 		"""
 		global_vars.boton=None
 
 		preguntaQuizz=global_vars.pilaPreguntas[global_vars.indicePreguntaActual]
-		opciones=list(preguntaQuizz.multimediaIncorrecto.all())
-		opciones.append(preguntaQuizz.multimediaCorrecto)
+
+		print("La pregunta quizz es: {}".format(preguntaQuizz))
+		print("La respuesta correcta es: {}".format(preguntaQuizz.respuestas.all().get(resultado=True).multimedia))
+
+		opciones=list(preguntaQuizz.respuestas.filter(resultado=False).values("multimedia__nombre"))
+
+		print(preguntaQuizz.respuestas)
+
+		opciones.append(preguntaQuizz.respuestas.all().get(resultado=True).multimedia)
 
 		random.shuffle(opciones)
 
-		global_vars.indiceRespuesta=opciones.index(preguntaQuizz.multimediaCorrecto)+1
+		#print("La respuesta correcta es el multimedia: {}".format(list(preguntaQuizz.respuestas.all().filter(resultado=True).values('multimedia__nombre'))))
+
+		global_vars.indiceRespuesta=opciones.index(preguntaQuizz.respuestas.get(resultado=True).multimedia)+1
 
 		print("La respuesta correcta es: {}".format(global_vars.indiceRespuesta))
 
@@ -576,7 +618,7 @@ def Quizz(request,idActividad,idAsignaTerapia):
 
 		if global_vars.sesionGuardada == False:
 			sesionActividad = Sesion()
-			sesionActividad.asigna_Terapia = Asigna_Terapia.objects.get(id=idAsignaTerapia)
+			sesionActividad.asigna_Terapia = Asigna_Terapia.objects.get(id=idTerapiaTratamiento)
 			sesionActividad.save()
 
 			indicadoresActividad=actividad.indicador.all()
@@ -587,16 +629,16 @@ def Quizz(request,idActividad,idAsignaTerapia):
 				resultadoSesion.sesion = Sesion.objects.get(id=sesionActividad.id_sesion)
 				resultadoSesion.actividad = Actividad.objects.get(id=idActividad)
 
-				if i.id == 4:
-					resultadoSesion.resultado = global_vars.indicadorErrores
-					print("Fallos")
 
-				if i.id == 5:
+				if i.id == 1:
 					resultadoSesion.resultado = global_vars.indicadorAciertos
 					print("Aciertos")
 
+				if i.id == 2:
+					resultadoSesion.resultado = global_vars.indicadorErrores
+					print("Fallos")
 
-				if i.id == 6:
+				if i.id == 3:
 					resultadoSesion.resultado = indicadorTiempo
 					print("Tiempo")
 
@@ -1431,7 +1473,7 @@ def Create_treatment(request):
 		context['form1'] = UploadAsignTherapyForm(request.POST)
 		if context['form'].is_valid() & context['form1'].is_valid():
 			supervise = Supervisa()
-			asigna = Asigna_Terapia()
+			asigna = Terapia_Tratamiento()
 			req = request.user.id
 			thera = Especialista.objects.get(user_id=req)
 			Tratamiento = context['form'].save(commit=False)
@@ -1795,10 +1837,10 @@ def ResultadosTratamiento(request, pk):
 def Resultados_details(request, pk):
 
 	objects_treat = Tratamiento.objects.filter(id=pk)
-	objects = Resultado_Sesion.objects.filter(sesion_id__in=Sesion.objects.filter(asigna_Terapia__tratamiento__in=objects_treat))
-	success = objects.filter(indicador_id=5)
-	fail = objects.filter(indicador_id=4)
-	timing = objects.filter(indicador_id=6)
+	objects = Resultado_Sesion.objects.filter(sesion_id__in=Sesion.objects.filter(terapia_tratamiento__tratamiento__in=objects_treat))
+	success = objects.filter(indicador_id=1)
+	fail = objects.filter(indicador_id=2)
+	timing = objects.filter(indicador_id=3)
 	print(success)
 	print(fail)
 	print(timing)

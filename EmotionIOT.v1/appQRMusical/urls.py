@@ -26,7 +26,7 @@ urlpatterns = [
 	url(r'^logout/$', views.Logout, name='logout'),
 
 	#Quizz
-	url(r'^quizz/(?P<idActividad>\d+)/(?P<idAsignaTerapia>\d+)/$', views.Quizz, name='quizz'),
+	url(r'^quizz/(?P<idActividad>\d+)/(?P<idTerapiaTratamiento>\d+)/(?P<idTerapia>\d+)/$', views.Quizz, name='quizz'),
 	url(r'^quizz/$', views.QuizzCallBack, name='quizzCallBack'),
 
 	url(r'^matching/(?P<idActividad>\d+)/(?P<idTerapiaTratamiento>\d+)/(?P<idTerapia>\d+)/$', views.Matching, name='matching'),

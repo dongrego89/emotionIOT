@@ -5,10 +5,10 @@
 {% for i in objects_treat %}
 <center><strong><h1>PACIENTE : {{i.paciente}} <> TRATAMIENTO : {{i}}</h1></strong></center>
 {% endfor %}
-<div style="overflow-x:auto;font-size:10px" class="col-sm-5 QRM_box {{QRM_color}}">
+<div class="col-sm-5 QRM_box {{QRM_color}}"">
     <strong><p style="color:white">Aciertos/Fallos</p></strong>
 	<div class="QRM_box_in">
-		<div class="QRM_wrapper_table">
+		<div style="overflow-x:scroll;height:200px;font-size:10px"  class="QRM_wrapper_table">
 
 			<table class="table table-hover">
 				<thead>
@@ -49,10 +49,10 @@
 	</div>
 </div>
 
-<div style="overflow-x:auto;font-size:10px" class="col-sm-5 QRM_box {{QRM_color}}">
+<div class="col-sm-5 QRM_box {{QRM_color}}">
     <strong><p style="color:white">Tiempo</p></strong>
 	<div class="QRM_box_in">
-		<div class="QRM_wrapper_table">
+		<div style="overflow-x:scroll;height:200px;font-size:10px" class="QRM_wrapper_table">
 
 			<table class="table table-hover">
 				<thead>
@@ -86,10 +86,10 @@
 	</div>
 </div>
 
-<div style="overflow-x:auto;font-size:8px" class="col-sm-2 QRM_box {{QRM_color}}">
+<div style="overflow-x:scroll;height:200px;font-size:10px" class="col-sm-2 QRM_box {{QRM_color}}">
 	<strong><p style="color:white">Mostrar/Ocultar</p></strong>
 	<div class="QRM_box_in">
-		<div class="QRM_wrapper_table" style="overflow-x:auto">
+		<div class="QRM_wrapper_table" style="overflow-x:auto;font-size:10px">
 			<table class="table table-hover">
 				<thead>
 					<tr>
@@ -192,7 +192,7 @@ var chartOptions = {
                 }
             }]
         }
-    
+
 
 };
 
@@ -294,7 +294,7 @@ var chartOptionsTiming = {
                 }
             }]
         }
-    
+
 
 };
 var myChartTiming = new Chart(ctxTiming, {
