@@ -6,7 +6,17 @@ import threading
 from . import global_vars
 from appQRMusical.Funciones import *
 
-Respuestas = ("2;3;11;2;7;3;2000;","2;1;10;1;;;2000;","0;","2;2;10,11;2;;;5000;")
+Respuestas = ("2;3;11;2;7;3;2000;","2;1;10;1;;;2000;","0;","2;2;10,11;2;;;5000;","2;15;41;5;;;1500;","2;0;41;6;;;0;","2;2;10;3;;;2000;")
+
+def iniciarPilaDePublicacionMQTT():
+	while True:
+		if len(global_vars.pilaPublicacionesMQTT) > 0:
+			publicacion=global_vars.pilaPublicacionesMQTT.pop(0)
+			publicarMQTT(publicacion[0],publicacion[1],publicacion[2])
+			time.sleep(4)
+
+def cargarPublicacionesMQTT(listaPublicaciones):
+	global_vars.pilaPublicacionesMQTT.extend(listaPublicaciones)
 
 def publicarMQTT(topic,mensaje,plantilla):
 	hiloPublicacion=threading.Thread(name="hiloPublicacion",target=publicarMensaje,args=(topic,mensaje,plantilla,))
@@ -37,8 +47,6 @@ def on_message(client, userdata, message):
 
 	print("\nMQTT: {}\nCodigo: {}\n".format(topic,valor))
 
-	#time.sleep(5) #Si se piensa publicar de aquí en adelante, es obligatorio
-
 def conexionMQTT(servidor,topics):
 	"""!
 	@brief Función abre una conexión de escucha MQTT
@@ -47,7 +55,8 @@ def conexionMQTT(servidor,topics):
 	"""
 
 	mensaje=lineaCentrada(1,"EmotionIOT") + lineaCentrada(2,"Controller")
-	publicarMQTT("Pantalla",mensaje,2)
+
+	cargarPublicacionesMQTT([("Pantalla",mensaje,2)])
 
 	#Instancia del objeto cliente
 	cliente = mqtt.Client(client_id="P1",clean_session=True,userdata=None,transport="tcp")
@@ -84,3 +93,13 @@ def arranqueMQTT(topics):
 	"""
 	hiloMQTT=threading.Thread(name="hiloMQTT",target=conexionMQTT,args=("127.0.0.1",topics,))
 	hiloMQTT.start()
+
+	hiloPublicacionesMQTT=threading.Thread(name="hiloPublicacionesMQTT",target=iniciarPilaDePublicacionMQTT,args=())
+	hiloPublicacionesMQTT.start()
+
+def encenderAvisoMQTT():
+	mensaje=lineaCentrada(1,"Acerca la tarjeta") + lineaCentrada(2,"al lector RFID")
+	cargarPublicacionesMQTT([("Pantalla",mensaje,4)])
+
+def apagarAvisoMQTT():
+	cargarPublicacionesMQTT([("Pantalla","",5)])

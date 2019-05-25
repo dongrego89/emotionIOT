@@ -158,8 +158,6 @@ int entradaSerial(Interaccion & interaccionMQTT, Pantalla & pantallaInicio, Boto
       2;1;10,11;2;7;1;1000;0;0;Primera Linea;1;0;Segunda Linea;2;0;Tercera Linea;3;0;Cuarta Linea;
       */
 
-      //Ejemplo
-
       //Sonido
       campo1=data1.substring(0,data1.indexOf(token1));
       data1=data1.substring(campo1.length()+1);

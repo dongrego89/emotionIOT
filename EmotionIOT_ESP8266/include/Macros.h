@@ -27,11 +27,16 @@
 /** Pausas entre escrituras serial */
 #define REACCION 2000
 
+/** Pausas entre intentos de conexión MQTT */
+#define RECONEXION_MQTT 5000
 /** Cadena para almacenar los topics de los mensajes MQTT */
 String topic;
 
 /** Cadena para almacenar los payload de los mensajes MQTT */
 String payload;
+
+/** Variable auxiliar para almacenar el tiempo */
+long lastMsg = 0;
 
 /** Configuración router OVISLINK*/
 

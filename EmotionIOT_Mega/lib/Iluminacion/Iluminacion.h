@@ -81,6 +81,16 @@ void iluminacion(vector<int> pinLed, int iluminacion){
       }
     }
     break;
+    case 5:
+      for( auto led = pinLed.begin(); led != pinLed.end(); ++led ){
+        digitalWrite(*led,HIGH);
+      }
+    break;
+    case 6:
+      for( auto led = pinLed.begin(); led != pinLed.end(); ++led ){
+        digitalWrite(*led,LOW);
+      }
+    break;
     case 0:
     default:
     break;

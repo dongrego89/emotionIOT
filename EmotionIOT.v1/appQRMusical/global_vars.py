@@ -18,11 +18,16 @@ indicadorTiempoFin=0
 indicadorTiempoTotal=0
 
 pilaSonidos=[]
+pilaPublicacionesMQTT=[]
+
 avisoSerial=False
 
 jugador=None
 
 primerSonidoPila=False
+ultimoSonidoPila=False
+numeroSonidosParaCargar=0
+opcionesPreguntaQuizz=None
 
 boton_mqtt = ""
 mensajeFinal = False

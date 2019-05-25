@@ -11,18 +11,20 @@
 
 void setup_wifi() {
   int i;
+  long now;
   delay(10);
   WiFi.mode(WIFI_STA);//Ultima adicion
   WiFi.begin(ssid, password);
-  delay(REACCION);
-  i=0;
+  //delay(REACCION);
 
   while (WiFi.status() != WL_CONNECTED) { //Mientras el estado de WiFi no sea CONECTADO
-    if((i%5000)==0){ //Cada 5000 iteraciones
-      Serial.print("2;;10,11;2;;;500;1;4;Conectando a;2;6;red WiFi;");
-      i=0;
+
+    now = millis();
+
+    if (now - lastMsg > 5000) {
+      lastMsg = now;
+        Serial.print("2;;10,11;2;;;500;1;4;Conectando a;2;6;red WiFi;");
     }
-    i++;
 
     //Parpadear el led de estado azul
     digitalWrite(LEDAZUL,LOW);
@@ -63,7 +65,9 @@ void setup() {
 
 
 void loop() {
-  
+
+  long now;
+
   //Si el cliente MQTT no está conectado, reconectar
   if (!client.connected()) {
     reconnect(client);
@@ -71,10 +75,18 @@ void loop() {
   //Mantener el loop de cliente MQTT
   client.loop();
 
-  //Comprobar si se reciben datos por Serial
-  if(procesarEntradaSerial(topic,payload)){
-    //En caso de recibir datos, realizar la publicación MQTT
-    client.publish(topic.c_str(),payload.c_str());
+  now = millis();
+
+  //Cada segundo
+  if (now - lastMsg > 1000){
+    lastMsg = now;
+
+    //Comprobar si se reciben datos por Serial
+    if(procesarEntradaSerial(topic,payload)){
+      //En caso de recibir datos, realizar la publicación MQTT
+      client.publish(topic.c_str(),payload.c_str());
+    }
+
   }
 
 }

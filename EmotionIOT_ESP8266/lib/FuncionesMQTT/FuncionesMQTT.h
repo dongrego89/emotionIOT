@@ -41,7 +41,7 @@ void reconnect(PubSubClient & client) {
       //Resuscribir al topic principal
       if(!client.subscribe("Pantalla")){
         Serial.print("2;11;11;3;;;500;1;3;Error conexion;2;8;MQTT;");
-        delay(REACCION*2);
+        delay(RECONEXION_MQTT);
         }
 
     }
@@ -64,5 +64,6 @@ void reconnect(PubSubClient & client) {
   delay(REACCION);
 
 }
+
 
 #endif

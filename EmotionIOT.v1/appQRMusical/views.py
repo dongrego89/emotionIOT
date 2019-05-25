@@ -34,7 +34,7 @@ from .models import Actividad
 from . import global_vars
 
 # Multimedia
-from .models import Multimedia, Contenido, Actividad_Contenido, Pregunta_Quizz, Pregunta_Matching, Pregunta, Actividad_Pregunta
+from .models import Multimedia, Contenido, Actividad_Contenido, Pregunta_Quizz, Pregunta_Matching, Pregunta, Actividad_Pregunta, Respuesta
 import os
 from PIL import Image
 from django.conf import settings
@@ -135,9 +135,12 @@ class LoginPacientes(TemplateView):
 			global_vars.jugador = Paciente.objects.get(online="si")
 
 			apagarAvisoSerial()
+			apagarAvisoMQTT()
+
 		except Paciente.DoesNotExist:
 			global_vars.jugador = None
 			encenderAvisoSerial()
+			encenderAvisoMQTT()
 
 		context['jugador'] = global_vars.jugador
 		context['titulo'] = "Login Pacientes"
@@ -215,6 +218,7 @@ class ElegirTerapia(TemplateView):
 			return context
 
 		apagarAvisoSerial()
+		apagarAvisoMQTT()
 
 		#Filtrar los tratamientos activos pertenecientes al paciente
 		tratamientos = Tratamiento.objects.filter(activado=True).filter(paciente_id=paciente.id)
@@ -233,7 +237,6 @@ class ElegirTerapia(TemplateView):
 
 		lanzarNarracion([context['mensaje']])
 
-		apagarAvisoSerial()
 		return context
 
 
@@ -251,7 +254,6 @@ def ElegirActividad(request, idTerapia, idTerapiaTratamiento):
 		paciente = Paciente.objects.get(online="si")
 	except Paciente.DoesNotExist:
 		paciente = None
-		apagarAvisoSerial()
 		return context
 
 	asignacionesActividades=Terapia_Actividad.objects.filter(terapia=idTerapia)
@@ -277,6 +279,7 @@ def ElegirActividad(request, idTerapia, idTerapiaTratamiento):
 	lanzarNarracion([context['mensaje']])
 
 	apagarAvisoSerial()
+	apagarAvisoMQTT()
 
 	return render(request, 'elegirActividad.html', context)
 
@@ -288,7 +291,7 @@ def Matching(request,idActividad,idTerapiaTratamiento,idTerapia):
 	@param idAsignaTerapia Id de la tupla Asigna_Terapia para usar en la sesión
 	"""
 	context={}
-	encenderAvisoSerial()
+
 
 	context['jugador'] = global_vars.jugador
 	context['idActividad'] = idActividad
@@ -301,6 +304,8 @@ def Matching(request,idActividad,idTerapiaTratamiento,idTerapia):
 		"""
 		Inicialización de variables globales
 		"""
+		encenderAvisoSerial()
+		encenderAvisoMQTT()
 
 		global_vars.narrarPreguntas=actividad.narracion
 		global_vars.indicePreguntaActual=0
@@ -365,6 +370,9 @@ def Matching(request,idActividad,idTerapiaTratamiento,idTerapia):
 		"""
 		vaciarPilaAudios()
 
+		apagarAvisoSerial()
+		apagarAvisoMQTT()
+
 		global_vars.indicadorTiempoFin=time.time()
 		actividad = Actividad.objects.get(id=idActividad)
 
@@ -373,9 +381,8 @@ def Matching(request,idActividad,idTerapiaTratamiento,idTerapia):
 
 		if global_vars.sesionGuardada == False:
 			global_vars.indicadorTiempoTotal=round(global_vars.indicadorTiempoFin - global_vars.indicadorTiempoInicio,2)
-			#sesionActividad = Sesion()
-			#sesionActividad.terapia_tratamiento = Terapia_Tratamiento.objects.get(id=idTerapiaTratamiento)
-			#sesionActividad.save()
+			m, s = divmod(global_vars.indicadorTiempoTotal, 60)
+			global_vars.indicadorTiempoTotal="{:02d}:{:02d}".format(int(m),int(s))
 
 			indicadoresActividad=actividad.indicador.all()
 
@@ -391,25 +398,28 @@ def Matching(request,idActividad,idTerapiaTratamiento,idTerapia):
 
 				if i.id == 2:
 					resultadoSesion.resultado = global_vars.indicadorErrores
-					print("Fallos")
+					print("Errores")
 
 				if i.id == 3:
 					resultadoSesion.resultado = global_vars.indicadorTiempoTotal
 					print("Tiempo")
 
 				resultadoSesion.indicador = Indicador.objects.get(id=i.id)
-				print(resultadoSesion.resultado)
+				print(str(resultadoSesion.resultado))
 				resultadoSesion.save()
+
+				mensaje=lineaCentrada(1,"{}".format(str(i.nombre))) + lineaCentrada(2,"{}".format(str(resultadoSesion.resultado).replace(":",".")))
+				cargarPublicacionesMQTT([("Pantalla",mensaje,6)])
+				print(mensaje)
+
 				global_vars.sesionGuardada=True
 
 
 		context['resultados'] = True
 		context['errores'] = global_vars.indicadorErrores
 		context['aciertos'] = global_vars.indicadorAciertos
-		m, s = divmod(global_vars.indicadorTiempoTotal, 60)
-		context['tiempo'] = "{:02d}:{:02d}".format(int(m),int(s))
+		context['tiempo'] = global_vars.indicadorTiempoTotal
 
-		apagarAvisoSerial()
 
 		context['titulo'] = "Matching | {} | Resultados".format(actividad)
 
@@ -427,6 +437,9 @@ def MatchingCallBack(request):
 	context['indicePreguntaActual'] = global_vars.indicePreguntaActual+1
 	context['numeroTotalPreguntas'] = len(global_vars.pilaPreguntas)
 	context['primerSonidoPila'] = global_vars.primerSonidoPila
+
+	if(global_vars.narrarPreguntas == False):
+		context['primerSonidoPila'] = True
 
 	tarjeta = global_vars.tarjeta
 	global_vars.tarjeta=None
@@ -452,7 +465,7 @@ def MatchingCallBack(request):
 			global_vars.indicadorAciertos+=1
 
 			mensaje=lineaCentrada(1,"Respuesta") + lineaCentrada(2,"Correcta")
-			publicarMQTT("Pantalla",mensaje,1)
+			cargarPublicacionesMQTT([("Pantalla",mensaje,1)])
 
 			context['mensaje'] = "Respuesta correcta"
 			#procesar información de respuesta correcta
@@ -468,8 +481,10 @@ def MatchingCallBack(request):
 				context['mensaje'] = "Respuesta incorrecta"
 				registroSesion.save()
 				global_vars.indicadorErrores+=1
+
 				mensaje=lineaCentrada(1,"Respuesta") + lineaCentrada(2,"Incorrecta")
-				publicarMQTT("Pantalla",mensaje,0)
+				cargarPublicacionesMQTT([("Pantalla",mensaje,0)])
+
 
 			except Multimedia.DoesNotExist:
 				registroSesion.multimediaRespuesta = None
@@ -490,7 +505,6 @@ def Quizz(request,idActividad,idTerapiaTratamiento,idTerapia):
 	@param idTerapiaTratamiento Id de la tupla Asigna_Terapia para usar en la sesión
 	"""
 	context={}
-	encenderAvisoSerial()
 
 	context['jugador'] = global_vars.jugador
 	context['idActividad'] = idActividad
@@ -520,11 +534,6 @@ def Quizz(request,idActividad,idTerapiaTratamiento,idTerapia):
 
 		global_vars.pilaPreguntas=list(preguntasQuizz)
 
-		#print(global_vars.pilaPreguntas)
-
-		#for i in global_vars.pilaPreguntas:
-			#print("{}".format(i.pregunta))
-
 		global_vars.indiceRespuesta=None
 		global_vars.indicadorErrores=0
 		global_vars.indicadorAciertos=0
@@ -539,30 +548,6 @@ def Quizz(request,idActividad,idTerapiaTratamiento,idTerapia):
 		global_vars.sesionGuardada = False
 
 	if global_vars.indicePreguntaActual < len(global_vars.pilaPreguntas):
-		"""
-		Si aun quedan preguntas por responder
-		"""
-		"""
-		global_vars.tarjeta=None
-
-		preguntaMatching=global_vars.pilaPreguntas[global_vars.indicePreguntaActual]
-
-		global_vars.indiceRespuesta=preguntaMatching.respuesta.multimedia.codigo
-
-		print("La respuesta correcta es: {}".format(global_vars.indiceRespuesta))
-
-		if global_vars.narrarPreguntas:
-			narracion=[preguntaMatching.pregunta]
-			lanzarNarracion(narracion)
-
-		context['titulo'] = "Matching | Pregunta: {} ({})".format(preguntaMatching.pregunta,global_vars.indiceRespuesta)
-		context['pregunta'] = preguntaMatching.pregunta
-		context['preguntaMultimedia'] = preguntaMatching.multimediaPregunta
-		context['opcion'] = preguntaMatching.respuesta.multimedia
-		context['codigo'] = preguntaMatching.respuesta.multimedia.codigo
-		context['formato'] = preguntaMatching.formato
-		"""
-		# De aqui a arriba es ejemplo
 
 		"""
 		Si aun quedan preguntas por responder
@@ -574,32 +559,37 @@ def Quizz(request,idActividad,idTerapiaTratamiento,idTerapia):
 		print("La pregunta quizz es: {}".format(preguntaQuizz))
 		print("La respuesta correcta es: {}".format(preguntaQuizz.respuestas.all().get(resultado=True).multimedia))
 
-		opciones=list(preguntaQuizz.respuestas.filter(resultado=False).values("multimedia__nombre"))
+		opciones=list()
 
-		print(preguntaQuizz.respuestas)
+		for i in preguntaQuizz.respuestas.all().filter(resultado=False):
+			opciones.append(i.multimedia)
+
 
 		opciones.append(preguntaQuizz.respuestas.all().get(resultado=True).multimedia)
 
 		random.shuffle(opciones)
 
-		#print("La respuesta correcta es el multimedia: {}".format(list(preguntaQuizz.respuestas.all().filter(resultado=True).values('multimedia__nombre'))))
-
 		global_vars.indiceRespuesta=opciones.index(preguntaQuizz.respuestas.get(resultado=True).multimedia)+1
+
+		global_vars.opcionesPreguntaQuizz=opciones
 
 		print("La respuesta correcta es: {}".format(global_vars.indiceRespuesta))
 
-		if global_vars.narrarPreguntas:
-			narracion=list()
-			narracion.append(preguntaQuizz.pregunta)
+		narracion=list()
+		narracion.append(preguntaQuizz.pregunta)
+
+		if (preguntaQuizz.visualizacion == "Multiopcion" and preguntaQuizz.formato == "Texto") or preguntaQuizz.visualizacion == "Unica":
 			for num, i in enumerate(opciones, start=1):
 				narracion.append("{},{}".format(str(num),i.nombre))
+
+		if global_vars.narrarPreguntas:
 			lanzarNarracion(narracion)
 
-
 		context['titulo'] = "Quizz | Pregunta: {} ({})".format(preguntaQuizz.pregunta,global_vars.indiceRespuesta)
-		context['pregunta'] = preguntaQuizz.pregunta
 		context['opciones'] = opciones
-		context['opcionCorrecta'] = preguntaQuizz.multimediaCorrecto
+		context['pregunta'] = preguntaQuizz.pregunta
+		context['preguntaMultimedia'] = preguntaQuizz.multimediaPregunta
+		context['opcionCorrecta'] = preguntaQuizz.respuestas.all().get(resultado=True).multimedia
 		context['visualizacion'] = preguntaQuizz.visualizacion
 		context['formato'] = preguntaQuizz.formato
 
@@ -607,6 +597,7 @@ def Quizz(request,idActividad,idTerapiaTratamiento,idTerapia):
 		"""
 		Si ya se respondieron todas las preguntas
 		"""
+
 		vaciarPilaAudios()
 
 		global_vars.indicadorTiempoFin=time.time()
@@ -617,18 +608,18 @@ def Quizz(request,idActividad,idTerapiaTratamiento,idTerapia):
 		cargarAudios([music])
 
 		if global_vars.sesionGuardada == False:
-			sesionActividad = Sesion()
-			sesionActividad.asigna_Terapia = Asigna_Terapia.objects.get(id=idTerapiaTratamiento)
-			sesionActividad.save()
+
+			global_vars.indicadorTiempoTotal=round(global_vars.indicadorTiempoFin - global_vars.indicadorTiempoInicio,2)
+			m, s = divmod(global_vars.indicadorTiempoTotal, 60)
+			global_vars.indicadorTiempoTotal="{:02d}:{:02d}".format(int(m),int(s))
 
 			indicadoresActividad=actividad.indicador.all()
 
 			for i in indicadoresActividad:
 				print("Indicador con id : ",i.id)
 				resultadoSesion = Resultado_Sesion()
-				resultadoSesion.sesion = Sesion.objects.get(id=sesionActividad.id_sesion)
+				resultadoSesion.sesion = Sesion.objects.get(id=global_vars.sesionActividad.id)
 				resultadoSesion.actividad = Actividad.objects.get(id=idActividad)
-
 
 				if i.id == 1:
 					resultadoSesion.resultado = global_vars.indicadorAciertos
@@ -636,26 +627,34 @@ def Quizz(request,idActividad,idTerapiaTratamiento,idTerapia):
 
 				if i.id == 2:
 					resultadoSesion.resultado = global_vars.indicadorErrores
-					print("Fallos")
+					print("Errores")
 
 				if i.id == 3:
-					resultadoSesion.resultado = indicadorTiempo
+					resultadoSesion.resultado = global_vars.indicadorTiempoTotal
 					print("Tiempo")
 
 				resultadoSesion.indicador = Indicador.objects.get(id=i.id)
-				print(resultadoSesion.resultado)
+				print(str(resultadoSesion.resultado))
 				resultadoSesion.save()
-				global_vars.sesionGuardada=True
 
+				mensaje=lineaCentrada(1,"{}".format(str(i.nombre))) + lineaCentrada(2,"{}".format(str(resultadoSesion.resultado).replace(":",".")))
+				cargarPublicacionesMQTT([("Pantalla",mensaje,6)])
+				print(mensaje)
+
+				global_vars.sesionGuardada=True
 
 		context['resultados'] = True
 		context['errores'] = global_vars.indicadorErrores
 		context['aciertos'] = global_vars.indicadorAciertos
-		context['tiempo'] = indicadorTiempo
+		context['tiempo'] = global_vars.indicadorTiempoTotal
+
+
 
 		context['titulo'] = "Quizz | {} | Resultados".format(actividad)
 
-	return render(request,'quizz.html',context)
+
+	#return render(request,'quizz.html',context)
+	return render(request,'quizz_nueva.html',context)
 
 
 
@@ -667,14 +666,40 @@ def QuizzCallBack(request):
 	context={}
 	context['indicePreguntaActual'] = global_vars.indicePreguntaActual+1
 	context['numeroTotalPreguntas'] = len(global_vars.pilaPreguntas)
+	context['primerSonidoPila'] = global_vars.primerSonidoPila
+
+
+	#print("Quedan {} sonidos en la pila".format(len(global_vars.pilaSonidos)))
 
 	boton = global_vars.boton
 	global_vars.boton=None
+
+	preguntaQuizz=global_vars.pilaPreguntas[global_vars.indicePreguntaActual]
+
+	if ((preguntaQuizz.visualizacion == "Multiopcion" and preguntaQuizz.formato == "Texto") or preguntaQuizz.visualizacion == "Unica"):
+		context['ultimoSonidoPila'] = global_vars.ultimoSonidoPila
+	else:
+		context['ultimoSonidoPila'] = global_vars.primerSonidoPila
+
+
+	if global_vars.narrarPreguntas == False:
+		context['primerSonidoPila'] = True
+		context['ultimoSonidoPila'] = global_vars.primerSonidoPila
+
+	registroSesion = Registro_Sesion()
+	registroSesion.pregunta=preguntaQuizz
+	registroSesion.sesion=global_vars.sesionActividad
+
+	#print("El estado de la pila de sonidos es: {}".format(global_vars.ultimoSonidoPila))
+
+
 
 	if boton:
 		context['boton'] = boton
 		context['tiempoPausa'] = 500
 		context['indiceRespuesta'] = global_vars.indiceRespuesta
+		registroSesion.multimediaRespuesta=global_vars.opcionesPreguntaQuizz[int(formateaCodigo(boton))-1]
+		registroSesion.save()
 
 		if formateaCodigo(boton) == formateaCodigo(str(global_vars.indiceRespuesta)):
 
@@ -682,7 +707,7 @@ def QuizzCallBack(request):
 			global_vars.indicadorAciertos+=1
 
 			mensaje=lineaCentrada(1,"Respuesta") + lineaCentrada(2,"Correcta")
-			publicarMQTT("Pantalla",mensaje,1)
+			cargarPublicacionesMQTT([("Pantalla",mensaje,1)])
 
 			context['mensaje'] = "Respuesta correcta"
 			#procesar información de respuesta correcta
@@ -695,13 +720,16 @@ def QuizzCallBack(request):
 			global_vars.indicadorErrores+=1
 
 			mensaje=lineaCentrada(1,"Respuesta") + lineaCentrada(2,"Incorrecta")
-			publicarMQTT("Pantalla",mensaje,0)
+			cargarPublicacionesMQTT([("Pantalla",mensaje,0)])
 
 
 			context['mensaje'] = "Respuesta incorrecta"
 			music = settings.MEDIA_ROOT + '/songs/incorrecto.ogg'
 			cargarAudios([music])
 
+	context['aciertos'] = "{:d}".format(global_vars.indicadorAciertos)
+	context['fallos'] = "{:d}".format(global_vars.indicadorErrores)
+	
 	return JsonResponse(context)
 
 #Almacena el mensaje presente en las variables globales

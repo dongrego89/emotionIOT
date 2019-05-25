@@ -31,7 +31,12 @@ def iniciarPilaDeAudios():
                             pygame.mixer.music.play() #Reproducir la pista
                         else:
                             pendiente=False
+                            if(global_vars.numeroSonidosParaCargar > 1):
+                                global_vars.ultimoSonidoPila = True
+
                         global_vars.primerSonidoPila = True
+
+
 
 
 def arranqueReproductor():
@@ -52,7 +57,9 @@ def cargarAudios(listaAudios):
     @brief Función que anexa a la pila actual de audios, los audios pasados por parámetro
     @param listaSonidos Lista de audios a añadir a la pila del sistema
     """
+    global_vars.numeroSonidosParaCargar = len(listaAudios)
     global_vars.primerSonidoPila = False
+    global_vars.ultimoSonidoPila = False
     global_vars.pilaSonidos.extend(listaAudios)
 
 

@@ -36,7 +36,7 @@ Nivel = [
 Juego = [
     ("Matching","Matching"),
     ("Quizz","Quizz"),
-    ("Calculo","Calculo"),
+    ("Evoca","Evoca"),
 ]
 Formato = [
     ("Texto","Texto"),

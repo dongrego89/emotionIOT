@@ -46,6 +46,10 @@
 #define BOTONINICIO 22
 #define BOTONFIN 40
 
+/** Pines abiertos para salida de señales*/
+#define SALIDAINICIO 41
+#define SALIDAFIN 49
+
 /** Efecto de iluminacion utilizado en lectura RFID*/
 #define EFECTORFID 4
 

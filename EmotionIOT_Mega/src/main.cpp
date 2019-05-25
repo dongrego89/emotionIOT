@@ -75,6 +75,11 @@ void setup() {
     pinMode(i,INPUT);
   }
 
+  //Configurar pines de botones [41-49]
+  for(int i=SALIDAINICIO;i<=SALIDAFIN;i++){
+    pinMode(i,OUTPUT);
+  }
+
   //Configurar los pines de salida por defecto
   pinMode(ZUMBADOR,OUTPUT);
   pinMode(MOTOR,OUTPUT);
