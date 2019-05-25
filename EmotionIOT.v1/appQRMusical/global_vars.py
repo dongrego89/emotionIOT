@@ -4,6 +4,7 @@ tarjeta = None
 narrarPreguntas=False
 quizzInicializado=False
 matchingInicializado=False
+evocaInicializado=False
 
 sesionGuardada=False
 sesionActividad=None

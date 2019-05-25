@@ -262,7 +262,7 @@ def ElegirActividad(request, idTerapia, idTerapiaTratamiento):
 	global_vars.game_initialized = False
 	global_vars.quizzInicializado = False
 	global_vars.matchingInicializado = False
-
+	global_vars.evocaInicializado = False
 
 	terapia=Terapia.objects.get(id=idTerapia)
 
@@ -382,7 +382,7 @@ def Matching(request,idActividad,idTerapiaTratamiento,idTerapia):
 		if global_vars.sesionGuardada == False:
 			global_vars.indicadorTiempoTotal=round(global_vars.indicadorTiempoFin - global_vars.indicadorTiempoInicio,2)
 			m, s = divmod(global_vars.indicadorTiempoTotal, 60)
-			global_vars.indicadorTiempoTotal="{:02d}:{:02d}".format(int(m),int(s))
+			tiempoFormateado="{:02d}:{:02d}".format(int(m),int(s))
 
 			indicadoresActividad=actividad.indicador.all()
 
@@ -418,7 +418,7 @@ def Matching(request,idActividad,idTerapiaTratamiento,idTerapia):
 		context['resultados'] = True
 		context['errores'] = global_vars.indicadorErrores
 		context['aciertos'] = global_vars.indicadorAciertos
-		context['tiempo'] = global_vars.indicadorTiempoTotal
+		context['tiempo'] = tiempoFormateado
 
 
 		context['titulo'] = "Matching | {} | Resultados".format(actividad)
@@ -589,7 +589,6 @@ def Quizz(request,idActividad,idTerapiaTratamiento,idTerapia):
 		context['opciones'] = opciones
 		context['pregunta'] = preguntaQuizz.pregunta
 		context['preguntaMultimedia'] = preguntaQuizz.multimediaPregunta
-		context['opcionCorrecta'] = preguntaQuizz.respuestas.all().get(resultado=True).multimedia
 		context['visualizacion'] = preguntaQuizz.visualizacion
 		context['formato'] = preguntaQuizz.formato
 
@@ -611,7 +610,7 @@ def Quizz(request,idActividad,idTerapiaTratamiento,idTerapia):
 
 			global_vars.indicadorTiempoTotal=round(global_vars.indicadorTiempoFin - global_vars.indicadorTiempoInicio,2)
 			m, s = divmod(global_vars.indicadorTiempoTotal, 60)
-			global_vars.indicadorTiempoTotal="{:02d}:{:02d}".format(int(m),int(s))
+			tiempoFormateado="{:02d}:{:02d}".format(int(m),int(s))
 
 			indicadoresActividad=actividad.indicador.all()
 
@@ -646,7 +645,7 @@ def Quizz(request,idActividad,idTerapiaTratamiento,idTerapia):
 		context['resultados'] = True
 		context['errores'] = global_vars.indicadorErrores
 		context['aciertos'] = global_vars.indicadorAciertos
-		context['tiempo'] = global_vars.indicadorTiempoTotal
+		context['tiempo'] = tiempoFormateado
 
 
 
@@ -729,8 +728,210 @@ def QuizzCallBack(request):
 
 	context['aciertos'] = "{:d}".format(global_vars.indicadorAciertos)
 	context['fallos'] = "{:d}".format(global_vars.indicadorErrores)
-	
+
 	return JsonResponse(context)
+
+"""
+Juego evoca
+"""
+
+def Evoca(request,idActividad,idTerapiaTratamiento,idTerapia):
+	"""!
+	@brief Método para juegos tipo Evoca
+	@param request Peticion http
+	@param idActividad Id de la actividad a realizar
+	@param idTerapiaTratamiento Id de la tupla Asigna_Terapia para usar en la sesión
+	"""
+	context={}
+
+	context['jugador'] = global_vars.jugador
+	context['idActividad'] = idActividad
+	context['idTerapia'] = idTerapia
+	context['idTerapiaTratamiento'] = idTerapiaTratamiento
+	actividad=Actividad.objects.get(id=idActividad)
+	context['actividad'] = actividad
+
+	if global_vars.evocaInicializado == False:
+		"""
+		Inicialización de variables globales
+		"""
+		actividad=Actividad.objects.get(id=idActividad)
+
+		global_vars.narrarPreguntas=actividad.narracion
+		global_vars.indicePreguntaActual=0
+		aleatorio=actividad.aleatorio
+
+		preguntasDeActividad=Actividad_Pregunta.objects.filter(actividad=idActividad).values("pregunta__id")
+
+		preguntasEvoca=Pregunta_Quizz.objects.filter(id__in=preguntasDeActividad)
+
+		if(aleatorio): # Si la actividad ordena las preguntas aleatoriamente
+			preguntasEvoca=preguntasEvoca.order_by('?')
+		else: # Si usamos pila y pop para sacar las preguntas, habría que aplicar un reverse.
+			preguntasEvoca=preguntasEvoca.order_by('id')
+
+		global_vars.pilaPreguntas=list(preguntasEvoca)
+
+		global_vars.indicadorTiempoInicio=time.time()
+		global_vars.evocaInicializado = True
+
+		global_vars.sesionActividad = Sesion()
+		global_vars.sesionActividad.terapia_tratamiento = Terapia_Tratamiento.objects.get(id=idTerapiaTratamiento)
+		global_vars.sesionActividad.actividad = Actividad.objects.get(id=idActividad)
+		global_vars.sesionActividad.save()
+
+		global_vars.sesionGuardada = False
+
+	if global_vars.indicePreguntaActual < len(global_vars.pilaPreguntas):
+
+		"""
+		Si aun quedan preguntas por responder
+		"""
+		global_vars.boton=None
+
+		preguntaEvoca=global_vars.pilaPreguntas[global_vars.indicePreguntaActual]
+
+		print("La pregunta evoca es: {}".format(preguntaEvoca))
+		print("Las respuestas son: {}".format(preguntaEvoca.respuestas.all()))
+
+		opciones=list()
+
+		for i in preguntaEvoca.respuestas.all():
+			opciones.append(i.multimedia)
+
+
+		random.shuffle(opciones)
+
+
+		global_vars.opcionesPreguntaQuizz=opciones
+
+
+		narracion=list()
+		narracion.append(preguntaEvoca.pregunta)
+
+		if (preguntaEvoca.visualizacion == "Multiopcion" and preguntaEvoca.formato == "Texto") or preguntaEvoca.visualizacion == "Unica":
+			for num, i in enumerate(opciones, start=1):
+				narracion.append("{},{}".format(str(num),i.nombre))
+
+		if global_vars.narrarPreguntas:
+			lanzarNarracion(narracion)
+
+		context['titulo'] = "Evoca | Pregunta: {}".format(preguntaEvoca.pregunta)
+		context['opciones'] = opciones
+		context['pregunta'] = preguntaEvoca.pregunta
+		context['preguntaMultimedia'] = preguntaEvoca.multimediaPregunta
+		context['visualizacion'] = preguntaEvoca.visualizacion
+		context['formato'] = preguntaEvoca.formato
+
+	else:
+		"""
+		Si ya se respondieron todas las preguntas
+		"""
+
+		vaciarPilaAudios()
+
+		global_vars.indicadorTiempoFin=time.time()
+		indicadorTiempo=round(global_vars.indicadorTiempoFin - global_vars.indicadorTiempoInicio,2)
+		actividad = Actividad.objects.get(id=idActividad)
+
+		music = settings.MEDIA_ROOT + '/songs/tada.ogg'
+		cargarAudios([music])
+
+		if global_vars.sesionGuardada == False:
+
+			global_vars.indicadorTiempoTotal=round(global_vars.indicadorTiempoFin - global_vars.indicadorTiempoInicio,2)
+			m, s = divmod(global_vars.indicadorTiempoTotal, 60)
+			tiempoFormateado="{:02d}:{:02d}".format(int(m),int(s))
+
+			indicadoresActividad=actividad.indicador.all()
+
+			for i in indicadoresActividad:
+				print("Indicador con id : ",i.id)
+				resultadoSesion = Resultado_Sesion()
+				resultadoSesion.sesion = Sesion.objects.get(id=global_vars.sesionActividad.id)
+				resultadoSesion.actividad = Actividad.objects.get(id=idActividad)
+
+				if i.id == 3:
+					resultadoSesion.resultado = global_vars.indicadorTiempoTotal
+					print("Tiempo")
+
+				resultadoSesion.indicador = Indicador.objects.get(id=i.id)
+				print(str(resultadoSesion.resultado))
+				resultadoSesion.save()
+
+				mensaje=lineaCentrada(1,"{}".format(str(i.nombre))) + lineaCentrada(2,"{}".format(str(resultadoSesion.resultado).replace(":",".")))
+				cargarPublicacionesMQTT([("Pantalla",mensaje,6)])
+				print(mensaje)
+
+				global_vars.sesionGuardada=True
+
+		context['resultados'] = True
+		context['tiempo'] = tiempoFormateado
+
+
+
+		context['titulo'] = "Evoca | {} | Resultados".format(actividad)
+
+
+	return render(request,'evoca.html',context)
+
+
+
+def EvocaCallBack(request):
+	"""!
+	@brief Función que procesa las respuestas del juego de evoca
+	@param request Peticion http
+	"""
+	context={}
+	context['indicePreguntaActual'] = global_vars.indicePreguntaActual+1
+	context['numeroTotalPreguntas'] = len(global_vars.pilaPreguntas)
+	context['primerSonidoPila'] = global_vars.primerSonidoPila
+
+	boton = global_vars.boton
+	global_vars.boton=None
+
+	preguntaEvoca=global_vars.pilaPreguntas[global_vars.indicePreguntaActual]
+
+	if ((preguntaEvoca.visualizacion == "Multiopcion" and preguntaEvoca.formato == "Texto") or preguntaEvoca.visualizacion == "Unica"):
+		context['ultimoSonidoPila'] = global_vars.ultimoSonidoPila
+	else:
+		context['ultimoSonidoPila'] = global_vars.primerSonidoPila
+
+
+	if global_vars.narrarPreguntas == False:
+		context['primerSonidoPila'] = True
+		context['ultimoSonidoPila'] = global_vars.primerSonidoPila
+
+	registroSesion = Registro_Sesion()
+	registroSesion.pregunta=preguntaEvoca
+	registroSesion.sesion=global_vars.sesionActividad
+
+
+	if boton:
+		context['boton'] = boton
+		context['tiempoPausa'] = 500
+
+		registroSesion.multimediaRespuesta=global_vars.opcionesPreguntaQuizz[int(formateaCodigo(boton))-1]
+		registroSesion.save()
+
+		global_vars.indicePreguntaActual+=1
+
+		mensaje=lineaCentrada(1,"Respuesta") + lineaCentrada(2,"Recibida")
+		cargarPublicacionesMQTT([("Pantalla",mensaje,1)])
+
+		context['mensaje'] = "Respuesta Recibida"
+
+		context['refrescar'] = True
+
+		music = settings.MEDIA_ROOT + '/songs/correcto.ogg'
+
+		cargarAudios([music])
+
+	return JsonResponse(context)
+
+
+
+
 
 #Almacena el mensaje presente en las variables globales
 

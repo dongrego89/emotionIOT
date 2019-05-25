@@ -36,6 +36,10 @@
               <a href="{% url 'quizz' i.id idTerapiaTratamiento idTerapia%}" class="text-center link text-white">
                 {% endif %}
 
+              {% if i.juego == "Evoca" %}
+              <a href="{% url 'evoca' i.id idTerapiaTratamiento idTerapia%}" class="text-center link text-white">
+                {% endif %}
+
               <div class="card-header primary-color-dark" style="height:4.5rem;">{{i.nombre}}</div>
               <div class="card-body white">
                 <img class="img-fluid w-75" src="/files/static/{{i.juego}}.png">

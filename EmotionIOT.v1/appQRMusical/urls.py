@@ -29,9 +29,13 @@ urlpatterns = [
 	url(r'^quizz/(?P<idActividad>\d+)/(?P<idTerapiaTratamiento>\d+)/(?P<idTerapia>\d+)/$', views.Quizz, name='quizz'),
 	url(r'^quizz/$', views.QuizzCallBack, name='quizzCallBack'),
 
+	#Matching
 	url(r'^matching/(?P<idActividad>\d+)/(?P<idTerapiaTratamiento>\d+)/(?P<idTerapia>\d+)/$', views.Matching, name='matching'),
 	url(r'^matching/$', views.MatchingCallBack, name='matchingCallBack'),
 
+	#EvocaCallBack
+	url(r'^evoca/(?P<idActividad>\d+)/(?P<idTerapiaTratamiento>\d+)/(?P<idTerapia>\d+)/$', views.Evoca, name='evoca'),
+	url(r'^evoca/$', views.EvocaCallBack, name='evocaCallBack'),
 
 	# Settings
 	url(r'^settings/$', Settings.as_view(), name='settings'),

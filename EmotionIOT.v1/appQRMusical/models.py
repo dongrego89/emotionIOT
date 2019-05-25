@@ -294,7 +294,7 @@ class Actividad_Pregunta(models.Model):
 
 class Respuesta(models.Model):
     multimedia = models.ForeignKey("Multimedia",related_name="multimedia",blank=False,on_delete=models.CASCADE)
-    resultado =  models.CharField(max_length=20, choices=Resultado, default="")
+    resultado =  models.CharField(max_length=20, choices=Resultado, default=None,blank=True)
     class Meta:
         verbose_name_plural = "Respuesta"
     def __str__(self):
