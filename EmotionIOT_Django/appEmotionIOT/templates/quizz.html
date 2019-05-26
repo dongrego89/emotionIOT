@@ -1,0 +1,188 @@
+
+{% extends "body.html" %}
+
+{% load staticfiles %}
+
+{% block titulo %}{{titulo}}{% endblock titulo %}
+
+{% block content_wrapper %}
+
+{% if resultados %}
+
+	<h1>Errores cometidos: {{errores}}</h1>
+	<h1>Aciertos: {{aciertos}}</h1>
+	<h1>Tiempo: {{tiempo}}</h1>
+
+{% else %}
+<script type="text/javascript">
+	indice=0;
+	var v = [];
+	elementos=0;
+</script>
+
+	<h1>{{pregunta}}</h1>
+	<h2 id="contadorPreguntas">&nbsp;</h2>
+	{% if visualizacion == "Unica" %}
+	 <!-- Si es formato Única -->
+		<div class="container-fluid">
+			<div class="row">
+				<div class="col-md-12">
+
+					{% if formato == "Imagen" and preguntaMultimedia.imagen %}
+					<img class="img-responsive center-block img-rounded" src="/{{preguntaMultimedia.imagen.url}}">
+					{% endif %}
+
+					{% if formato == "Video" and preguntaMultimedia.video %}
+
+						<video class="img-responsive center-block img-rounded" id="media{{forloop.counter}}" controls mediagroup="agrupacion">
+							<source src="/{{ preguntaMultimedia.video.url }}" type="video/mp4">
+							<source src="/{{ preguntaMultimedia.video.url }}" type="video/wmv">
+							<source src="/{{ preguntaMultimedia.video.url }}" type="video/mpeg">
+						</video>
+						<script type="text/javascript">
+							v.push(document.getElementById("media{{forloop.counter}}"));
+							elementos++;
+						</script>
+					{% endif %}
+
+					{% if formato == "Audio" and preguntaMultimedia.audio %}
+
+						<video class="img-responsive center-block img-rounded" poster="/files/static/speaker.png" id="media{{forloop.counter}}" controls mediagroup="agrupacion">
+							<source src="/{{ preguntaMultimedia.audio.url }}" type="audio/wav">
+							<source src="/{{ preguntaMultimedia.audio.url }}" type="audio/ogg">
+							<source src="/{{ preguntaMultimedia.audio.url }}" type="audio/mp3">
+						</video>
+						<script type="text/javascript">
+							v.push(document.getElementById("media{{forloop.counter}}"));
+							elementos++;
+						</script>
+					{% endif %}
+
+				</div>
+			</div>
+		</div>
+		<div class="container-fluid">
+		 {% for i in opciones %}
+				{% if forloop.first or forloop.counter|divisibleby:2 %}
+					<div class="row">
+				{% endif %}
+						<div class="col-md-6 col-sm-6">
+						<button type="button" class="btn btn-default btn-lg btn-block">{{forloop.counter}}) {{i.nombre|capfirst}}</button>
+						</div>
+				{% if forloop.first != True %}
+					{% if forloop.counter|divisibleby:2 or forloop.last %}
+					</div>
+					{% endif %}
+				{% endif %}
+			{% endfor %}
+	 </div>
+	{% else %}
+	<!-- Si es formato Multiopcion -->
+	<div class="container-fluid">
+
+
+		{% for i in opciones %}
+			{% if forloop.first or forloop.counter|divisibleby:2 %}
+				<div class="row">
+			{% endif %}
+					<div class="col-md-6 col-sm-6">
+
+						{% if formato == "Imagen" and i.imagen %}
+						<img class="img-responsive center-block img-rounded" src="/{{i.imagen.url}}">
+						{% endif %}
+						{% if formato == "Video" and i.video %}
+							<video class="img-responsive center-block img-rounded" id="media{{forloop.counter}}" controls mediagroup="agrupacion">
+								<source src="/{{ i.video.url }}" type="video/mp4">
+								<source src="/{{ i.video.url }}" type="video/wmv">
+								<source src="/{{ i.video.url }}" type="video/mpeg">
+							</video>
+							<script type="text/javascript">
+								v.push(document.getElementById("media{{forloop.counter}}"));
+
+								elementos++;
+							</script>
+						{% endif %}
+						{% if formato == "Audio" and i.audio %}
+
+							<video class="img-responsive center-block img-rounded"  {% if preguntaMultimedia.imagen %} poster="/{{preguntaMultimedia.imagen.url}}" {% else %} poster="/files/static/speaker.png" {% endif %} id="media{{forloop.counter}}" controls mediagroup="agrupacion">
+								<source src="/{{ i.audio.url }}" type="audio/wav">
+						    <source src="/{{ i.audio.url }}" type="audio/ogg">
+						    <source src="/{{ i.audio.url }}" type="audio/mp3">
+							</video>
+							<script type="text/javascript">
+								v.push(document.getElementById("media{{forloop.counter}}"));
+								elementos++;
+							</script>
+
+						{% endif %}
+							<button style="background-color:red;" type="button" class="btn btn-default btn-lg btn-block">{{forloop.counter}}) {% if formato == "Texto" %}{{i.nombre|capfirst}}{% endif %}</button>
+					</div>
+			{% if forloop.first != True %}
+				{% if forloop.counter|divisibleby:2 or forloop.last %}
+				</div>
+				{% endif %}
+			{% endif %}
+		{% endfor %}
+	</div>
+
+{% endif %}
+<script type="text/javascript">
+
+	if(elementos){
+		//v[indice].play();
+		function verifica_fin(){
+			if ((v[indice].ended) && ((indice+1)<elementos)){
+				v[indice+1].play();
+				indice++;
+			}
+		}
+		t = setInterval('verifica_fin()',1000);
+	}
+</script>
+
+<p id="mensaje"></p>
+<p id="aviso"></p>
+
+<script type="text/javascript">
+flagPlay=true;
+
+function actualizarEstado(){
+
+    $.get('{% url 'quizzCallBack' %}', function(data) {
+
+			if((data.ultimoSonidoPila && (document.getElementById('media') || document.getElementById('media1'))) && flagPlay == true){
+				flagPlay=false;
+
+				//alert("Fin de narración. Valor de flagPlay: " + flagPlay)
+
+				document.getElementById('aviso').innerHTML = data.ultimoSonidoPila;
+
+				if(elementos){
+					v[indice].play();
+				}
+			}
+
+			if(data.mensaje){
+				document.getElementById('mensaje').innerHTML = data.mensaje;
+			}
+			if(data.refrescar){
+				setTimeout(function(){location.reload(true);}, data.tiempoPausa)
+			}
+			else{
+				document.getElementById('contadorPreguntas').innerHTML = data.indicePreguntaActual + "/" + data.numeroTotalPreguntas;
+			}
+	})
+}
+setInterval( "actualizarEstado()", 1000 );
+
+</script>
+
+
+
+{% endif %}
+
+{% endblock content_wrapper %}
+
+{% comment %}
+
+{% endcomment %}

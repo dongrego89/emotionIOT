@@ -1,0 +1,261 @@
+{% extends "baseMaterial.html" %}
+
+{% load staticfiles %}
+
+{% block titulo %}{{titulo}}{% endblock titulo %}
+
+{% block body %}
+
+{% if resultados %}
+<div class="container-fluid mi-container">
+  <div class="row justify-content-center align-items-center text-center animated flipInX faster delay-1s" style="height:10%;">
+    <div class="col-lg-8">
+        <h1>Resultados de la Actividad</h1>
+    </div>
+  </div>
+  <div class="row justify-content-center align-items-center text-center animated flipInX fast delay-1s" style="height:5%;">
+    <div class="col-lg-8">
+        <h2>{{actividad}}</h2>
+    </div>
+  </div>
+  <div class="row justify-content-center align-items-center text-center" style="height:55%;">
+    <div class="col-xl-2 animated bounceIn delay-1s">
+      <img class="img-fluid w-50 pb-2 font-weight-bold" src="/files/static/success.png">
+      <h1 class="pb-0 mb-0">Aciertos</h1>
+      <span class="font-weight-bold pt-0 mt-0" style="font-size:3rem;"> {{aciertos}}</span>
+    </div>
+    <div class="col-xl-2 animated bounceIn delay-2s">
+     	<img class="img-fluid w-50 pb-2 font-weight-bold" src="/files/static/error.png">
+      <h1 class="pb-0 mb-0">Errores</h1>
+      <span class="font-weight-bold pt-0 mt-0" style="font-size:3rem;"> {{errores}}</span>
+    </div>
+    <div class="col-xl-2 animated bounceIn delay-3s">
+      <img class="img-fluid w-50 pb-2 font-weight-bold" src="/files/static/time.png">
+      <h1 class="pb-0 mb-0">Tiempo</h1>
+      <span class="font-weight-bold pt-0 mt-0" style="font-size:3rem;"> {{tiempo}}</span>
+    </div>
+  </div>
+  <div class="row justify-content-center align-items-begin text-center animated flipInX fast delay-4s" style="height:20%;">
+    <div class="col-lg-8">
+      <h1 style="font-size:3rem;" class="font-weight-bold">¡Buen trabajo {{jugador}}!</h1>
+    </div>
+  </div>
+  <div class="row justify-content-center align-items-begin text-center animated tada infinite slow" style="height:5%;">
+    <div class="col-lg-8">
+      <h1 style="font-size:3rem;" class="font-weight-bold"><a href="/elegirActividad/{{idTerapia}}/{{idTerapiaTratamiento}}"><h1>Volver</h1></a></h1>
+    </div>
+  </div>
+</div>
+
+
+
+{% else %}
+
+<script type="text/javascript">
+	indice=0;
+	var v = [];
+	elementos=0;
+</script>
+
+<div class="container-fluid mi-container">
+  <div class="row justify-content-center align-items-center text-center animated flipInX fast delay-1s pt-0 pb-0" style="height:10%;">
+    <div class="col-lg-8">
+        <h1>{{pregunta}}</h1>
+    </div>
+  </div>
+  <div class="row justify-content-center align-items-center text-center animated flipInX delay-1s pt-0 pb-0" style="height:5%;">
+    <div class="col-xl-1">
+      <div class="font-weight-bold">
+        <img src="/files/static/question.png" class="w-25 pb-1 pl-0 img-fluid">
+        <span style="font-size:1.5rem;" id="contadorPreguntas"></span>
+      </div>
+    </div>
+    <div class="col-xl-1">
+      <div class="font-weight-bold">
+        <img src="/files/static/success.png" class="w-25 pb-1 pl-0 img-fluid">
+        <span style="font-size:1.5rem;" id="contadorAciertos">&nbsp;</span>
+      </div>
+    </div>
+    <div class="col-xl-1">
+      <div class="font-weight-bold">
+        <img src="/files/static/error.png" class="w-25 pb-1 pl-0 img-fluid">
+      <span style="font-size:1.5rem;" id="contadorFallos">&nbsp;</span>
+    </div>
+    </div>
+  </div>
+
+  {% if visualizacion == "Unica" %}
+    <div class="row justify-content-center align-items-center text-center animated zoomInDown delay-1s" style="min-height:55%;">
+      <div class="col-xl-5">
+
+      {% if formato == "Imagen" and preguntaMultimedia.imagen %}
+      <img class="img-fluid rounded animated bounceIn delay-3s" src="/{{preguntaMultimedia.imagen.url}}">
+      {% endif %}
+
+      {% if formato == "Video" and preguntaMultimedia.video %}
+        <video class="video-fluid rounded" id="media" controls>
+          <source src="/{{ preguntaMultimedia.video.url }}" type="video/mp4">
+          <source src="/{{ preguntaMultimedia.video.url }}" type="video/wmv">
+          <source src="/{{ preguntaMultimedia.video.url }}" type="video/mpeg">
+        </video>
+        <script type="text/javascript">
+          v.push(document.getElementById("media{{forloop.counter}}"));
+          elementos++;
+        </script>
+      {% endif %}
+
+      {% if formato == "Audio" and preguntaMultimedia.audio %}
+
+        <video class="video-fluid rounded" poster="/files/static/speaker.png" id="media" controls>
+          <source src="/{{ preguntaMultimedia.audio.url }}" type="audio/wav">
+          <source src="/{{ preguntaMultimedia.audio.url }}" type="audio/ogg">
+          <source src="/{{ preguntaMultimedia.audio.url }}" type="audio/mp3">
+        </video>
+        <script type="text/javascript">
+          v.push(document.getElementById("media{{forloop.counter}}"));
+          elementos++;
+        </script>
+      {% endif %}
+      </div>
+    </div>
+
+   <div class="row justify-content-center align-items-center text-center mt-1" style="height:5%;">
+     <div class="col-8 text-center">
+       {% for i in opciones %}
+         {% if forloop.first == True %}
+           <div class="row justify-content-center align-items-center text-center">
+         {% endif %}
+
+         <div class="col-3 text-center animated zoomInUp fast delay-{{forloop.counter}}s">
+           <button type="button" class="btn btn-primary font-weight-bold w-100 ">{{forloop.counter}}) {{i.nombre|capfirst}}</button>
+         </div>
+
+         {% if forloop.first != True and forloop.counter|divisibleby:4 %}
+           </div>
+           <div class="row justify-content-center align-items-center text-center">
+         {% endif %}
+         {% if forloop.last == True %}
+           </div>
+         {% endif %}
+       {% endfor %}
+     </div>
+   </div>
+
+{% else %}
+<div class="row justify-content-center align-items-center text-center mt-1 pt-1" style="min-height:60%;">
+  <div class="col-10 text-center">
+    {% for i in opciones %}
+      {% if forloop.first == True %}
+        <div class="row justify-content-center align-items-center text-center mt-2">
+      {% endif %}
+
+        <div class="col-4 p-2 text-center animated zoomInUp fast delay-{{forloop.counter}}s">
+
+          {% if formato == "Imagen" and i.imagen %}
+          <img class="img-fluid center-block img-rounded w-50" src="/{{i.imagen.url}}">
+          {% endif %}
+          {% if formato == "Video" and i.video %}
+            <video class="img-responsive center-block img-rounded" style="width:75%;" id="media{{forloop.counter}}" controls mediagroup="agrupacion">
+              <source src="/{{ i.video.url }}" type="video/mp4">
+              <source src="/{{ i.video.url }}" type="video/wmv">
+              <source src="/{{ i.video.url }}" type="video/mpeg">
+            </video>
+            <script type="text/javascript">
+              v.push(document.getElementById("media{{forloop.counter}}"));
+
+              elementos++;
+            </script>
+          {% endif %}
+          {% if formato == "Audio" and i.audio %}
+
+            <video class="img-responsive center-block img-rounded" style="width:85%;" poster="/files/static/speaker.png" id="media{{forloop.counter}}" controls mediagroup="agrupacion">
+              <source src="/{{ i.audio.url }}" type="audio/wav">
+              <source src="/{{ i.audio.url }}" type="audio/ogg">
+              <source src="/{{ i.audio.url }}" type="audio/mp3">
+            </video>
+            <script type="text/javascript">
+              v.push(document.getElementById("media{{forloop.counter}}"));
+              elementos++;
+            </script>
+
+          {% endif %}
+            <button type="button" class="btn btn-primary font-weight-bold">{{forloop.counter}}) {% if formato == "Texto" %}{{i.nombre|capfirst}}{% endif %}</button>
+          </div>
+
+      {% if forloop.first != True and forloop.counter|divisibleby:2 %}
+        </div>
+        <div class="row justify-content-center align-items-center text-center mt-2">
+      {% endif %}
+      {% if forloop.last == True %}
+        </div>
+      {% endif %}
+    {% endfor %}
+  </div>
+</div>
+
+{% endif %}
+  <div class="row justify-content-center align-items-center text-center" style="height:10%;">
+    <div class="col-md-12 text-center animated bounceInUp fast delay-4s">
+      <h1 style="font-size:70px;"><div id="mensaje"> &nbsp;</div></h1>
+    </div>
+  </div>
+</div>
+
+<script type="text/javascript">
+
+	if(elementos){
+
+		function verifica_fin(){
+			if ((v[indice].ended) && ((indice+1)<elementos)){
+				v[indice+1].play();
+				indice++;
+			}
+		}
+		t = setInterval('verifica_fin()',1000);
+	}
+</script>
+
+<script type="text/javascript">
+flagPlay=true;
+
+function actualizarEstado(){
+    $('#mensaje').one('webkitAnimationEnd mozAnimationEnd MSAnimationEnd oanimationend animationend', function(){
+    $('#mensaje').removeClass('animated heartBeat fast');
+    $('#mensaje').addClass('animated bounceOut delay-2s');
+  });
+
+    $.get('{% url 'quizzCallBack' %}', function(data) {
+
+			if((data.ultimoSonidoPila && (document.getElementById('media') || document.getElementById('media1'))) && flagPlay == true){
+				flagPlay=false;
+
+				//alert("Fin de narración. Valor de flagPlay: " + flagPlay)
+				//document.getElementById('aviso').innerHTML = data.ultimoSonidoPila;
+
+				if(elementos){
+					v[indice].play();
+				}
+			}
+
+			if(data.mensaje){
+				//document.getElementById('mensaje').innerHTML = data.mensaje;
+        $("#mensaje").html(data.mensaje)
+        $('#mensaje').removeClass('animated bounceOut delay-2s');
+        $('#mensaje').addClass('animated heartBeat fast');
+			}
+			if(data.refrescar){
+				setTimeout(function(){location.reload(true);}, data.tiempoPausa)
+			}
+			else{
+        document.getElementById('contadorPreguntas').innerHTML = data.indicePreguntaActual + "|" + data.numeroTotalPreguntas;
+        document.getElementById('contadorAciertos').innerHTML = data.aciertos;
+        document.getElementById('contadorFallos').innerHTML = data.fallos;
+			}
+	})
+}
+setInterval( "actualizarEstado()", 1000 );
+
+</script>
+{% endif %}
+
+{% endblock %}

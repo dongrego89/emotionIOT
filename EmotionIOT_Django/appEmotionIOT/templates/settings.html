@@ -1,0 +1,82 @@
+{% extends "body.html" %}
+
+{% block content_wrapper %}
+
+<div class="col-sm-12 QRM_box {{QRM_color}}">
+<ul>
+  <strong>
+  <li><a class="active" href="{% url 'settings' %}">Menú Principal</a></li>
+  <li><a href="{% url 'users_list' %}">Pacientes</a></li>
+  <li><a href="{% url 'gallery' %}">Contenido</a></li>
+  <li><a href="{% url 'therapists_list' %}">Especialistas</a></li>
+  <li><a href="{% url 'treatments_list' %}">Tratamientos </a></li>
+  <li><a href="{% url 'therapies_list' %}">Terapias </a></li>
+  <li><a href="{% url 'activity_settings' %}">Actividades</a></li>
+  <li><a href="{% url 'results' %}">Resultados</a></li>
+  <li><a href="{% url 'summary' %}">Inf.General</a></li>
+</strong>
+</ul>
+	<div class="QRM_box_in">
+		<div style='text-align:center; margin: 0 auto; width: 90%'>
+
+            <a href="{% url 'users_list' %}">
+				<div class="QRM_btn QRM_btn_home">
+					<img class="QRM_btn_image" src="/files/static/users.png">
+					<h5>Pacientes</h5>
+				</div>
+			</a>
+
+			<a href="{% url 'gallery' %}">
+				<div class="QRM_btn QRM_btn_home">
+					<img class="QRM_btn_image" src="/files/static/gallery.png">
+					<h5>Contenido</h5>
+				</div>
+			</a>
+    
+			<a href="{% url 'therapists_list' %}">
+				<div class="QRM_btn QRM_btn_home">
+					<img class="QRM_btn_image" src="/files/static/doctor.png">
+					<h5>Especialistas</h5>
+				</div>
+			</a>
+
+            <a href="{% url 'treatments_list' %}">
+				<div class="QRM_btn QRM_btn_home">
+					<img class="QRM_btn_image" src="/files/static/treatment.png">
+					<h5>Tratamientos</h5>
+				</div>
+			</a>
+
+            <a href="{% url 'therapies_list' %}">
+				<div class="QRM_btn QRM_btn_home">
+					<img class="QRM_btn_image" src="/files/static/therapy.png">
+					<h5>Terapias</h5>
+				</div>
+			</a>
+
+			<a href="{% url 'activity_settings' %}">
+				<div class="QRM_btn QRM_btn_home">
+					<img class="QRM_btn_image" src="/files/static/game.png">
+					<h5>Actividades</h5>
+				</div>
+			</a>
+
+			<a href="{% url 'results' %}">
+				<div class="QRM_btn QRM_btn_home">
+					<img class="QRM_btn_image" src="/files/static/chartjs.png">
+					<h5>Resultados</h5>
+				</div>
+			</a>
+
+			<a href="{% url 'summary' %}">
+				<div class="QRM_btn QRM_btn_home">
+					<img class="QRM_btn_image" src="/files/static/summary.png">
+					<h5>Inf.General</h5>
+				</div>
+			</a>
+
+		</div>
+	</div>
+</div>
+
+{% endblock content_wrapper %}

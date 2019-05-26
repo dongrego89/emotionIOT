@@ -1,0 +1,66 @@
+{% extends "baseMaterial.html" %}
+
+{% load staticfiles %}
+
+{% block titulo %}{{titulo}}{% endblock titulo %}
+
+{% block body %}
+
+{% if jugador.online != "si" %}
+
+<div class="container-fluid mi-container">
+  <div class="row justify-content-center align-items-center text-center" style="height:80%;">
+    <div class="col-xl-10">
+    		<img class="animated zoomIn img-fluid" src="/files/static/RFIDMusic.png">
+      	<h1 class="text-center animated fadeIn slow delay-1s mt-4">Acerca tu tarjeta/pulsera al lector</h1>
+    </div>
+  </div>
+    <div class="row justify-content-center align-items-start text-center" style="height:20%;">
+      <div class="col-xl-10">
+      		<h2 class="text-center"><div id="mensaje"></div></h2>
+      </div>
+    </div>
+</div>
+
+
+{% endif %}
+
+<script type="text/javascript">
+
+function iniciarSesionRfid(){
+  $('#mensaje').one('webkitAnimationEnd mozAnimationEnd MSAnimationEnd oanimationend animationend', function(){
+    $('#mensaje').removeClass('animated bounceIn');
+    $('#mensaje').addClass('animated bounceOut delay-2s');
+  });
+
+	$.get('{% url 'rfidlogin' %}', function(data) {
+
+		if(data.redireccionar){
+      setTimeout(function(){window.location=data.direccion}, data.tiempoPausa)
+		}
+
+		else{
+			if(data.mensaje){
+        $("#mensaje").html(data.mensaje + " " + data.codigoMQTT)
+
+        $('#mensaje').removeClass('animated bounceOut delay-2s');
+        $('#mensaje').addClass('animated bounceIn');
+
+			}
+		}
+	})
+}
+
+setInterval( "iniciarSesionRfid()", 500 );
+
+</script>
+
+{% if jugador.online == "si" %}
+
+<script>
+    window.location='/elegirTerapia'
+</script>
+
+{% endif %}
+
+{% endblock %}

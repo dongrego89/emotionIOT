@@ -1,0 +1,64 @@
+{% extends "baseMaterial.html" %}
+
+{% load staticfiles %}
+
+{% block titulo %}{{titulo}}{% endblock titulo %}
+
+{% block body %}
+
+{% if terapiaTratamiento|length > 0 %}
+<div class="container-fluid mi-container">
+  <div class="row justify-content-center align-items-center text-center animated flipInX faster delay-1s" style="height:10%;">
+    <div class="col-lg-8">
+        <h1>{{titulo}}</h1>
+    </div>
+  </div>
+  <div class="row justify-content-center align-items-center text-center animated flipInX fast delay-1s" style="height:5%;">
+    <div class="col-lg-8">
+        <h2>{{mensaje}}</h2>
+    </div>
+  </div>
+  <div class="row justify-content-center align-items-start text-center" style="height:85%;">
+    <div class="col-md-12 col-lg-12 col-xl-8">
+      {% for i in terapiaTratamiento %}
+
+      {% if forloop.first == True %}
+        <div class="row justify-content-center mb-4 mt-4">
+      {% endif %}
+
+        <div class="col-xl-2 animated flipInX delay-2s">
+          <div class="card text-white bg-primary">
+            <a href="{% url 'elegirActividad' i.terapia i.id %}" class="text-center link text-white">
+              <div class="card-header primary-color-dark" style="height:4.5rem;">{{i.terapia__nombre}}</div>
+              <div class="card-body white">
+                <img class="img-fluid w-75" src="/files/static/game_match.png">
+              </div>
+            </a>
+          </div>
+        </div>
+
+        {% if forloop.first != True and forloop.counter|divisibleby:6 %}
+          </div>
+          <div class="row justify-content-center mb-4 mt-4">
+        {% endif %}
+        {% if forloop.last == True %}
+          </div>
+        {% endif %}
+
+      {% endfor %}
+
+    </div>
+  </div>
+</div>
+{% else %}
+
+<div class="container-fluid mi-container">
+  <div class="row justify-content-center align-items-center text-center animated zoomIn slow delay-1s" style="height:100%;">
+    <div class="col-xl-12">
+      <h1>{{mensaje_error}}</h1>
+    </div>
+  </div>
+</div>
+{% endif %}
+
+{% endblock %}

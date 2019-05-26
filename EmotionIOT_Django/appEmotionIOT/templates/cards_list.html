@@ -1,0 +1,47 @@
+
+{% extends "body.html" %}
+
+{% block content_wrapper %}
+<a href="{% url 'play' %}">
+	<div>
+		<p>← Back</p>
+	</div>
+</a>
+<div class="col-sm-12 QRM_box {{QRM_color}}">
+	<div class="QRM_box_in">
+		<div class="QRM_wrapper_table">
+
+			<table class="table table-hover">
+				<thead>
+					<tr>
+						<th>#</th>
+						<th>Image</th>						
+						<th>List Name</th>
+						<th>Description</th>						
+			    	</tr>
+				</thead>
+				<tbody>
+					{% for son in object_list %}
+						{% if son.enabled %}
+							<tr onclick="document.location = '{% url 'player_game' son.id %}';">
+								<th scope="row" style="vertical-align: middle;">{{ son.id }}</th>
+			      				<td style="width: 10%; vertical-align: middle;">
+									{% if son.image %}
+				      					<img src="/{{ son.image.url }}" class="QRM_image_list">
+									{% endif %}
+			      				</td>								
+								<td style="vertical-align: middle;">{{ son.name }}</td>
+								<td style="vertical-align: middle;">{{ son.description }}</td>
+							</tr>
+		    			{% endif %}
+					{% endfor %}
+				</tbody>
+			</table>
+
+		</div>
+	</div>
+</div>
+
+{% include "message.html" %}
+
+{% endblock content_wrapper %}

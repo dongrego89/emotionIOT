@@ -1,0 +1,44 @@
+{% extends "body.html" %}
+
+{% block titulo %}{{titulo}}{% endblock titulo %}
+
+{% block content_wrapper %}
+
+<div class="col-sm-12 QRM_box {{QRM_color}}">
+  <p style="font-size:30px;color:white;">{{mensaje}}</p>
+	<div class="QRM_box_in">
+		<div style='text-align:center; margin: 0 auto; width: 90%'>
+
+{% if actividades|length > 0 %}
+  <h1>Numero de elementos: {{actividades|length}}</h1>
+  {% for i in actividades %}
+    {% if i.juego == "Matching" %}
+      <a href="{% url 'matching' i.id idTerapiaTratamiento %}">
+
+    {% endif %}
+    {% if i.juego == "Quizz" %}
+      <a href="{% url 'quizz' i.id idTerapiaTratamiento %}">
+    {% endif %}
+    <div class="QRM_btn QRM_btn_home">
+    <h2>{{ i.juego }} </h2>
+    <img class="QRM_btn_image" src="/files/static/{{i.juego}}.png">
+    <h5>{{ i.nombre }}</h5>
+    </div>
+    </a>
+  {% endfor %}
+{% else %}
+<a>
+  <div class="QRM_btn QRM_btn_home">
+    <img class="QRM_btn_image" src="/files/static/error.png">
+    <h5>{{mensaje_error}}</h5>
+  </div>
+</a>
+
+{% endif %}
+
+
+		</div>
+	</div>
+</div>
+
+{% endblock content_wrapper %}

@@ -1,0 +1,69 @@
+
+{% extends "body.html" %}
+
+{% block content_wrapper %}
+
+<ul class="ullist">
+  <strong>
+  <li><a class="ullista" href="{% url 'settings' %}">Menú Principal</a></li>
+  <li><a class="ullista" href="{% url 'users_list' %}">Pacientes</a></li>
+  <li><a class="ullista" href="{% url 'gallery' %}">Contenido</a></li>
+  <li><a class="ullistactive" href="{% url 'therapists_list' %}">Especialistas </a></li>
+  <li><a class="ullista" href="{% url 'treatments_list' %}">Tratamientos </a></li>
+  <li><a class="ullista" href="{% url 'therapies_list' %}">Terapias </a></li>
+  <li><a class="ullista" href="{% url 'activity_settings' %}">Actividades</a></li>
+  <li><a class="ullista" href="{% url 'results' %}">Resultados</a></li>
+  <li><a class="ullista" href="{% url 'summary' %}">Inf. General</a></li>
+</strong>
+</ul>
+
+<div class="col-sm-12 QRM_box {{QRM_color}}">
+		{% if admin %}
+		    <a href="{% url 'create_therapist' %}">
+		    	<div class="btn btn-sm btn-info">
+		    		<p>Añade un especialista</p>
+		    	</div>	
+		    </a>
+        {% endif %}
+	<div class="QRM_box_in">
+		<div class="QRM_wrapper_table">
+
+			<table class="table table-hover">
+				<thead>
+					<tr>
+						<th>Usuario</th>
+						<th>Nombre</th>
+						<th>Apellido</th>
+						<th>Email</th>
+			    	</tr>
+				</thead>
+				<tbody>
+					{% for object in thera_list %}
+		      				<th scope="row" style="width: 3%; vertical-align: middle;">
+                                {{ object.user.username }}
+                            </th>
+
+		      				<td style="width: 10%; vertical-align: middle;">
+		      					{{ object.nombre }}  					
+		      				</td>
+		      				<td style="width: 10%; vertical-align: middle;">
+		      					{{ object.apellido }}  					
+		      				</td>
+		      				<td style="width: 10%; vertical-align: middle;">
+		      					{{ object.email }}  					
+		      				</td>
+		    			</tr>
+					{% endfor %}
+				</tbody>
+			</table>
+		</div>
+
+		{% if admin %}
+		    <a href="{% url 'create_therapist' %}">
+		    	<div class="btn btn-sm btn-info">
+		    		<p>Añade un especialista</p>
+		    	</div>	
+		    </a>
+        {% endif %}
+
+{% endblock content_wrapper %}

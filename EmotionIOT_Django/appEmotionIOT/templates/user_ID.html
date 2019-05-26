@@ -1,0 +1,27 @@
+
+{% extends "body.html" %}
+
+{% block content_wrapper %}
+
+<div class="container-fluid">
+	<div class="row">
+		<h1>{{ object.title }}</h1>
+
+   <div class="col-sm-12 QRM_box {{QRM_color}}">
+	<div class="QRM_box_in">
+		<div style='text-align:center; margin: 0 auto; width: 90%'>
+
+			<a href="{% url 'users_list' %}">
+				<div class="QRM_btn QRM_btn_home">
+					<img class="QRM_btn_image" src="{{ source }}">
+					<h5>Atras</h5>
+				</div>
+			</a>
+
+
+	</div>
+</div>
+
+{% include "message.html" %}
+
+{% endblock content_wrapper %}

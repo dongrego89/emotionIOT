@@ -1,0 +1,49 @@
+{% extends "body.html" %}
+
+{% block content_wrapper %}
+
+<div class="col-sm-12 QRM_box {{QRM_color}}">
+
+<ul>
+  <strong>
+  <li><a href="{% url 'settings' %}">Menu Principal</a></li>
+  <li><a href="{% url 'users_list' %}">Pacientes</a></li>
+  <li><a href="{% url 'gallery' %}">Contenido</a></li>
+  <li><a class="active" href="{% url 'therapists_list' %}">Especialistas</a></li>
+  <li><a href="{% url 'treatments_list' %}">Tratamientos </a></li>
+  <li><a href="{% url 'therapies_list' %}">Terapias </a></li>
+  <li><a href="{% url 'activity_settings' %}">Actividades</a></li>
+  <li><a href="{% url 'results' %}">Resultados</a></li>
+  <li><a href="{% url 'summary' %}">Inf.General</a></li>
+</strong>
+</ul>
+
+	<div class="QRM_box_in">
+		<div style='text-align:center; margin: 0 auto; width: 90%'>
+
+			<a href="{% url 'edit_name' %}">
+				<div class="QRM_btn QRM_btn_home">
+					<img class="QRM_btn_image" src="/files/static/user.png">
+					<h5>Editar Nombre y Apellidos</h5>
+				</div>
+			</a>
+
+			<a href="{% url 'edit_email' %}">
+				<div class="QRM_btn QRM_btn_home">
+					<img class="QRM_btn_image" src="/files/static/editEmail.png">
+					<h5>Editar email</h5>
+				</div>
+			</a>
+
+			<a href="{% url 'edit_password' %}">
+				<div class="QRM_btn QRM_btn_home">
+					<img class="QRM_btn_image" src="/files/static/editPass.png">
+					<h5>Editar contraseña</h5>
+				</div>
+			</a>
+
+		</div>
+	</div>
+</div>
+
+{% endblock content_wrapper %}

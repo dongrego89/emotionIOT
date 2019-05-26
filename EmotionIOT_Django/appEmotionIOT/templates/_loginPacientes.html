@@ -1,0 +1,53 @@
+
+{% extends "body.html" %}
+{% load staticfiles %}
+
+{% block titulo %}{{titulo}}{% endblock titulo %}
+
+{% block content_wrapper %}
+<div class="col-sm-12 QRM_box {{QRM_color}}">
+	<div class="QRM_box_in">
+		<div style='text-align:center; margin: 0 auto; width: 90%'>
+
+		{% if jugador.online == "si" %}
+
+		<script>
+				window.location='/elegirTerapia'
+		</script>
+
+		{% else %}
+
+      <img src="/files/static/RFIDMusic.png" >
+			<h1><div id="mensaje"></div></h1>
+
+		{% endif %}
+
+		</div>
+	</div>
+</div>
+
+<script src="{% static 'js/jquery.min.js' %}"></script>
+
+<script type="text/javascript">
+
+function iniciarSesionRfid(){
+	$.get('{% url 'rfidlogin' %}', function(data) {
+
+		if(data.redireccionar){
+			window.location="/elegirTerapia"
+		}
+		else{
+			if(data.mensaje){
+				$("#mensaje").html(data.mensaje + "<br>" + data.codigoMQTT)
+			}
+		}
+	})
+}
+
+setInterval( "iniciarSesionRfid()", 500 );
+
+
+
+</script>
+
+{% endblock content_wrapper %}

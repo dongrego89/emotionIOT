@@ -1,0 +1,110 @@
+<!DOCTYPE html>
+
+{% load staticfiles %}
+
+<!DOCTYPE html>
+
+<html lang="es" style="height:100%;">
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+<meta http-equiv="x-ua-compatible" content="ie=edge">
+	<head>
+		<title>EmotionIOT | {% block titulo %}{{titulo}}{% endblock titulo %}</title>
+		<!-- Font Awesome -->
+	  <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.8.1/css/all.css">
+	  <!-- Bootstrap core CSS -->
+		<link href="{% static 'material/css/bootstrap.min.css' %}" rel="stylesheet" type="text/css">
+	  <!-- Material Design Bootstrap -->
+		<link href="{% static 'material/css/mdb.min.css' %}" rel="stylesheet" type="text/css">
+	  <!-- Your custom styles (optional) -->
+		<link href="{% static 'material/css/style.css' %}" rel="stylesheet" type="text/css">
+
+		<link rel=”shortcut icon” type=”image/jpg href=”{% static 'favicon.jpg' %}/>
+
+		<style type="text/css">
+		    .mi-container{
+		    min-height: 90%;
+		    height:90%;
+		    overflow:hidden;
+		    }
+		</style>
+
+	</head>
+
+	<body style="height:100%;">
+		{% if jugador.online == "si" %}
+
+	  <nav class="navbar navbar-expand-lg navbar-dark primary-color-dark {% if titulo == "Terapias" %} animated bounceInDown {% endif %}">
+			<a class="navbar-brand" href="/">
+				<img class="img-fluid" style="height:50px;" src="/files/static/RFIDMusic.png">
+			</a>
+			{% if idTerapia %} <button class="animated zoomIn btn btn-primary rounded-pill font-weight-bold" onClick="window.location='/'">Terapias</button> {% endif %}
+			{% if idActividad %} <button class="animated zoomIn btn btn-primary rounded-pill font-weight-bold" onClick="window.location='/elegirActividad/{{idTerapia}}/{{idTerapiaTratamiento}}'">Actividades</button> {% endif %}
+			<div class="ml-auto button rounded-pill primary-color text-left text-white font-weight-bold pl-4" arylw=!>
+				{{jugador}} ({{jugador.edad}} a&ntilde;os) &nbsp;
+			{% if jugador.imagen %}
+						<img class="cursor-pointer rounded-circle ml-auto" onclick="logoutUser()" class="img-circle" src="/{{ jugador.imagen.url }}" style="height:50px;background-color:white;">
+			{% else %}
+						<img class="cursor-pointer rounded-circle ml-auto" onclick="logoutUser()" src="/files/static/log_g.png" style="height:50px;background-color:white;">
+			{% endif %}
+		</div>
+
+		{% endif %}
+	</nav>
+
+
+{% block body %}
+
+{% endblock %}
+
+
+{% if jugador.online == "si" %}
+<!-- Footer -->
+<footer class="page-footer font-small fixed-bottom primary-color-dark {% if titulo == "Terapias" %} animated bounceInUp {% endif %}">
+
+	<!-- Copyright -->
+	<div class="footer-copyright text-center py-3">GitHub
+		<a href="https://github.com/dongrego89/emotionIOT">EmotionIOT</a>
+	</div>
+	<!-- Copyright -->
+
+</footer>
+{% endif %}
+<!-- Footer -->
+
+
+<script type="text/javascript">
+
+function logoutUser() {
+	//Desconexion de usuario
+		var txt;
+		var r = confirm("Desconexión user\n¿Estas seguro de que deseas desconectarte?");
+		if (r == true) {
+				window.location.replace('/desconectar');
+		} else {
+		}
+}
+
+function logoutAdmin() {
+	//Desconexion de admin
+		var txt;
+		var r = confirm("Desconexión admin\n¿Estas seguro de que deseas desconectarte?");
+		if (r == true) {
+				 document.location.href ="/logout/"
+		} else {
+		}
+}
+
+</script>
+
+<!-- JQuery -->
+<script type="text/javascript" src="{% static 'material/js/jquery-3.4.0.min.js' %}"></script>
+<!-- Bootstrap tooltips -->
+<script type="text/javascript" src="{% static 'material/js/popper.min.js' %}"></script>
+<!-- Bootstrap core JavaScript -->
+<script type="text/javascript" src="{% static 'material/js/bootstrap.min.js' %}"></script>
+<!-- MDB core JavaScript -->
+<script type="text/javascript" src="{% static 'material/js/mdb.min.js' %}"></script>
+
+
+</html>

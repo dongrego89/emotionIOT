@@ -1,0 +1,83 @@
+
+{% extends "body.html" %}
+
+{% load staticfiles %}
+
+{% block titulo %}{{titulo}}{% endblock titulo %}
+
+{% block content_wrapper %}
+
+{% if resultados %}
+
+	<h1>Errores cometidos: {{errores}}</h1>
+	<h1>Aciertos: {{aciertos}}</h1>
+	<h1>Tiempo: {{tiempo}}</h1>
+
+{% else %}
+	<h1>{{pregunta}}</h1>
+	<h2 id="contadorPreguntas">&nbsp;</h2>
+
+		<div class="container-fluid">
+			<div class="row">
+				<div class="col-md-12">
+
+					{% if formato == "Imagen" and opcion.imagen %}
+					<img class="img-responsive center-block img-rounded" src="/{{opcion.imagen.url}}">
+					{% endif %}
+
+					{% if formato == "Video" and opcion.video %}
+
+						<video autoplay class="img-responsive center-block img-rounded" id="media{{forloop.counter}}" controls mediagroup="agrupacion">
+							<source src="/{{ opcion.video.url }}" type="video/avi">
+							<source src="/{{ opcion.video.url }}" type="video/mp4">
+							<source src="/{{ opcion.video.url }}" type="video/wmv">
+							<source src="/{{ opcion.video.url }}" type="video/mpeg">
+						</video>
+
+					{% endif %}
+
+					{% if formato == "Audio" and opcion.audio %}
+
+						<video autoplay class="img-responsive center-block img-rounded"  poster="/{{opcion.imagen.url}}" id="media{{forloop.counter}}" controls mediagroup="agrupacion">
+							<source src="/{{ opcion.audio.url }}" type="audio/wav">
+							<source src="/{{ opcion.audio.url }}" type="audio/ogg">
+							<source src="/{{ opcion.audio.url }}" type="audio/mp3">
+						</video>
+
+					{% endif %}
+
+				</div>
+			</div>
+		</div>
+
+<p id="mensaje"></p>
+
+<script type="text/javascript">
+
+function actualizarEstado(){
+
+    $.get('{% url 'matchingCallBack' %}', function(data) {
+
+			if(data.mensaje){
+				document.getElementById('mensaje').innerHTML = data.mensaje;
+			}
+			if(data.refrescar){
+				setTimeout(function(){location.reload(true);}, data.tiempoPausa)
+			}
+			else{
+				document.getElementById('contadorPreguntas').innerHTML = data.indicePreguntaActual + "/" + data.numeroTotalPreguntas;
+			}
+	})
+}
+setInterval( "actualizarEstado()", 1000 );
+
+</script>
+
+
+{% endif %}
+
+{% endblock content_wrapper %}
+
+{% comment %}
+
+{% endcomment %}

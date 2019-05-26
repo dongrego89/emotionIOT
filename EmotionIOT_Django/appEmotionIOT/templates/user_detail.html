@@ -1,0 +1,27 @@
+
+{% extends "body.html" %}
+
+{% block content_wrapper %}
+
+<div class="container-fluid">
+	<div class="row">
+		<h1>{{ object.title }}</h1>
+        <h2>{{ object.subtitle }}</h2>
+
+		<div class="jumbotron {{ QRM_color }}">
+			<center>
+				<form action="" method="post" enctype="multipart/form-data">
+                    {% if image.imagen %}
+                    <img src="/{{ image.imagen.url }}" style="width: 100px;">
+                    {% endif %}
+					{% csrf_token %}
+				    {{ form.as_p }}
+				    <input type="submit" value="Confirmar" class="btn btn-sm btn-success"/>
+				</form>
+			</center>
+		</div>
+		
+	</div>
+</div>
+
+{% endblock content_wrapper %}

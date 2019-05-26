@@ -1,0 +1,23 @@
+
+{% extends "body.html" %}
+
+{% block content_wrapper %}
+
+<div class="container-fluid">
+	<div class="row">
+		<div class="jumbotron {{ QRM_color }}">
+			<center>
+            <p style="font-size:30px;color:white"><strong>Rellena todos los campos para crear un nuevo especialista<strong></p>
+				<form action="" method="post" enctype="multipart/form-data">
+					{% csrf_token %}
+				    <p>USUARIO : {{ form.username }}* MAX ----> 150 caracteres.</p>
+                    <p>CONTRASEÑA : {{ form.password1 }}* MIN ----> 8 caracteres.</p>
+                    <p>CONTRASEÑA : {{ form.password2 }}* Confirme la contraseña.</p>
+				    <input type="submit" value="Confirmar" class="btn btn-sm btn-success" style="font-size:20px">
+				</form>
+			</center>
+		</div>	
+	</div>
+</div>
+
+{% endblock content_wrapper %}
