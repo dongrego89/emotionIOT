@@ -57,6 +57,11 @@ Resultado = [
 ]
 
 def generarDirectorioSubida(self, file):
+    """!
+    @brief Función que anexa al archivo pasado por parámetro el directorio en el que debe ser colocado
+    @param self Llamada al propio método
+    @param file Archivo de caracter multimedia
+    """
     nombre, extension = os.path.splitext(file)
     extension.lower()
     directory = ''
@@ -73,6 +78,11 @@ def generarDirectorioSubida(self, file):
     return os.path.join(directory, file)
 
 def calcularEdad(self,fecha_de_nacimiento):
+    """!
+    @brief Función que calcula la edad a partir de una fecha dada
+    @param self Llamada al propio método
+    @param fecha_de_nacimiento Fecha a partir la cuál calcular la edad
+    """
     hoy = date.today()
     return hoy.year - fecha_de_nacimiento.year - ((hoy.month, hoy.day) < (fecha_de_nacimiento.month, fecha_de_nacimiento.day))
 
@@ -86,6 +96,9 @@ def save_therapist_profile(sender, instance, **kwargs):
     instance.especialista.save()
 
 class Indicador(models.Model):
+    """!
+    @brief Clase que define el Indicador para medición de métricas de juego
+    """
     id =  models.AutoField(primary_key=True)
     nombre = models.CharField(max_length=50, blank=True)
     descripcion = models.TextField(blank=True)
@@ -95,6 +108,9 @@ class Indicador(models.Model):
         return self.nombre
 
 class Actividad(models.Model):
+    """!
+    @brief Clase que define la Actividad o juego
+    """
     id = models.AutoField(primary_key=True)
     nombre = models.CharField(max_length=100)
     descripcion = models.CharField(max_length=200, blank=True)
@@ -109,6 +125,9 @@ class Actividad(models.Model):
         return self.nombre
 
 class Paciente(models.Model):
+    """!
+    @brief Clase que define el Paciente o jugador
+    """
     id = models.AutoField(primary_key=True)
     imagen = models.ImageField(upload_to='profiles/', blank=True)
     nombre = models.CharField("Nombre",max_length=50)
@@ -125,6 +144,9 @@ class Paciente(models.Model):
         return self.nombre
 
 class Especialista(models.Model):
+    """!
+    @brief Clase que define el Especialista administrador
+    """
     user = models.OneToOneField(User, on_delete=models.CASCADE)
     nombre = models.CharField("Nombre",max_length=50)
     apellido = models.CharField("Apellido",max_length=50)
@@ -133,6 +155,9 @@ class Especialista(models.Model):
         verbose_name_plural = "Especialista"
 
 class Tratamiento(models.Model):
+    """!
+    @brief Clase que define el Tratamiento que se aplicará a los pacientes
+    """
     id = models.AutoField(primary_key=True)
     nombre = models.CharField("Nombre",max_length=50)
     paciente = models.ForeignKey(Paciente,on_delete=models.CASCADE)
@@ -146,6 +171,9 @@ class Tratamiento(models.Model):
         return self.nombre
 
 class Terapia(models.Model):
+    """!
+    @brief Clase que define la Terapia que engloba Actividades y que a su vez conforma un Tratamiento
+    """
     id = models.AutoField(primary_key=True)
     nombre = models.CharField("Nombre",max_length=50)
     descripcion = models.TextField(blank=True)
@@ -156,6 +184,9 @@ class Terapia(models.Model):
         return self.nombre
 
 class Terapia_Tratamiento(models.Model):
+    """!
+    @brief Clase que relaciona las distintas Terapias con los Tratamientos
+    """
     id = models.AutoField(primary_key=True)
     terapia = models.ManyToManyField(Terapia)
     tratamiento = models.ForeignKey(Tratamiento,on_delete=models.CASCADE)
@@ -167,6 +198,9 @@ class Terapia_Tratamiento(models.Model):
         return Terapia.objects.filter(id=id)
 
 class Especialista_Terapia_Tratamiento(models.Model):
+    """!
+    @brief Clase que relaciona los Especialistas con los Tratamientos y las respectivas Terapias que los componen
+    """
     terapia_tratamiento = models.ForeignKey(Terapia_Tratamiento,on_delete=models.CASCADE)
     especialista = models.ForeignKey(Especialista,on_delete=models.CASCADE)
     fecha = models.DateField(null=True,blank=True)
@@ -175,6 +209,9 @@ class Especialista_Terapia_Tratamiento(models.Model):
         unique_together = ("terapia_tratamiento","especialista","fecha")
 
 class Supervisa(models.Model):
+    """!
+    @brief Clase que relaciona los Tratamientos con los Especialistas que los supervisan
+    """
     especialista = models.ForeignKey(Especialista,on_delete=models.CASCADE)
     tratamiento = models.ForeignKey(Tratamiento,on_delete=models.CASCADE)
     class Meta:
@@ -182,6 +219,9 @@ class Supervisa(models.Model):
         unique_together = ("especialista","tratamiento")
 
 class Diagnostico(models.Model):
+    """!
+    @brief Clase que define el Diagnóstico que se realiza a un Paciente
+    """
     id = models.AutoField(primary_key=True)
     paciente = models.ForeignKey(Paciente,on_delete=models.CASCADE)
     fecha = datetime.today()
@@ -191,6 +231,9 @@ class Diagnostico(models.Model):
         verbose_name_plural = "Diagnostico"
 
 class Sesion(models.Model):
+    """!
+    @brief Clase que define la Sesión de trabajo en una Actividad
+    """
     id = models.AutoField(primary_key=True)
     terapia_tratamiento = models.ForeignKey(Terapia_Tratamiento,on_delete=models.CASCADE)
     actividad = models.ForeignKey(Actividad,on_delete=models.CASCADE)
@@ -201,6 +244,9 @@ class Sesion(models.Model):
         return "{}:{}".format(self.terapia_tratamiento,self.fecha.strftime("%b-%d-%Y %H:%M:%S"))
 
 class Terapia_Actividad(models.Model):
+    """!
+    @brief Clase que relaciona la Terapia con las Actividades que la conforman
+    """
     actividad = models.ForeignKey(Actividad,on_delete=models.CASCADE)
     terapia = models.ForeignKey(Terapia,on_delete=models.CASCADE)
     class Meta:
@@ -208,6 +254,9 @@ class Terapia_Actividad(models.Model):
         unique_together = ("actividad","terapia")
 
 class Resultado_Sesion(models.Model):
+    """!
+    @brief Clase que relaciona las Sesiones de Actividad con los resultados obtenidos por los Indicadores
+    """
     sesion = models.ForeignKey(Sesion,on_delete=models.CASCADE)
     indicador = models.ForeignKey(Indicador,on_delete=models.CASCADE)
     actividad = models.ForeignKey(Actividad,on_delete=models.CASCADE)
@@ -217,6 +266,9 @@ class Resultado_Sesion(models.Model):
         unique_together = ("sesion","indicador","actividad")
 
 class Categoria(models.Model):
+    """!
+    @brief Clase que define Categorías para etiquetar Actividades
+    """
     id =  models.AutoField(primary_key=True)
     nombre = models.CharField(max_length=50, blank=True)
     class Meta:
@@ -225,6 +277,9 @@ class Categoria(models.Model):
         return self.nombre
 
 class Categoria_Actividad(models.Model):
+    """!
+    @brief Clase que relaciona las Actividades con Categorías
+    """
     categoria = models.ForeignKey(Categoria,on_delete=models.CASCADE)
     actividad = models.ForeignKey(Actividad,on_delete=models.CASCADE)
     class Meta:
@@ -232,6 +287,9 @@ class Categoria_Actividad(models.Model):
         unique_together = ("categoria","actividad")
 
 class Contenido(models.Model):
+    """!
+    @brief Clase que define la unidad mínima de Contenido
+    """
     id =  models.AutoField(primary_key=True)
     descripcion =  models.CharField(max_length=50, blank=True)
     codigo = models.CharField(max_length=8, blank=True)
@@ -241,6 +299,10 @@ class Contenido(models.Model):
         return self.descripcion
 
 class Multimedia(Contenido):
+    """!
+    @brief Clase que define un objeto Multimedia
+    @param Contenido Es la clase a la cuál extendemos añadiendo más campos
+    """
     nombre = models.CharField(max_length=100)
     audio = models.FileField(upload_to=generarDirectorioSubida, null=True, blank=True)
     video = models.FileField(upload_to=generarDirectorioSubida, null=True, blank=True)
@@ -264,6 +326,9 @@ class Actividad_Contenido(models.Model):
 """
 
 class Pregunta(models.Model):
+    """!
+    @brief Clase que define un objeto Pregunta básico para componer las actividades
+    """
     pregunta = models.TextField(blank=False,null=False)
     formato = models.CharField(max_length=20, choices=Formato, default="Imagen")
     class Meta:
@@ -272,6 +337,10 @@ class Pregunta(models.Model):
         return self.pregunta
 
 class Pregunta_Matching(Pregunta):
+    """!
+    @brief Clase que define un objeto Pregunta_Matching
+    @param Contenido Es la clase a la cuál extendemos añadiendo más campos
+    """
     multimediaPregunta = models.ForeignKey("Multimedia",related_name="multimedia+",blank=True, null=True,on_delete=models.CASCADE)
     respuesta = models.ForeignKey("Respuesta",related_name="respuesta+",blank=False,on_delete=models.CASCADE)
     class Meta:
@@ -280,6 +349,10 @@ class Pregunta_Matching(Pregunta):
         return "{} : {}".format(self.pregunta,self.respuesta)
 
 class Pregunta_Quiz(Pregunta):
+    """!
+    @brief Clase que define un objeto Pregunta_Quiz
+    @param Contenido Es la clase a la cuál extendemos añadiendo más campos
+    """
     multimediaPregunta = models.ForeignKey("Multimedia",related_name="pregunta+",blank=True, null=True,on_delete=models.CASCADE)
     respuestas = models.ManyToManyField("Respuesta",related_name="respuestas+",blank=False)
     visualizacion = models.CharField(max_length=20, choices=Visualizacion, default="Unica")
@@ -289,6 +362,9 @@ class Pregunta_Quiz(Pregunta):
         return "{}".format(self.pregunta)
 
 class Actividad_Pregunta(models.Model):
+    """!
+    @brief Clase que relaciona una Actividad con las Preguntas que la componen
+    """
     id =  models.AutoField(primary_key=True)
     actividad= models.ForeignKey(Actividad,on_delete=models.CASCADE)
     pregunta = models.ForeignKey(Pregunta,on_delete=models.CASCADE)
@@ -297,6 +373,9 @@ class Actividad_Pregunta(models.Model):
         verbose_name_plural = "Actividad_Pregunta"
 
 class Respuesta(models.Model):
+    """!
+    @brief Clase que define un objeto Respuesta para asignar a las preguntas
+    """
     multimedia = models.ForeignKey("Multimedia",related_name="multimedia",blank=False,on_delete=models.CASCADE)
     resultado =  models.CharField(max_length=20, choices=Resultado, default=None,blank=True)
     class Meta:
@@ -305,6 +384,9 @@ class Respuesta(models.Model):
         return "{} : {}".format(self.multimedia,self.resultado)
 
 class Registro_Sesion(models.Model):
+    """!
+    @brief Clase que define un objeto Registro de Sesión donde se guarda cada acción realizada en una Actividad para cada Respuesta a cada Pregunta
+    """
     id = models.AutoField(primary_key=True)
     sesion = models.ForeignKey("Sesion",related_name="sesion+",blank=False,on_delete=models.CASCADE)
     pregunta = models.ForeignKey(Pregunta,on_delete=models.CASCADE)

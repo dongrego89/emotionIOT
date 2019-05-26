@@ -12,7 +12,6 @@ from django.conf.urls.static import static
 
 urlpatterns = [
 	url(r'^$', LoginPacientes.as_view(), name='loginpacientes'),
-	url(r'^prueba$', views.prueba, name='prueba'),
 
 	url(r'^desconectar/$', Desconectar, name='desconectar'),
 	url(r'^rfidlogin/$', views.RFIDLogin, name='rfidlogin'),

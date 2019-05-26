@@ -106,23 +106,6 @@ arranqueMQTT(("Boton","Tarjeta"))
 arranqueSerial(conexionArduino)
 arranqueReproductor()
 
-def prueba(request):
-	context = {}
-
-	context['jugador'] = global_vars.jugador
-	context['titulo'] = "Inicio"
-	context['actividad'] = "Reconocimiento de emociones"
-	context['resultados'] = True
-	context['errores'] = 3
-	context['aciertos'] = 6
-	context['tiempo'] = "02:15"
-	if request.method == "POST":
-		context['titulo'] = "Recibido"
-		return redirect('home')
-	else:
-		context['titulo'] = "Prueba"
-		return render(request,'matching_nueva.html',context)
-
 class LoginPacientes(TemplateView):
 	"""!
 	@brief Vista de la pantalla de login para pacientes
@@ -150,7 +133,7 @@ class LoginPacientes(TemplateView):
 def RFIDLogin(request):
 	"""!
 	@brief Función que desde segundo plano inicia sesión
-	@param Petición web
+	@param request Petición http
 	"""
 	codigo=global_vars.tarjeta
 	global_vars.tarjeta=None
@@ -181,7 +164,7 @@ def RFIDLogin(request):
 def Desconectar(request):
 	"""!
 	@brief Función para desconexión de pacientes
-	@param Petición web
+	@param request Petición http
 	"""
 	global_vars.boton_mqtt=""
 
@@ -205,7 +188,6 @@ class ElegirTerapia(TemplateView):
 	@brief Vista para elegir una terapia
 	@param TemplateView Clase genérica de Django para las vistas
 	"""
-
 	template_name="elegirTerapia.html"
 	model = Actividad.objects.all()
 	def get_context_data(self, **kwargs):
@@ -242,12 +224,12 @@ class ElegirTerapia(TemplateView):
 
 
 
-#Vista de la elección de actividad una vez seleccionado terapia
 def ElegirActividad(request, idTerapia, idTerapiaTratamiento):
 	"""
 	@brief Vista para elegir una actividad
-	@param request Peticion http
+	@param request Petición http
 	@param idTerapia Código de la terapia a la que pertenecen las actividades
+	@param idTerapiaTratamiento Código de la tupla que relaciona Terapia y Tratamiento
 	"""
 
 	try:
@@ -286,9 +268,10 @@ def ElegirActividad(request, idTerapia, idTerapiaTratamiento):
 def Matching(request,idActividad,idTerapiaTratamiento,idTerapia):
 	"""!
 	@brief Método para juegos tipo Matching
-	@param request Peticion http
+	@param request Petición http
 	@param idActividad Id de la actividad a realizar
-	@param idAsignaTerapia Id de la tupla Asigna_Terapia para usar en la sesión
+	@param idTerapiaTratamiento Código de la tupla que relaciona Terapia y Tratamiento
+	@param idTerapia Código de la terapia a la que pertenecen las actividades
 	"""
 	context={}
 
@@ -382,7 +365,7 @@ def Matching(request,idActividad,idTerapiaTratamiento,idTerapia):
 		if global_vars.sesionGuardada == False:
 			global_vars.indicadorTiempoTotal=round(global_vars.indicadorTiempoFin - global_vars.indicadorTiempoInicio,2)
 			m, s = divmod(global_vars.indicadorTiempoTotal, 60)
-			tiempoFormateado="{:02d}:{:02d}".format(int(m),int(s))
+			global_vars.indicadorTiempoTotalFormateado="{:02d}:{:02d}".format(int(m),int(s))
 
 			indicadoresActividad=actividad.indicador.all()
 
@@ -405,7 +388,7 @@ def Matching(request,idActividad,idTerapiaTratamiento,idTerapia):
 
 				if i.id == 3:
 					resultadoSesion.resultado = global_vars.indicadorTiempoTotal
-					mensaje=lineaCentrada(1,"{}".format(str(i.nombre))) + lineaCentrada(2,"{}".format(str(tiempoFormateado).replace(":",".")))
+					mensaje=lineaCentrada(1,"{}".format(str(i.nombre))) + lineaCentrada(2,"{}".format(str(global_vars.indicadorTiempoTotalFormateado).replace(":",".")))
 
 					print("Tiempo")
 
@@ -422,19 +405,17 @@ def Matching(request,idActividad,idTerapiaTratamiento,idTerapia):
 		context['resultados'] = True
 		context['errores'] = global_vars.indicadorErrores
 		context['aciertos'] = global_vars.indicadorAciertos
-		context['tiempo'] = tiempoFormateado
+		context['tiempo'] = global_vars.indicadorTiempoTotalFormateado
 
 
 		context['titulo'] = "Matching | {} | Resultados".format(actividad)
 
-
-	#return render(request,'Matching.html',context)
-	return render(request,'matching_nueva.html',context)
+	return render(request,'matching.html',context)
 
 def MatchingCallBack(request):
 	"""!
-	@brief Función que procesa las respuestas del juego de matching
-	@param request Peticion http
+	@brief Función que procesa las respuestas del juego tipo Matching
+	@param request Petición http
 	"""
 	context={}
 
@@ -503,10 +484,11 @@ def MatchingCallBack(request):
 
 def Quiz(request,idActividad,idTerapiaTratamiento,idTerapia):
 	"""!
-	@brief Método para juegos tipo Quizz
-	@param request Peticion http
+	@brief Método para juegos tipo Quiz
+	@param request Petición http
 	@param idActividad Id de la actividad a realizar
-	@param idTerapiaTratamiento Id de la tupla Asigna_Terapia para usar en la sesión
+	@param idTerapiaTratamiento Código de la tupla que relaciona Terapia y Tratamiento
+	@param idTerapia Código de la terapia a la que pertenecen las actividades
 	"""
 	context={}
 
@@ -614,7 +596,7 @@ def Quiz(request,idActividad,idTerapiaTratamiento,idTerapia):
 
 			global_vars.indicadorTiempoTotal=round(global_vars.indicadorTiempoFin - global_vars.indicadorTiempoInicio,2)
 			m, s = divmod(global_vars.indicadorTiempoTotal, 60)
-			tiempoFormateado="{:02d}:{:02d}".format(int(m),int(s))
+			global_vars.indicadorTiempoTotalFormateado="{:02d}:{:02d}".format(int(m),int(s))
 
 			indicadoresActividad=actividad.indicador.all()
 
@@ -636,7 +618,7 @@ def Quiz(request,idActividad,idTerapiaTratamiento,idTerapia):
 
 				if i.id == 3:
 					resultadoSesion.resultado = global_vars.indicadorTiempoTotal
-					mensaje=lineaCentrada(1,"{}".format(str(i.nombre))) + lineaCentrada(2,"{}".format(str(tiempoFormateado).replace(":",".")))
+					mensaje=lineaCentrada(1,"{}".format(str(i.nombre))) + lineaCentrada(2,"{}".format(str(global_vars.indicadorTiempoTotalFormateado).replace(":",".")))
 					print("Tiempo")
 
 				resultadoSesion.indicador = Indicador.objects.get(id=i.id)
@@ -651,22 +633,21 @@ def Quiz(request,idActividad,idTerapiaTratamiento,idTerapia):
 		context['resultados'] = True
 		context['errores'] = global_vars.indicadorErrores
 		context['aciertos'] = global_vars.indicadorAciertos
-		context['tiempo'] = tiempoFormateado
+		context['tiempo'] = global_vars.indicadorTiempoTotalFormateado
 
 
 
 		context['titulo'] = "Quizz | {} | Resultados".format(actividad)
 
 
-	#return render(request,'quiz.html',context)
-	return render(request,'quiz_nueva.html',context)
+	return render(request,'quiz.html',context)
 
 
 
 def QuizCallBack(request):
 	"""!
-	@brief Función que procesa las respuestas del juego de quiz
-	@param request Peticion http
+	@brief Función que procesa las respuestas del juego tipo Quiz
+	@param request Petición http
 	"""
 	context={}
 	context['indicePreguntaActual'] = global_vars.indicePreguntaActual+1
@@ -694,9 +675,6 @@ def QuizCallBack(request):
 	registroSesion = Registro_Sesion()
 	registroSesion.pregunta=preguntaQuizz
 	registroSesion.sesion=global_vars.sesionActividad
-
-	#print("El estado de la pila de sonidos es: {}".format(global_vars.ultimoSonidoPila))
-
 
 
 	if boton:
@@ -737,16 +715,14 @@ def QuizCallBack(request):
 
 	return JsonResponse(context)
 
-"""
-Juego evoca
-"""
 
 def Evoca(request,idActividad,idTerapiaTratamiento,idTerapia):
 	"""!
 	@brief Método para juegos tipo Evoca
-	@param request Peticion http
+	@param request Petición http
 	@param idActividad Id de la actividad a realizar
-	@param idTerapiaTratamiento Id de la tupla Asigna_Terapia para usar en la sesión
+	@param idTerapiaTratamiento Código de la tupla que relaciona Terapia y Tratamiento
+	@param idTerapia Código de la terapia a la que pertenecen las actividades
 	"""
 	context={}
 
@@ -847,7 +823,8 @@ def Evoca(request,idActividad,idTerapiaTratamiento,idTerapia):
 
 			global_vars.indicadorTiempoTotal=round(global_vars.indicadorTiempoFin - global_vars.indicadorTiempoInicio,2)
 			m, s = divmod(global_vars.indicadorTiempoTotal, 60)
-			tiempoFormateado="{:02d}:{:02d}".format(int(m),int(s))
+
+			global_vars.indicadorTiempoTotalFormateado="{:02d}:{:02d}".format(int(m),int(s))
 
 			indicadoresActividad=actividad.indicador.all()
 
@@ -859,7 +836,7 @@ def Evoca(request,idActividad,idTerapiaTratamiento,idTerapia):
 
 				if i.id == 3:
 					resultadoSesion.resultado = global_vars.indicadorTiempoTotal
-					mensaje=lineaCentrada(1,"{}".format(str(i.nombre))) + lineaCentrada(2,"{}".format(str(tiempoFormateado).replace(":",".")))
+					mensaje=lineaCentrada(1,"{}".format(str(i.nombre))) + lineaCentrada(2,"{}".format(str(global_vars.indicadorTiempoTotalFormateado).replace(":",".")))
 					print("Tiempo")
 
 				resultadoSesion.indicador = Indicador.objects.get(id=i.id)
@@ -872,7 +849,7 @@ def Evoca(request,idActividad,idTerapiaTratamiento,idTerapia):
 				global_vars.sesionGuardada=True
 
 		context['resultados'] = True
-		context['tiempo'] = tiempoFormateado
+		context['tiempo'] = global_vars.indicadorTiempoTotalFormateado
 
 
 
@@ -885,8 +862,8 @@ def Evoca(request,idActividad,idTerapiaTratamiento,idTerapia):
 
 def EvocaCallBack(request):
 	"""!
-	@brief Función que procesa las respuestas del juego de evoca
-	@param request Peticion http
+	@brief Función que procesa las respuestas del juego tipo Evoca
+	@param request Petición http
 	"""
 	context={}
 	context['indicePreguntaActual'] = global_vars.indicePreguntaActual+1
@@ -934,9 +911,6 @@ def EvocaCallBack(request):
 		cargarAudios([music])
 
 	return JsonResponse(context)
-
-
-
 
 
 #Almacena el mensaje presente en las variables globales

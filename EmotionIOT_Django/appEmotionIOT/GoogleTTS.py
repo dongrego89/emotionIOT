@@ -49,7 +49,6 @@ def convertirFormatos(original):
     @param original Archivo original mp3
     @return Nombre del archivo ya convertido
     """
-
     converted = tempfile.NamedTemporaryFile(delete=False, suffix='.ogg')
 
     conv = subprocess.Popen(

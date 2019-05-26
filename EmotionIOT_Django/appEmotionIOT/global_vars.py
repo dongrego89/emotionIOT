@@ -17,6 +17,7 @@ indicadorAciertos=0
 indicadorTiempoInicio=0
 indicadorTiempoFin=0
 indicadorTiempoTotal=0
+indicadorTiempoTotalFormateado=0
 
 pilaSonidos=[]
 pilaPublicacionesMQTT=[]

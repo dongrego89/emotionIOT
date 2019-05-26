@@ -9,10 +9,9 @@ from django.conf import settings
 
 def listarPuertos():
     """!
-    @brief Devuelve los nombres de los puertos serial que contienen un elemento Arduino conectado
+    @brief Devuelve los nombres de los puertos serial que tienen un dispositivo Arduino conectado
     @return Tupla con la lista de puertos y la lista correspondiente a las descripciones de los dispositivos Arduino asociados
     """
-
     ports = list( serial.tools.list_ports.comports() )
 
     resultPorts = []
@@ -69,7 +68,7 @@ def apagarAvisoSerial():
 def escuchaSerial(conexionArduino):
 	"""!
 	@brief Función que inicia un bucle permanente para la lectura de códigos RFID Serial Arduino Uno
-	@param conexionArduino Conexión Serial inicializada
+	@param conexionArduino Objeto de conexión Serial inicializada
 	"""
 	codigo = 0
 	while True:
@@ -83,7 +82,7 @@ def escuchaSerial(conexionArduino):
 def arranqueSerial(conexionArduino):
 	"""!
 	@brief Función que libera un hilo que arranca la lectura de cadenas por puerto Serial
-	@param conexionArduino Conexión Serial inicializada
+	@param conexionArduino Objeto de conexión Serial inicializada
 	"""
 	hiloSerial=threading.Thread(name="hiloSerial",target=escuchaSerial,args=(conexionArduino,))
 	hiloSerial.start()
