@@ -35,7 +35,7 @@ Nivel = [
 ]
 Juego = [
     ("Matching","Matching"),
-    ("Quizz","Quizz"),
+    ("Quiz","Quiz"),
     ("Evoca","Evoca"),
 ]
 Formato = [
@@ -279,12 +279,12 @@ class Pregunta_Matching(Pregunta):
     def __str__(self):
         return "{} : {}".format(self.pregunta,self.respuesta)
 
-class Pregunta_Quizz(Pregunta):
+class Pregunta_Quiz(Pregunta):
     multimediaPregunta = models.ForeignKey("Multimedia",related_name="pregunta+",blank=True, null=True,on_delete=models.CASCADE)
     respuestas = models.ManyToManyField("Respuesta",related_name="respuestas+",blank=False)
     visualizacion = models.CharField(max_length=20, choices=Visualizacion, default="Unica")
     class Meta:
-        verbose_name_plural = "Pregunta_Quizz"
+        verbose_name_plural = "Pregunta_Quiz"
     def __str__(self):
         return "{}".format(self.pregunta)
 

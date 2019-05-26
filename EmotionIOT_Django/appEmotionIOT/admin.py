@@ -6,7 +6,7 @@ from .models import Actividad, Multimedia, Paciente, Especialista, Terapia, Trat
 from .models import Terapia_Tratamiento, Especialista_Terapia_Tratamiento, Supervisa, Diagnostico
 from .models import Sesion, Indicador, Terapia_Actividad, Resultado_Sesion, Categoria, Categoria_Actividad
 from .models import Contenido
-from .models import Pregunta, Pregunta_Matching, Pregunta_Quizz, Actividad_Pregunta, Respuesta
+from .models import Pregunta, Pregunta_Matching, Pregunta_Quiz, Actividad_Pregunta, Respuesta
 from .models import Registro_Sesion
 
 
@@ -35,5 +35,5 @@ admin.site.register(Contenido)
 admin.site.register(Terapia_Tratamiento)
 admin.site.register(Pregunta)
 admin.site.register(Pregunta_Matching)
-admin.site.register(Pregunta_Quizz)
+admin.site.register(Pregunta_Quiz)
 admin.site.register(Actividad_Pregunta)

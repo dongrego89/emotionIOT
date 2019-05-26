@@ -32,8 +32,8 @@
             {% if i.juego == "Matching" %}
             <a href="{% url 'matching' i.id idTerapiaTratamiento idTerapia%}" class="text-center link text-white">
               {% endif %}
-              {% if i.juego == "Quizz" %}
-              <a href="{% url 'quizz' i.id idTerapiaTratamiento idTerapia%}" class="text-center link text-white">
+              {% if i.juego == "Quiz" %}
+              <a href="{% url 'quiz' i.id idTerapiaTratamiento idTerapia%}" class="text-center link text-white">
                 {% endif %}
 
               {% if i.juego == "Evoca" %}

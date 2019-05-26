@@ -34,7 +34,7 @@ from .models import Actividad
 from . import global_vars
 
 # Multimedia
-from .models import Multimedia, Contenido, Pregunta_Quizz, Pregunta_Matching, Pregunta, Actividad_Pregunta, Respuesta
+from .models import Multimedia, Contenido, Pregunta_Quiz, Pregunta_Matching, Pregunta, Actividad_Pregunta, Respuesta
 import os
 from PIL import Image
 from django.conf import settings
@@ -260,7 +260,7 @@ def ElegirActividad(request, idTerapia, idTerapiaTratamiento):
 	actividades=Actividad.objects.filter(id__in=asignacionesActividades.values("actividad"))
 
 	global_vars.game_initialized = False
-	global_vars.quizzInicializado = False
+	global_vars.quizInicializado = False
 	global_vars.matchingInicializado = False
 	global_vars.evocaInicializado = False
 
@@ -497,7 +497,7 @@ def MatchingCallBack(request):
 	context['fallos'] = "{:d}".format(global_vars.indicadorErrores)
 	return JsonResponse(context)
 
-def Quizz(request,idActividad,idTerapiaTratamiento,idTerapia):
+def Quiz(request,idActividad,idTerapiaTratamiento,idTerapia):
 	"""!
 	@brief Método para juegos tipo Quizz
 	@param request Peticion http
@@ -513,7 +513,7 @@ def Quizz(request,idActividad,idTerapiaTratamiento,idTerapia):
 	actividad=Actividad.objects.get(id=idActividad)
 	context['actividad'] = actividad
 
-	if global_vars.quizzInicializado == False:
+	if global_vars.quizInicializado == False:
 		"""
 		Inicialización de variables globales
 		"""
@@ -525,7 +525,7 @@ def Quizz(request,idActividad,idTerapiaTratamiento,idTerapia):
 
 		preguntasDeActividad=Actividad_Pregunta.objects.filter(actividad=idActividad).values("pregunta__id")
 
-		preguntasQuizz=Pregunta_Quizz.objects.filter(id__in=preguntasDeActividad)
+		preguntasQuizz=Pregunta_Quiz.objects.filter(id__in=preguntasDeActividad)
 
 		if(aleatorio): # Si la actividad ordena las preguntas aleatoriamente
 			preguntasQuizz=preguntasQuizz.order_by('?')
@@ -538,7 +538,7 @@ def Quizz(request,idActividad,idTerapiaTratamiento,idTerapia):
 		global_vars.indicadorErrores=0
 		global_vars.indicadorAciertos=0
 		global_vars.indicadorTiempoInicio=time.time()
-		global_vars.quizzInicializado = True
+		global_vars.quizInicializado = True
 
 		global_vars.sesionActividad = Sesion()
 		global_vars.sesionActividad.terapia_tratamiento = Terapia_Tratamiento.objects.get(id=idTerapiaTratamiento)
@@ -556,7 +556,7 @@ def Quizz(request,idActividad,idTerapiaTratamiento,idTerapia):
 
 		preguntaQuizz=global_vars.pilaPreguntas[global_vars.indicePreguntaActual]
 
-		print("La pregunta quizz es: {}".format(preguntaQuizz))
+		print("La pregunta quiz es: {}".format(preguntaQuizz))
 		print("La respuesta correcta es: {}".format(preguntaQuizz.respuestas.all().get(resultado=True).multimedia))
 
 		opciones=list()
@@ -652,14 +652,14 @@ def Quizz(request,idActividad,idTerapiaTratamiento,idTerapia):
 		context['titulo'] = "Quizz | {} | Resultados".format(actividad)
 
 
-	#return render(request,'quizz.html',context)
-	return render(request,'quizz_nueva.html',context)
+	#return render(request,'quiz.html',context)
+	return render(request,'quiz_nueva.html',context)
 
 
 
-def QuizzCallBack(request):
+def QuizCallBack(request):
 	"""!
-	@brief Función que procesa las respuestas del juego de quizz
+	@brief Función que procesa las respuestas del juego de quiz
 	@param request Peticion http
 	"""
 	context={}
@@ -763,7 +763,7 @@ def Evoca(request,idActividad,idTerapiaTratamiento,idTerapia):
 
 		preguntasDeActividad=Actividad_Pregunta.objects.filter(actividad=idActividad).values("pregunta__id")
 
-		preguntasEvoca=Pregunta_Quizz.objects.filter(id__in=preguntasDeActividad)
+		preguntasEvoca=Pregunta_Quiz.objects.filter(id__in=preguntasDeActividad)
 
 		if(aleatorio): # Si la actividad ordena las preguntas aleatoriamente
 			preguntasEvoca=preguntasEvoca.order_by('?')

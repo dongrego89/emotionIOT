@@ -224,7 +224,7 @@ function actualizarEstado(){
     $('#mensaje').addClass('animated bounceOut delay-2s');
   });
 
-    $.get('{% url 'quizzCallBack' %}', function(data) {
+    $.get('{% url 'quizCallBack' %}', function(data) {
 
 			if((data.ultimoSonidoPila && (document.getElementById('media') || document.getElementById('media1'))) && flagPlay == true){
 				flagPlay=false;
