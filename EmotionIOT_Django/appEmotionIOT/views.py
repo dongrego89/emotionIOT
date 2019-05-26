@@ -394,21 +394,25 @@ def Matching(request,idActividad,idTerapiaTratamiento,idTerapia):
 
 				if i.id == 1:
 					resultadoSesion.resultado = global_vars.indicadorAciertos
+					mensaje=lineaCentrada(1,"{}".format(str(i.nombre))) + lineaCentrada(2,"{}".format(str(resultadoSesion.resultado).replace(":",".")))
 					print("Aciertos")
 
 				if i.id == 2:
 					resultadoSesion.resultado = global_vars.indicadorErrores
+					mensaje=lineaCentrada(1,"{}".format(str(i.nombre))) + lineaCentrada(2,"{}".format(str(resultadoSesion.resultado).replace(":",".")))
+
 					print("Errores")
 
 				if i.id == 3:
 					resultadoSesion.resultado = global_vars.indicadorTiempoTotal
+					mensaje=lineaCentrada(1,"{}".format(str(i.nombre))) + lineaCentrada(2,"{}".format(str(tiempoFormateado).replace(":",".")))
+
 					print("Tiempo")
 
 				resultadoSesion.indicador = Indicador.objects.get(id=i.id)
 				print(str(resultadoSesion.resultado))
 				resultadoSesion.save()
 
-				mensaje=lineaCentrada(1,"{}".format(str(i.nombre))) + lineaCentrada(2,"{}".format(str(resultadoSesion.resultado).replace(":",".")))
 				cargarPublicacionesMQTT([("Pantalla",mensaje,6)])
 				print(mensaje)
 
@@ -622,21 +626,23 @@ def Quiz(request,idActividad,idTerapiaTratamiento,idTerapia):
 
 				if i.id == 1:
 					resultadoSesion.resultado = global_vars.indicadorAciertos
+					mensaje=lineaCentrada(1,"{}".format(str(i.nombre))) + lineaCentrada(2,"{}".format(str(resultadoSesion.resultado).replace(":",".")))
 					print("Aciertos")
 
 				if i.id == 2:
 					resultadoSesion.resultado = global_vars.indicadorErrores
+					mensaje=lineaCentrada(1,"{}".format(str(i.nombre))) + lineaCentrada(2,"{}".format(str(resultadoSesion.resultado).replace(":",".")))
 					print("Errores")
 
 				if i.id == 3:
 					resultadoSesion.resultado = global_vars.indicadorTiempoTotal
+					mensaje=lineaCentrada(1,"{}".format(str(i.nombre))) + lineaCentrada(2,"{}".format(str(tiempoFormateado).replace(":",".")))
 					print("Tiempo")
 
 				resultadoSesion.indicador = Indicador.objects.get(id=i.id)
 				print(str(resultadoSesion.resultado))
 				resultadoSesion.save()
 
-				mensaje=lineaCentrada(1,"{}".format(str(i.nombre))) + lineaCentrada(2,"{}".format(str(resultadoSesion.resultado).replace(":",".")))
 				cargarPublicacionesMQTT([("Pantalla",mensaje,6)])
 				print(mensaje)
 
@@ -853,13 +859,13 @@ def Evoca(request,idActividad,idTerapiaTratamiento,idTerapia):
 
 				if i.id == 3:
 					resultadoSesion.resultado = global_vars.indicadorTiempoTotal
+					mensaje=lineaCentrada(1,"{}".format(str(i.nombre))) + lineaCentrada(2,"{}".format(str(tiempoFormateado).replace(":",".")))
 					print("Tiempo")
 
 				resultadoSesion.indicador = Indicador.objects.get(id=i.id)
 				print(str(resultadoSesion.resultado))
 				resultadoSesion.save()
 
-				mensaje=lineaCentrada(1,"{}".format(str(i.nombre))) + lineaCentrada(2,"{}".format(str(resultadoSesion.resultado).replace(":",".")))
 				cargarPublicacionesMQTT([("Pantalla",mensaje,6)])
 				print(mensaje)
 

@@ -86,14 +86,14 @@
 
   {% if visualizacion == "Unica" %}
     <div class="row justify-content-center align-items-center text-center animated zoomInDown delay-1s" style="min-height:55%;">
-      <div class="col-xl-5">
+      <div class="col-xl-7">
 
       {% if formato == "Imagen" and preguntaMultimedia.imagen %}
       <img class="img-fluid rounded animated bounceIn delay-3s" src="/{{preguntaMultimedia.imagen.url}}">
       {% endif %}
 
       {% if formato == "Video" and preguntaMultimedia.video %}
-        <video class="video-fluid rounded" id="media" controls>
+        <video class="video-fluid rounded" id="media">
           <source src="/{{ preguntaMultimedia.video.url }}" type="video/mp4">
           <source src="/{{ preguntaMultimedia.video.url }}" type="video/wmv">
           <source src="/{{ preguntaMultimedia.video.url }}" type="video/mpeg">
@@ -106,7 +106,7 @@
 
       {% if formato == "Audio" and preguntaMultimedia.audio %}
 
-        <video class="video-fluid rounded" poster="/files/static/speaker.png" id="media" controls>
+        <video class="video-fluid rounded" poster="/files/static/speaker.png" id="media">
           <source src="/{{ preguntaMultimedia.audio.url }}" type="audio/wav">
           <source src="/{{ preguntaMultimedia.audio.url }}" type="audio/ogg">
           <source src="/{{ preguntaMultimedia.audio.url }}" type="audio/mp3">
@@ -143,7 +143,7 @@
 
 {% else %}
 <div class="row justify-content-center align-items-center text-center mt-1 pt-1" style="min-height:60%;">
-  <div class="col-10 text-center">
+  <div class="col-xl-12 text-center">
     {% for i in opciones %}
       {% if forloop.first == True %}
         <div class="row justify-content-center align-items-center text-center mt-2">
@@ -155,7 +155,7 @@
           <img class="img-fluid center-block img-rounded w-50" src="/{{i.imagen.url}}">
           {% endif %}
           {% if formato == "Video" and i.video %}
-            <video class="img-responsive center-block img-rounded" style="width:75%;" id="media{{forloop.counter}}" controls mediagroup="agrupacion">
+            <video class="img-responsive center-block img-rounded" style="width:75%;" id="media{{forloop.counter}}" mediagroup="agrupacion">
               <source src="/{{ i.video.url }}" type="video/mp4">
               <source src="/{{ i.video.url }}" type="video/wmv">
               <source src="/{{ i.video.url }}" type="video/mpeg">
@@ -168,7 +168,7 @@
           {% endif %}
           {% if formato == "Audio" and i.audio %}
 
-            <video class="img-responsive center-block img-rounded" style="width:85%;" poster="/files/static/speaker.png" id="media{{forloop.counter}}" controls mediagroup="agrupacion">
+            <video class="img-responsive center-block img-rounded" style="width:85%;" poster="/files/static/speaker.png" id="media{{forloop.counter}}" mediagroup="agrupacion">
               <source src="/{{ i.audio.url }}" type="audio/wav">
               <source src="/{{ i.audio.url }}" type="audio/ogg">
               <source src="/{{ i.audio.url }}" type="audio/mp3">
