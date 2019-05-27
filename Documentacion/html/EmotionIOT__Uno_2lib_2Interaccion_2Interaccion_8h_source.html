@@ -1,0 +1,113 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="Content-Type" content="text/xhtml;charset=UTF-8"/>
+<meta http-equiv="X-UA-Compatible" content="IE=9"/>
+<meta name="generator" content="Doxygen 1.8.11"/>
+<title>EmotionIOT: Fichero Fuente /home/grego/Documentos/EmotionIOT/EmotionIOT_Uno/lib/Interaccion/Interaccion.h</title>
+<link href="tabs.css" rel="stylesheet" type="text/css"/>
+<script type="text/javascript" src="jquery.js"></script>
+<script type="text/javascript" src="dynsections.js"></script>
+<link href="search/search.css" rel="stylesheet" type="text/css"/>
+<script type="text/javascript" src="search/searchdata.js"></script>
+<script type="text/javascript" src="search/search.js"></script>
+<script type="text/javascript">
+  $(document).ready(function() { init_search(); });
+</script>
+<link href="doxygen.css" rel="stylesheet" type="text/css" />
+</head>
+<body>
+<div id="top"><!-- do not remove this div, it is closed by doxygen! -->
+<div id="titlearea">
+<table cellspacing="0" cellpadding="0">
+ <tbody>
+ <tr style="height: 56px;">
+  <td id="projectalign" style="padding-left: 0.5em;">
+   <div id="projectname">EmotionIOT
+   </div>
+  </td>
+ </tr>
+ </tbody>
+</table>
+</div>
+<!-- end header part -->
+<!-- Generado por Doxygen 1.8.11 -->
+<script type="text/javascript">
+var searchBox = new SearchBox("searchBox", "search",false,'Buscar');
+</script>
+  <div id="navrow1" class="tabs">
+    <ul class="tablist">
+      <li><a href="index.html"><span>Página&#160;principal</span></a></li>
+      <li><a href="annotated.html"><span>Clases</span></a></li>
+      <li class="current"><a href="files.html"><span>Archivos</span></a></li>
+      <li>
+        <div id="MSearchBox" class="MSearchBoxInactive">
+        <span class="left">
+          <img id="MSearchSelect" src="search/mag_sel.png"
+               onmouseover="return searchBox.OnSearchSelectShow()"
+               onmouseout="return searchBox.OnSearchSelectHide()"
+               alt=""/>
+          <input type="text" id="MSearchField" value="Buscar" accesskey="S"
+               onfocus="searchBox.OnSearchFieldFocus(true)" 
+               onblur="searchBox.OnSearchFieldFocus(false)" 
+               onkeyup="searchBox.OnSearchFieldChange(event)"/>
+          </span><span class="right">
+            <a id="MSearchClose" href="javascript:searchBox.CloseResultsWindow()"><img id="MSearchCloseImg" border="0" src="search/close.png" alt=""/></a>
+          </span>
+        </div>
+      </li>
+    </ul>
+  </div>
+  <div id="navrow2" class="tabs2">
+    <ul class="tablist">
+      <li><a href="files.html"><span>Lista&#160;de&#160;archivos</span></a></li>
+      <li><a href="globals.html"><span>Miembros&#160;de&#160;los&#160;ficheros</span></a></li>
+    </ul>
+  </div>
+<!-- window showing the filter options -->
+<div id="MSearchSelectWindow"
+     onmouseover="return searchBox.OnSearchSelectShow()"
+     onmouseout="return searchBox.OnSearchSelectHide()"
+     onkeydown="return searchBox.OnSearchSelectKey(event)">
+</div>
+
+<!-- iframe showing the search results (closed by default) -->
+<div id="MSearchResultsWindow">
+<iframe src="javascript:void(0)" frameborder="0" 
+        name="MSearchResults" id="MSearchResults">
+</iframe>
+</div>
+
+<div id="nav-path" class="navpath">
+  <ul>
+<li class="navelem"><a class="el" href="dir_15920865791d2a8932c12b82880a9e92.html">EmotionIOT_Uno</a></li><li class="navelem"><a class="el" href="dir_af2a3f00530af87738bc6fb45aee6e53.html">lib</a></li><li class="navelem"><a class="el" href="dir_2870cbcb7a44d6912e36ae74c5cbb121.html">Interaccion</a></li>  </ul>
+</div>
+</div><!-- top -->
+<div class="header">
+  <div class="headertitle">
+<div class="title">Interaccion.h</div>  </div>
+</div><!--header-->
+<div class="contents">
+<div class="fragment"><div class="line"><a name="l00001"></a><span class="lineno">    1</span>&#160;</div><div class="line"><a name="l00008"></a><span class="lineno">    8</span>&#160;<span class="preprocessor">#ifndef INTERACCION_H</span></div><div class="line"><a name="l00009"></a><span class="lineno">    9</span>&#160;<span class="preprocessor">#define INTERACCION_H</span></div><div class="line"><a name="l00010"></a><span class="lineno">   10</span>&#160;</div><div class="line"><a name="l00011"></a><span class="lineno">   11</span>&#160;<span class="preprocessor">#include &lt;ArduinoSTL.h&gt;</span></div><div class="line"><a name="l00012"></a><span class="lineno">   12</span>&#160;<span class="preprocessor">#include &lt;Iluminacion.h&gt;</span></div><div class="line"><a name="l00013"></a><span class="lineno">   13</span>&#160;<span class="preprocessor">#include &lt;Tonos.h&gt;</span></div><div class="line"><a name="l00014"></a><span class="lineno">   14</span>&#160;</div><div class="line"><a name="l00015"></a><span class="lineno">   15</span>&#160;<span class="keyword">using namespace </span><a class="code" href="namespacestd.html">std</a>;</div><div class="line"><a name="l00016"></a><span class="lineno">   16</span>&#160;</div><div class="line"><a name="l00021"></a><span class="lineno">   21</span>&#160;<span class="keyword">class </span><a class="code" href="classInteraccion.html">Interaccion</a>{</div><div class="line"><a name="l00022"></a><span class="lineno">   22</span>&#160;<span class="keyword">private</span>:</div><div class="line"><a name="l00023"></a><span class="lineno">   23</span>&#160;  <span class="keywordtype">int</span> sonido_;</div><div class="line"><a name="l00024"></a><span class="lineno">   24</span>&#160;  vector&lt;int&gt; pinLed_;</div><div class="line"><a name="l00025"></a><span class="lineno">   25</span>&#160;  <span class="keywordtype">int</span> iluminacion_;</div><div class="line"><a name="l00026"></a><span class="lineno">   26</span>&#160;  <span class="keywordtype">int</span> retardo_;</div><div class="line"><a name="l00028"></a><span class="lineno">   28</span>&#160;<span class="keyword">public</span>:</div><div class="line"><a name="l00029"></a><span class="lineno">   29</span>&#160;</div><div class="line"><a name="l00034"></a><span class="lineno"><a class="line" href="classInteraccion.html#a8a59812401c3a6dbe06b424e537be173">   34</a></span>&#160;  <a class="code" href="classInteraccion.html#a8a59812401c3a6dbe06b424e537be173">Interaccion</a>(){};</div><div class="line"><a name="l00035"></a><span class="lineno">   35</span>&#160;</div><div class="line"><a name="l00043"></a><span class="lineno"><a class="line" href="classInteraccion.html#a2019332345e3420911cc156395a47f58">   43</a></span>&#160;  <a class="code" href="classInteraccion.html#a2019332345e3420911cc156395a47f58">Interaccion</a>(<span class="keywordtype">int</span> sonido,vector&lt;int&gt; pinLed,<span class="keywordtype">int</span> iluminacion,<span class="keywordtype">int</span> retardo){</div><div class="line"><a name="l00044"></a><span class="lineno">   44</span>&#160;    this-&gt;setValores(sonido,pinLed,iluminacion,retardo);</div><div class="line"><a name="l00045"></a><span class="lineno">   45</span>&#160;  }</div><div class="line"><a name="l00046"></a><span class="lineno">   46</span>&#160;</div><div class="line"><a name="l00054"></a><span class="lineno"><a class="line" href="classInteraccion.html#aa1f774cfdca0e31205f370a5a3c0bfb4">   54</a></span>&#160;  <a class="code" href="classInteraccion.html#aa1f774cfdca0e31205f370a5a3c0bfb4">Interaccion</a>(String sonido,vector&lt;String&gt; pinLed,String iluminacion,String retardo){</div><div class="line"><a name="l00055"></a><span class="lineno">   55</span>&#160;    this-&gt;setValores(sonido,pinLed,iluminacion,retardo);</div><div class="line"><a name="l00056"></a><span class="lineno">   56</span>&#160;  }</div><div class="line"><a name="l00057"></a><span class="lineno">   57</span>&#160;</div><div class="line"><a name="l00066"></a><span class="lineno"><a class="line" href="classInteraccion.html#a468b7652bf7e2a4f41bda41f6b0f8481">   66</a></span>&#160;  <span class="keyword">virtual</span> <span class="keywordtype">void</span> <a class="code" href="classInteraccion.html#a468b7652bf7e2a4f41bda41f6b0f8481">setValores</a>(<span class="keywordtype">int</span> sonido,vector&lt;int&gt; pinLed,<span class="keywordtype">int</span> iluminacion,<span class="keywordtype">int</span> retardo){</div><div class="line"><a name="l00067"></a><span class="lineno">   67</span>&#160;    this-&gt;sonido_=sonido;</div><div class="line"><a name="l00068"></a><span class="lineno">   68</span>&#160;    this-&gt;pinLed_=pinLed;</div><div class="line"><a name="l00069"></a><span class="lineno">   69</span>&#160;    this-&gt;iluminacion_=iluminacion;</div><div class="line"><a name="l00070"></a><span class="lineno">   70</span>&#160;    this-&gt;retardo_=retardo;</div><div class="line"><a name="l00071"></a><span class="lineno">   71</span>&#160;    }</div><div class="line"><a name="l00072"></a><span class="lineno">   72</span>&#160;</div><div class="line"><a name="l00080"></a><span class="lineno"><a class="line" href="classInteraccion.html#a6727e1e312fd6c8d2eef72c56015115d">   80</a></span>&#160;  <span class="keyword">virtual</span> <span class="keywordtype">void</span> <a class="code" href="classInteraccion.html#a6727e1e312fd6c8d2eef72c56015115d">setValores</a>(String sonido,vector&lt;String&gt; pinLed,String iluminacion,String retardo){</div><div class="line"><a name="l00081"></a><span class="lineno">   81</span>&#160;    vector&lt;int&gt; pinLedAux;</div><div class="line"><a name="l00082"></a><span class="lineno">   82</span>&#160;</div><div class="line"><a name="l00083"></a><span class="lineno">   83</span>&#160;    <span class="keywordflow">for</span>(<span class="keywordtype">int</span> i=0;i&lt;(int)pinLed.size();i++){</div><div class="line"><a name="l00084"></a><span class="lineno">   84</span>&#160;      pinLedAux.push_back(pinLed[i].toInt());</div><div class="line"><a name="l00085"></a><span class="lineno">   85</span>&#160;    }</div><div class="line"><a name="l00086"></a><span class="lineno">   86</span>&#160;</div><div class="line"><a name="l00087"></a><span class="lineno">   87</span>&#160;    this-&gt;setValores(sonido.toInt(),pinLedAux,iluminacion.toInt(),retardo.toInt());</div><div class="line"><a name="l00088"></a><span class="lineno">   88</span>&#160;  }</div><div class="line"><a name="l00089"></a><span class="lineno">   89</span>&#160;</div><div class="line"><a name="l00096"></a><span class="lineno"><a class="line" href="classInteraccion.html#a2dea5d3d96252712556e7d8ca5609544">   96</a></span>&#160;<span class="keywordtype">int</span> <a class="code" href="classInteraccion.html#a2dea5d3d96252712556e7d8ca5609544">getSonido</a>(){</div><div class="line"><a name="l00097"></a><span class="lineno">   97</span>&#160;  <span class="keywordflow">return</span> this-&gt;sonido_;</div><div class="line"><a name="l00098"></a><span class="lineno">   98</span>&#160;}</div><div class="line"><a name="l00103"></a><span class="lineno"><a class="line" href="classInteraccion.html#a048731e6be4184f31ecd21cd443f36dc">  103</a></span>&#160;vector&lt;int&gt; <a class="code" href="classInteraccion.html#a048731e6be4184f31ecd21cd443f36dc">getPinLed</a>(){</div><div class="line"><a name="l00104"></a><span class="lineno">  104</span>&#160;  <span class="keywordflow">return</span> this-&gt;pinLed_;</div><div class="line"><a name="l00105"></a><span class="lineno">  105</span>&#160;}</div><div class="line"><a name="l00110"></a><span class="lineno"><a class="line" href="classInteraccion.html#a1f36975ed2a6163b6ae16f56edcc4285">  110</a></span>&#160;<span class="keywordtype">int</span> <a class="code" href="classInteraccion.html#a1f36975ed2a6163b6ae16f56edcc4285">getIluminacion</a>(){</div><div class="line"><a name="l00111"></a><span class="lineno">  111</span>&#160;  <span class="keywordflow">return</span> this-&gt;iluminacion_;</div><div class="line"><a name="l00112"></a><span class="lineno">  112</span>&#160;}</div><div class="line"><a name="l00113"></a><span class="lineno">  113</span>&#160;</div><div class="line"><a name="l00118"></a><span class="lineno"><a class="line" href="classInteraccion.html#ac4eedd10ae26a85e19c421d3f8024996">  118</a></span>&#160;<span class="keywordtype">int</span> <a class="code" href="classInteraccion.html#ac4eedd10ae26a85e19c421d3f8024996">getRetardo</a>(){</div><div class="line"><a name="l00119"></a><span class="lineno">  119</span>&#160;  <span class="keywordflow">return</span> this-&gt;retardo_;</div><div class="line"><a name="l00120"></a><span class="lineno">  120</span>&#160;}</div><div class="line"><a name="l00121"></a><span class="lineno">  121</span>&#160;</div><div class="line"><a name="l00122"></a><span class="lineno">  122</span>&#160;</div><div class="line"><a name="l00126"></a><span class="lineno"><a class="line" href="classInteraccion.html#a201bf7c2fc701649fb636f2440f8b706">  126</a></span>&#160;<span class="keywordtype">void</span> <a class="code" href="classInteraccion.html#a201bf7c2fc701649fb636f2440f8b706">reproducirInteraccion</a>(){</div><div class="line"><a name="l00127"></a><span class="lineno">  127</span>&#160;  this-&gt;reproducirIluminacion();</div><div class="line"><a name="l00128"></a><span class="lineno">  128</span>&#160;  this-&gt;reproducirSonido();</div><div class="line"><a name="l00129"></a><span class="lineno">  129</span>&#160;</div><div class="line"><a name="l00130"></a><span class="lineno">  130</span>&#160;}</div><div class="line"><a name="l00131"></a><span class="lineno">  131</span>&#160;</div><div class="line"><a name="l00135"></a><span class="lineno"><a class="line" href="classInteraccion.html#a46fe9723017b35ed447e377aef2a58e8">  135</a></span>&#160;<span class="keywordtype">void</span> <a class="code" href="classInteraccion.html#a46fe9723017b35ed447e377aef2a58e8">reproducirIluminacion</a>(){</div><div class="line"><a name="l00136"></a><span class="lineno">  136</span>&#160;  iluminacion(this-&gt;getPinLed(),this-&gt;getIluminacion());</div><div class="line"><a name="l00137"></a><span class="lineno">  137</span>&#160;}</div><div class="line"><a name="l00138"></a><span class="lineno">  138</span>&#160;</div><div class="line"><a name="l00142"></a><span class="lineno"><a class="line" href="classInteraccion.html#a2f70fe1701d309d606a3b86787e332cc">  142</a></span>&#160;<span class="keywordtype">void</span> <a class="code" href="classInteraccion.html#a2f70fe1701d309d606a3b86787e332cc">reproducirSonido</a>(){</div><div class="line"><a name="l00143"></a><span class="lineno">  143</span>&#160;  sonido(this-&gt;getSonido());</div><div class="line"><a name="l00144"></a><span class="lineno">  144</span>&#160;}</div><div class="line"><a name="l00145"></a><span class="lineno">  145</span>&#160;</div><div class="line"><a name="l00146"></a><span class="lineno">  146</span>&#160;</div><div class="line"><a name="l00147"></a><span class="lineno">  147</span>&#160;};</div><div class="line"><a name="l00148"></a><span class="lineno">  148</span>&#160;</div><div class="line"><a name="l00149"></a><span class="lineno">  149</span>&#160;<span class="preprocessor">#endif</span></div><div class="ttc" id="classInteraccion_html_a46fe9723017b35ed447e377aef2a58e8"><div class="ttname"><a href="classInteraccion.html#a46fe9723017b35ed447e377aef2a58e8">Interaccion::reproducirIluminacion</a></div><div class="ttdeci">void reproducirIluminacion()</div><div class="ttdoc">Reproduce la interacción de iluminación. </div><div class="ttdef"><b>Definition:</b> Interaccion.h:135</div></div>
+<div class="ttc" id="classInteraccion_html_a2f70fe1701d309d606a3b86787e332cc"><div class="ttname"><a href="classInteraccion.html#a2f70fe1701d309d606a3b86787e332cc">Interaccion::reproducirSonido</a></div><div class="ttdeci">void reproducirSonido()</div><div class="ttdoc">Reproduce la interacción de sonido. </div><div class="ttdef"><b>Definition:</b> Interaccion.h:142</div></div>
+<div class="ttc" id="namespacestd_html"><div class="ttname"><a href="namespacestd.html">std</a></div></div>
+<div class="ttc" id="classInteraccion_html_aa1f774cfdca0e31205f370a5a3c0bfb4"><div class="ttname"><a href="classInteraccion.html#aa1f774cfdca0e31205f370a5a3c0bfb4">Interaccion::Interaccion</a></div><div class="ttdeci">Interaccion(String sonido, vector&lt; String &gt; pinLed, String iluminacion, String retardo)</div><div class="ttdoc">Constructor de clase. </div><div class="ttdef"><b>Definition:</b> Interaccion.h:54</div></div>
+<div class="ttc" id="classInteraccion_html_a2019332345e3420911cc156395a47f58"><div class="ttname"><a href="classInteraccion.html#a2019332345e3420911cc156395a47f58">Interaccion::Interaccion</a></div><div class="ttdeci">Interaccion(int sonido, vector&lt; int &gt; pinLed, int iluminacion, int retardo)</div><div class="ttdoc">Constructor de clase. </div><div class="ttdef"><b>Definition:</b> Interaccion.h:43</div></div>
+<div class="ttc" id="classInteraccion_html_a468b7652bf7e2a4f41bda41f6b0f8481"><div class="ttname"><a href="classInteraccion.html#a468b7652bf7e2a4f41bda41f6b0f8481">Interaccion::setValores</a></div><div class="ttdeci">virtual void setValores(int sonido, vector&lt; int &gt; pinLed, int iluminacion, int retardo)</div><div class="ttdoc">Inicializador de valores. </div><div class="ttdef"><b>Definition:</b> Interaccion.h:66</div></div>
+<div class="ttc" id="classInteraccion_html_a6727e1e312fd6c8d2eef72c56015115d"><div class="ttname"><a href="classInteraccion.html#a6727e1e312fd6c8d2eef72c56015115d">Interaccion::setValores</a></div><div class="ttdeci">virtual void setValores(String sonido, vector&lt; String &gt; pinLed, String iluminacion, String retardo)</div><div class="ttdoc">Inicializador de valores. </div><div class="ttdef"><b>Definition:</b> Interaccion.h:80</div></div>
+<div class="ttc" id="classInteraccion_html_ac4eedd10ae26a85e19c421d3f8024996"><div class="ttname"><a href="classInteraccion.html#ac4eedd10ae26a85e19c421d3f8024996">Interaccion::getRetardo</a></div><div class="ttdeci">int getRetardo()</div><div class="ttdoc">Observador de variable retardo_. </div><div class="ttdef"><b>Definition:</b> Interaccion.h:118</div></div>
+<div class="ttc" id="classInteraccion_html_a8a59812401c3a6dbe06b424e537be173"><div class="ttname"><a href="classInteraccion.html#a8a59812401c3a6dbe06b424e537be173">Interaccion::Interaccion</a></div><div class="ttdeci">Interaccion()</div><div class="ttdoc">Constructor vacío de clase. </div><div class="ttdef"><b>Definition:</b> Interaccion.h:34</div></div>
+<div class="ttc" id="classInteraccion_html_a1f36975ed2a6163b6ae16f56edcc4285"><div class="ttname"><a href="classInteraccion.html#a1f36975ed2a6163b6ae16f56edcc4285">Interaccion::getIluminacion</a></div><div class="ttdeci">int getIluminacion()</div><div class="ttdoc">Observador de variable iluminacion_. </div><div class="ttdef"><b>Definition:</b> Interaccion.h:110</div></div>
+<div class="ttc" id="classInteraccion_html"><div class="ttname"><a href="classInteraccion.html">Interaccion</a></div><div class="ttdef"><b>Definition:</b> Interaccion.h:23</div></div>
+<div class="ttc" id="classInteraccion_html_a201bf7c2fc701649fb636f2440f8b706"><div class="ttname"><a href="classInteraccion.html#a201bf7c2fc701649fb636f2440f8b706">Interaccion::reproducirInteraccion</a></div><div class="ttdeci">void reproducirInteraccion()</div><div class="ttdoc">Reproduce las interacciones multimedia de sonido e iluminación. </div><div class="ttdef"><b>Definition:</b> Interaccion.h:126</div></div>
+<div class="ttc" id="classInteraccion_html_a048731e6be4184f31ecd21cd443f36dc"><div class="ttname"><a href="classInteraccion.html#a048731e6be4184f31ecd21cd443f36dc">Interaccion::getPinLed</a></div><div class="ttdeci">vector&lt; int &gt; getPinLed()</div><div class="ttdoc">Observador del vector pinLed_. </div><div class="ttdef"><b>Definition:</b> Interaccion.h:103</div></div>
+<div class="ttc" id="classInteraccion_html_a2dea5d3d96252712556e7d8ca5609544"><div class="ttname"><a href="classInteraccion.html#a2dea5d3d96252712556e7d8ca5609544">Interaccion::getSonido</a></div><div class="ttdeci">int getSonido()</div><div class="ttdoc">Observador de variable sonido_. </div><div class="ttdef"><b>Definition:</b> Interaccion.h:96</div></div>
+</div><!-- fragment --></div><!-- contents -->
+<!-- start footer part -->
+<hr class="footer"/><address class="footer"><small>
+Generado por &#160;<a href="http://www.doxygen.org/index.html">
+<img class="footer" src="doxygen.png" alt="doxygen"/>
+</a> 1.8.11
+</small></address>
+</body>
+</html>

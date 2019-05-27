@@ -1,0 +1,73 @@
+\hypertarget{classappEmotionIOT_1_1models_1_1Actividad}{}\section{Referencia de la Clase app\+Emotion\+I\+O\+T.\+models.\+Actividad}
+\label{classappEmotionIOT_1_1models_1_1Actividad}\index{app\+Emotion\+I\+O\+T.\+models.\+Actividad@{app\+Emotion\+I\+O\+T.\+models.\+Actividad}}
+
+
+Clase que define la \hyperlink{classappEmotionIOT_1_1models_1_1Actividad}{Actividad} o juego.  
+
+
+
+
+Diagrama de herencias de app\+Emotion\+I\+O\+T.\+models.\+Actividad
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=243pt]{classappEmotionIOT_1_1models_1_1Actividad__inherit__graph}
+\end{center}
+\end{figure}
+
+
+Diagrama de colaboración para app\+Emotion\+I\+O\+T.\+models.\+Actividad\+:
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=243pt]{classappEmotionIOT_1_1models_1_1Actividad__coll__graph}
+\end{center}
+\end{figure}
+\subsection*{Clases}
+\begin{DoxyCompactItemize}
+\item 
+class \hyperlink{classappEmotionIOT_1_1models_1_1Actividad_1_1Meta}{Meta}
+\end{DoxyCompactItemize}
+\subsection*{Métodos públicos}
+\begin{DoxyCompactItemize}
+\item 
+def {\bfseries \+\_\+\+\_\+str\+\_\+\+\_\+} (self)\hypertarget{classappEmotionIOT_1_1models_1_1Actividad_a266311802b48903898e4281578038d37}{}\label{classappEmotionIOT_1_1models_1_1Actividad_a266311802b48903898e4281578038d37}
+
+\end{DoxyCompactItemize}
+\subsection*{Atributos públicos estáticos}
+\begin{DoxyCompactItemize}
+\item 
+\hyperlink{classappEmotionIOT_1_1models_1_1Actividad_a7377aff8b960a1c3a5886c47a8efa5a2}{id} = models.\+Auto\+Field(primary\+\_\+key=True)\hypertarget{classappEmotionIOT_1_1models_1_1Actividad_a7377aff8b960a1c3a5886c47a8efa5a2}{}\label{classappEmotionIOT_1_1models_1_1Actividad_a7377aff8b960a1c3a5886c47a8efa5a2}
+
+\begin{DoxyCompactList}\small\item\em Identificador de tupla. \end{DoxyCompactList}\item 
+\hyperlink{classappEmotionIOT_1_1models_1_1Actividad_a2a8dbb938af992f9179f3a7988a9de48}{nombre} = models.\+Char\+Field(max\+\_\+length=100)\hypertarget{classappEmotionIOT_1_1models_1_1Actividad_a2a8dbb938af992f9179f3a7988a9de48}{}\label{classappEmotionIOT_1_1models_1_1Actividad_a2a8dbb938af992f9179f3a7988a9de48}
+
+\begin{DoxyCompactList}\small\item\em Nombre de \hyperlink{classappEmotionIOT_1_1models_1_1Actividad}{Actividad}. \end{DoxyCompactList}\item 
+\hyperlink{classappEmotionIOT_1_1models_1_1Actividad_a060109db63b1ad0287a619955f058249}{descripcion} = models.\+Char\+Field(max\+\_\+length=200, blank=True)\hypertarget{classappEmotionIOT_1_1models_1_1Actividad_a060109db63b1ad0287a619955f058249}{}\label{classappEmotionIOT_1_1models_1_1Actividad_a060109db63b1ad0287a619955f058249}
+
+\begin{DoxyCompactList}\small\item\em Descripción de \hyperlink{classappEmotionIOT_1_1models_1_1Actividad}{Actividad}. \end{DoxyCompactList}\item 
+\hyperlink{classappEmotionIOT_1_1models_1_1Actividad_a00df7e191279fb65c1adede2b6fd0b26}{proposito} = models.\+Char\+Field(max\+\_\+length=100, blank=True)\hypertarget{classappEmotionIOT_1_1models_1_1Actividad_a00df7e191279fb65c1adede2b6fd0b26}{}\label{classappEmotionIOT_1_1models_1_1Actividad_a00df7e191279fb65c1adede2b6fd0b26}
+
+\begin{DoxyCompactList}\small\item\em Propósito de \hyperlink{classappEmotionIOT_1_1models_1_1Actividad}{Actividad}. \end{DoxyCompactList}\item 
+\hyperlink{classappEmotionIOT_1_1models_1_1Actividad_ac911a5fa06727ad450ed211022b5afeb}{indicador} = models.\+Many\+To\+Many\+Field(\hyperlink{classappEmotionIOT_1_1models_1_1Indicador}{Indicador}, blank=True)\hypertarget{classappEmotionIOT_1_1models_1_1Actividad_ac911a5fa06727ad450ed211022b5afeb}{}\label{classappEmotionIOT_1_1models_1_1Actividad_ac911a5fa06727ad450ed211022b5afeb}
+
+\begin{DoxyCompactList}\small\item\em Indicadores de métricas asociados a la \hyperlink{classappEmotionIOT_1_1models_1_1Actividad}{Actividad}. \end{DoxyCompactList}\item 
+\hyperlink{classappEmotionIOT_1_1models_1_1Actividad_aa7c2ddce957e2eac3159ba2d636c5c41}{juego} = models.\+Char\+Field(max\+\_\+length=20, choices=Juego, default=\char`\"{}Matching\char`\"{})\hypertarget{classappEmotionIOT_1_1models_1_1Actividad_aa7c2ddce957e2eac3159ba2d636c5c41}{}\label{classappEmotionIOT_1_1models_1_1Actividad_aa7c2ddce957e2eac3159ba2d636c5c41}
+
+\begin{DoxyCompactList}\small\item\em Tipo de juego. \end{DoxyCompactList}\item 
+\hyperlink{classappEmotionIOT_1_1models_1_1Actividad_afe96923883d86fc0f8df6131b9dea527}{aleatorio} = models.\+Boolean\+Field(default=False)\hypertarget{classappEmotionIOT_1_1models_1_1Actividad_afe96923883d86fc0f8df6131b9dea527}{}\label{classappEmotionIOT_1_1models_1_1Actividad_afe96923883d86fc0f8df6131b9dea527}
+
+\begin{DoxyCompactList}\small\item\em Flag para indicar si las preguntas seguirán el orden de creación o se mostrarán de modo aleatorio. \end{DoxyCompactList}\item 
+\hyperlink{classappEmotionIOT_1_1models_1_1Actividad_aea09df547b51a459db33cde1ea27d8bb}{narracion} = models.\+Boolean\+Field(default=True)\hypertarget{classappEmotionIOT_1_1models_1_1Actividad_aea09df547b51a459db33cde1ea27d8bb}{}\label{classappEmotionIOT_1_1models_1_1Actividad_aea09df547b51a459db33cde1ea27d8bb}
+
+\begin{DoxyCompactList}\small\item\em Flag para determinar si las preguntas serán narradas. \end{DoxyCompactList}\end{DoxyCompactItemize}
+
+
+\subsection{Descripción detallada}
+Clase que define la \hyperlink{classappEmotionIOT_1_1models_1_1Actividad}{Actividad} o juego. 
+
+La documentación para esta clase fue generada a partir del siguiente fichero\+:\begin{DoxyCompactItemize}
+\item 
+/home/grego/\+Documentos/\+Emotion\+I\+O\+T/\+Emotion\+I\+O\+T\+\_\+\+Django/app\+Emotion\+I\+O\+T/models.\+py\end{DoxyCompactItemize}

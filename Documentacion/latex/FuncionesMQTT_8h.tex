@@ -1,0 +1,75 @@
+\hypertarget{FuncionesMQTT_8h}{}\section{Referencia del Archivo /home/grego/\+Documentos/\+Emotion\+I\+O\+T/\+Emotion\+I\+O\+T\+\_\+\+E\+S\+P8266/lib/\+Funciones\+M\+Q\+T\+T/\+Funciones\+M\+Q\+TT.h}
+\label{FuncionesMQTT_8h}\index{/home/grego/\+Documentos/\+Emotion\+I\+O\+T/\+Emotion\+I\+O\+T\+\_\+\+E\+S\+P8266/lib/\+Funciones\+M\+Q\+T\+T/\+Funciones\+M\+Q\+T\+T.\+h@{/home/grego/\+Documentos/\+Emotion\+I\+O\+T/\+Emotion\+I\+O\+T\+\_\+\+E\+S\+P8266/lib/\+Funciones\+M\+Q\+T\+T/\+Funciones\+M\+Q\+T\+T.\+h}}
+
+
+Definición de funciones procesamiento de mensajes Serial.  
+
+
+{\ttfamily \#include $<$Pub\+Sub\+Client.\+h$>$}\\*
+Dependencia gráfica adjunta para Funciones\+M\+Q\+T\+T.\+h\+:
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=232pt]{FuncionesMQTT_8h__incl}
+\end{center}
+\end{figure}
+\subsection*{Funciones}
+\begin{DoxyCompactItemize}
+\item 
+void \hyperlink{FuncionesMQTT_8h_ac3a129f66dc859e2b7279565f4e1de78}{callback} (char $\ast$topic, byte $\ast$payload, unsigned int length)
+\begin{DoxyCompactList}\small\item\em Callback de mensaje M\+Q\+TT. \end{DoxyCompactList}\item 
+void \hyperlink{FuncionesMQTT_8h_a160f97e0729031639b1207afc42ec41f}{reconnect} (Pub\+Sub\+Client \&client)
+\begin{DoxyCompactList}\small\item\em Reconexión del cliente M\+Q\+TT. \end{DoxyCompactList}\end{DoxyCompactItemize}
+
+
+\subsection{Descripción detallada}
+Definición de funciones procesamiento de mensajes Serial. 
+
+\begin{DoxyAuthor}{Autor}
+Gregorio Corpas Prieto 
+\end{DoxyAuthor}
+\begin{DoxyDate}{Fecha}
+13/03/2019 
+\end{DoxyDate}
+
+
+\subsection{Documentación de las funciones}
+\index{Funciones\+M\+Q\+T\+T.\+h@{Funciones\+M\+Q\+T\+T.\+h}!callback@{callback}}
+\index{callback@{callback}!Funciones\+M\+Q\+T\+T.\+h@{Funciones\+M\+Q\+T\+T.\+h}}
+\subsubsection[{\texorpdfstring{callback(char $\ast$topic, byte $\ast$payload, unsigned int length)}{callback(char *topic, byte *payload, unsigned int length)}}]{\setlength{\rightskip}{0pt plus 5cm}void callback (
+\begin{DoxyParamCaption}
+\item[{char $\ast$}]{topic, }
+\item[{byte $\ast$}]{payload, }
+\item[{unsigned int}]{length}
+\end{DoxyParamCaption}
+)}\hypertarget{FuncionesMQTT_8h_ac3a129f66dc859e2b7279565f4e1de78}{}\label{FuncionesMQTT_8h_ac3a129f66dc859e2b7279565f4e1de78}
+
+
+Callback de mensaje M\+Q\+TT. 
+
+
+\begin{DoxyParams}{Parámetros}
+{\em topic} & Topic del mensaje \\
+\hline
+{\em payload} & Contenido del mensaje \\
+\hline
+{\em length} & Longitud del mensaje completo M\+Q\+TT \\
+\hline
+\end{DoxyParams}
+\index{Funciones\+M\+Q\+T\+T.\+h@{Funciones\+M\+Q\+T\+T.\+h}!reconnect@{reconnect}}
+\index{reconnect@{reconnect}!Funciones\+M\+Q\+T\+T.\+h@{Funciones\+M\+Q\+T\+T.\+h}}
+\subsubsection[{\texorpdfstring{reconnect(\+Pub\+Sub\+Client \&client)}{reconnect(PubSubClient &client)}}]{\setlength{\rightskip}{0pt plus 5cm}void reconnect (
+\begin{DoxyParamCaption}
+\item[{Pub\+Sub\+Client \&}]{client}
+\end{DoxyParamCaption}
+)}\hypertarget{FuncionesMQTT_8h_a160f97e0729031639b1207afc42ec41f}{}\label{FuncionesMQTT_8h_a160f97e0729031639b1207afc42ec41f}
+
+
+Reconexión del cliente M\+Q\+TT. 
+
+
+\begin{DoxyParams}{Parámetros}
+{\em client} & Cliente M\+Q\+TT \\
+\hline
+\end{DoxyParams}

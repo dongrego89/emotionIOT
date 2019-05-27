@@ -1,3 +1,9 @@
+"""!
+@package MQTT.py
+@brief Archivo de funciones para el uso de la librería MQTT
+@author Gregorio Corpas Prieto
+@date 13/03/2019
+"""
 import paho.mqtt.client as mqtt
 import paho.mqtt.publish as publish
 import time

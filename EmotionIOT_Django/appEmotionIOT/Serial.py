@@ -1,3 +1,9 @@
+"""!
+@package Serial.py
+@brief Archivo de funciones para manejo de Arduino por puerto Serie
+@author Gregorio Corpas Prieto
+@date 13/03/2019
+"""
 import sys, time, serial, serial.tools.list_ports, warnings
 import threading
 

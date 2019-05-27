@@ -1,0 +1,58 @@
+\hypertarget{classappEmotionIOT_1_1models_1_1Diagnostico}{}\section{Referencia de la Clase app\+Emotion\+I\+O\+T.\+models.\+Diagnostico}
+\label{classappEmotionIOT_1_1models_1_1Diagnostico}\index{app\+Emotion\+I\+O\+T.\+models.\+Diagnostico@{app\+Emotion\+I\+O\+T.\+models.\+Diagnostico}}
+
+
+Clase que define el Diagnóstico que se realiza a un \hyperlink{classappEmotionIOT_1_1models_1_1Paciente}{Paciente}.  
+
+
+
+
+Diagrama de herencias de app\+Emotion\+I\+O\+T.\+models.\+Diagnostico
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=254pt]{classappEmotionIOT_1_1models_1_1Diagnostico__inherit__graph}
+\end{center}
+\end{figure}
+
+
+Diagrama de colaboración para app\+Emotion\+I\+O\+T.\+models.\+Diagnostico\+:
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=254pt]{classappEmotionIOT_1_1models_1_1Diagnostico__coll__graph}
+\end{center}
+\end{figure}
+\subsection*{Clases}
+\begin{DoxyCompactItemize}
+\item 
+class \hyperlink{classappEmotionIOT_1_1models_1_1Diagnostico_1_1Meta}{Meta}
+\end{DoxyCompactItemize}
+\subsection*{Atributos públicos estáticos}
+\begin{DoxyCompactItemize}
+\item 
+\hyperlink{classappEmotionIOT_1_1models_1_1Diagnostico_a77eecc398a02a80ab089cff22fbff37e}{id} = models.\+Auto\+Field(primary\+\_\+key=True)\hypertarget{classappEmotionIOT_1_1models_1_1Diagnostico_a77eecc398a02a80ab089cff22fbff37e}{}\label{classappEmotionIOT_1_1models_1_1Diagnostico_a77eecc398a02a80ab089cff22fbff37e}
+
+\begin{DoxyCompactList}\small\item\em Identificador de tupla. \end{DoxyCompactList}\item 
+\hyperlink{classappEmotionIOT_1_1models_1_1Diagnostico_a796fa97c25ee2ab6a6cde1fdf1e7b2b0}{paciente} = models.\+Foreign\+Key(\hyperlink{classappEmotionIOT_1_1models_1_1Paciente}{Paciente},on\+\_\+delete=models.\+C\+A\+S\+C\+A\+DE)\hypertarget{classappEmotionIOT_1_1models_1_1Diagnostico_a796fa97c25ee2ab6a6cde1fdf1e7b2b0}{}\label{classappEmotionIOT_1_1models_1_1Diagnostico_a796fa97c25ee2ab6a6cde1fdf1e7b2b0}
+
+\begin{DoxyCompactList}\small\item\em \hyperlink{classappEmotionIOT_1_1models_1_1Paciente}{Paciente} involucrado. \end{DoxyCompactList}\item 
+\hyperlink{classappEmotionIOT_1_1models_1_1Diagnostico_a71ad79cf99bef1beabffe0a2156947a6}{fecha} = datetime.\+today()\hypertarget{classappEmotionIOT_1_1models_1_1Diagnostico_a71ad79cf99bef1beabffe0a2156947a6}{}\label{classappEmotionIOT_1_1models_1_1Diagnostico_a71ad79cf99bef1beabffe0a2156947a6}
+
+\begin{DoxyCompactList}\small\item\em Fecha. \end{DoxyCompactList}\item 
+\hyperlink{classappEmotionIOT_1_1models_1_1Diagnostico_ad61d0251adf927f3a332c5b246ace24e}{valoracion} = models.\+Char\+Field(max\+\_\+length=50, blank=True)\hypertarget{classappEmotionIOT_1_1models_1_1Diagnostico_ad61d0251adf927f3a332c5b246ace24e}{}\label{classappEmotionIOT_1_1models_1_1Diagnostico_ad61d0251adf927f3a332c5b246ace24e}
+
+\begin{DoxyCompactList}\small\item\em Valoración del \hyperlink{classappEmotionIOT_1_1models_1_1Especialista}{Especialista}. \end{DoxyCompactList}\item 
+\hyperlink{classappEmotionIOT_1_1models_1_1Diagnostico_ab444a9aa455ca70a785db8a102095ec0}{notas} = models.\+Text\+Field(blank=True)\hypertarget{classappEmotionIOT_1_1models_1_1Diagnostico_ab444a9aa455ca70a785db8a102095ec0}{}\label{classappEmotionIOT_1_1models_1_1Diagnostico_ab444a9aa455ca70a785db8a102095ec0}
+
+\begin{DoxyCompactList}\small\item\em Campo para anotaciones. \end{DoxyCompactList}\end{DoxyCompactItemize}
+
+
+\subsection{Descripción detallada}
+Clase que define el Diagnóstico que se realiza a un \hyperlink{classappEmotionIOT_1_1models_1_1Paciente}{Paciente}. 
+
+La documentación para esta clase fue generada a partir del siguiente fichero\+:\begin{DoxyCompactItemize}
+\item 
+/home/grego/\+Documentos/\+Emotion\+I\+O\+T/\+Emotion\+I\+O\+T\+\_\+\+Django/app\+Emotion\+I\+O\+T/models.\+py\end{DoxyCompactItemize}

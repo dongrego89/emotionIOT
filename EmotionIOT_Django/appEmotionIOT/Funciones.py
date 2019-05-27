@@ -1,3 +1,10 @@
+"""!
+@package Funciones.py
+@brief Archivo de funciones auxiliares
+@author Gregorio Corpas Prieto
+@date 13/03/2019
+"""
+
 from math import *
 
 def formateaCodigo(codigo):

@@ -1,0 +1,65 @@
+\hypertarget{classappEmotionIOT_1_1models_1_1Pregunta__Quiz}{}\section{Referencia de la Clase app\+Emotion\+I\+O\+T.\+models.\+Pregunta\+\_\+\+Quiz}
+\label{classappEmotionIOT_1_1models_1_1Pregunta__Quiz}\index{app\+Emotion\+I\+O\+T.\+models.\+Pregunta\+\_\+\+Quiz@{app\+Emotion\+I\+O\+T.\+models.\+Pregunta\+\_\+\+Quiz}}
+
+
+Clase que define un objeto \hyperlink{classappEmotionIOT_1_1models_1_1Pregunta__Quiz}{Pregunta\+\_\+\+Quiz}.  
+
+
+
+
+Diagrama de herencias de app\+Emotion\+I\+O\+T.\+models.\+Pregunta\+\_\+\+Quiz
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=267pt]{classappEmotionIOT_1_1models_1_1Pregunta__Quiz__inherit__graph}
+\end{center}
+\end{figure}
+
+
+Diagrama de colaboración para app\+Emotion\+I\+O\+T.\+models.\+Pregunta\+\_\+\+Quiz\+:
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=267pt]{classappEmotionIOT_1_1models_1_1Pregunta__Quiz__coll__graph}
+\end{center}
+\end{figure}
+\subsection*{Clases}
+\begin{DoxyCompactItemize}
+\item 
+class \hyperlink{classappEmotionIOT_1_1models_1_1Pregunta__Quiz_1_1Meta}{Meta}
+\end{DoxyCompactItemize}
+\subsection*{Métodos públicos}
+\begin{DoxyCompactItemize}
+\item 
+def {\bfseries \+\_\+\+\_\+str\+\_\+\+\_\+} (self)\hypertarget{classappEmotionIOT_1_1models_1_1Pregunta__Quiz_a7d53f73f364ad3a63196aa2c8b74c667}{}\label{classappEmotionIOT_1_1models_1_1Pregunta__Quiz_a7d53f73f364ad3a63196aa2c8b74c667}
+
+\end{DoxyCompactItemize}
+\subsection*{Atributos públicos estáticos}
+\begin{DoxyCompactItemize}
+\item 
+\hyperlink{classappEmotionIOT_1_1models_1_1Pregunta__Quiz_a40ccf8403b26e89719808ccbf2435758}{multimedia\+Pregunta} = models.\+Foreign\+Key(\char`\"{}Multimedia\char`\"{},related\+\_\+name=\char`\"{}pregunta+\char`\"{},blank=True, null=True,on\+\_\+delete=models.\+C\+A\+S\+C\+A\+DE)\hypertarget{classappEmotionIOT_1_1models_1_1Pregunta__Quiz_a40ccf8403b26e89719808ccbf2435758}{}\label{classappEmotionIOT_1_1models_1_1Pregunta__Quiz_a40ccf8403b26e89719808ccbf2435758}
+
+\begin{DoxyCompactList}\small\item\em \hyperlink{classappEmotionIOT_1_1models_1_1Multimedia}{Multimedia} asociado a la pregunta. \end{DoxyCompactList}\item 
+\hyperlink{classappEmotionIOT_1_1models_1_1Pregunta__Quiz_ad0b6f309ae105b77dfc267c16cc3edfa}{respuestas} = models.\+Many\+To\+Many\+Field(\char`\"{}Respuesta\char`\"{},related\+\_\+name=\char`\"{}respuestas+\char`\"{},blank=False)\hypertarget{classappEmotionIOT_1_1models_1_1Pregunta__Quiz_ad0b6f309ae105b77dfc267c16cc3edfa}{}\label{classappEmotionIOT_1_1models_1_1Pregunta__Quiz_ad0b6f309ae105b77dfc267c16cc3edfa}
+
+\begin{DoxyCompactList}\small\item\em Posibles respuestas. \end{DoxyCompactList}\item 
+\hyperlink{classappEmotionIOT_1_1models_1_1Pregunta__Quiz_ac8d7a303878870c0674663dbce4b3c28}{visualizacion} = models.\+Char\+Field(max\+\_\+length=20, choices=Visualizacion, default=\char`\"{}Unica\char`\"{})\hypertarget{classappEmotionIOT_1_1models_1_1Pregunta__Quiz_ac8d7a303878870c0674663dbce4b3c28}{}\label{classappEmotionIOT_1_1models_1_1Pregunta__Quiz_ac8d7a303878870c0674663dbce4b3c28}
+
+\begin{DoxyCompactList}\small\item\em Modo de visualización. \end{DoxyCompactList}\end{DoxyCompactItemize}
+
+
+\subsection{Descripción detallada}
+Clase que define un objeto \hyperlink{classappEmotionIOT_1_1models_1_1Pregunta__Quiz}{Pregunta\+\_\+\+Quiz}. 
+
+
+\begin{DoxyParams}{Parámetros}
+{\em \hyperlink{classappEmotionIOT_1_1models_1_1Contenido}{Contenido}} & Es la clase a la cuál extendemos añadiendo más campos \\
+\hline
+\end{DoxyParams}
+
+
+La documentación para esta clase fue generada a partir del siguiente fichero\+:\begin{DoxyCompactItemize}
+\item 
+/home/grego/\+Documentos/\+Emotion\+I\+O\+T/\+Emotion\+I\+O\+T\+\_\+\+Django/app\+Emotion\+I\+O\+T/models.\+py\end{DoxyCompactItemize}

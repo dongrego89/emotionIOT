@@ -1,0 +1,256 @@
+\hypertarget{classBoton}{}\section{Referencia de la Clase Boton}
+\label{classBoton}\index{Boton@{Boton}}
+
+
+{\ttfamily \#include $<$Boton.\+h$>$}
+
+
+
+Diagrama de herencias de Boton
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=145pt]{classBoton__inherit__graph}
+\end{center}
+\end{figure}
+
+
+Diagrama de colaboración para Boton\+:
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=145pt]{classBoton__coll__graph}
+\end{center}
+\end{figure}
+\subsection*{Métodos públicos}
+\begin{DoxyCompactItemize}
+\item 
+\hyperlink{classBoton_ad4aa53d4e2613ee16a3474d96264785c}{Boton} ()
+\begin{DoxyCompactList}\small\item\em Constructor vacío de clase. \end{DoxyCompactList}\item 
+\hyperlink{classBoton_afd02f1f5f10676a4c20686b7526071b9}{Boton} (int id, int pin, int sonido, vector$<$ int $>$ pin\+Led, int iluminacion, vector$<$ int $>$ pin\+Vibracion, int \hyperlink{Vibracion_8h_adc29bdc2016021e3f44d420abd54a301}{vibracion}, int retardo, \hyperlink{classPantalla}{Pantalla} pantalla)
+\begin{DoxyCompactList}\small\item\em Constructor de clase. \end{DoxyCompactList}\item 
+\hyperlink{classBoton_ad645a314a67b707de4d567e6f8ead71c}{Boton} (String id, String pin, String sonido, vector$<$ String $>$ pin\+Led, String iluminacion, vector$<$ String $>$ pin\+Vibracion, String \hyperlink{Vibracion_8h_adc29bdc2016021e3f44d420abd54a301}{vibracion}, String retardo, \hyperlink{classPantalla}{Pantalla} pantalla)
+\begin{DoxyCompactList}\small\item\em Constructor de clase. \end{DoxyCompactList}\item 
+void \hyperlink{classBoton_aa5b46caccce94c91bf26487b0e57e242}{set\+Valores} (String id, String pin, String sonido, vector$<$ String $>$ pin\+Led, String iluminacion, vector$<$ String $>$ pin\+Vibracion, String \hyperlink{Vibracion_8h_adc29bdc2016021e3f44d420abd54a301}{vibracion}, String retardo, \hyperlink{classPantalla}{Pantalla} pantalla)
+\begin{DoxyCompactList}\small\item\em Inicializador de valores. \end{DoxyCompactList}\item 
+void \hyperlink{classBoton_aa1af20c03db07d9ae7b332445d4cd027}{set\+Valores} (int id, int pin, int sonido, vector$<$ int $>$ pin\+Led, int iluminacion, vector$<$ int $>$ pin\+Vibracion, int \hyperlink{Vibracion_8h_adc29bdc2016021e3f44d420abd54a301}{vibracion}, int retardo, \hyperlink{classPantalla}{Pantalla} pantalla)
+\begin{DoxyCompactList}\small\item\em Inicializador de valores. \end{DoxyCompactList}\item 
+int \hyperlink{classBoton_a216abf9640f855c35574846d84826269}{get\+Id} ()
+\begin{DoxyCompactList}\small\item\em Observador de variable id\+\_\+. \end{DoxyCompactList}\item 
+int \hyperlink{classBoton_adf7a8cd61ef049d8217f6935a9faa82e}{get\+Pin} ()
+\begin{DoxyCompactList}\small\item\em Observador de variable pin\+\_\+. \end{DoxyCompactList}\end{DoxyCompactItemize}
+
+
+\subsection{Descripción detallada}
+Instancia un objeto \hyperlink{classBoton}{Boton} que hereda de la clase \hyperlink{classInteraccion}{Interaccion} 
+
+\subsection{Documentación del constructor y destructor}
+\index{Boton@{Boton}!Boton@{Boton}}
+\index{Boton@{Boton}!Boton@{Boton}}
+\subsubsection[{\texorpdfstring{Boton()}{Boton()}}]{\setlength{\rightskip}{0pt plus 5cm}Boton\+::\+Boton (
+\begin{DoxyParamCaption}
+{}
+\end{DoxyParamCaption}
+)\hspace{0.3cm}{\ttfamily [inline]}}\hypertarget{classBoton_ad4aa53d4e2613ee16a3474d96264785c}{}\label{classBoton_ad4aa53d4e2613ee16a3474d96264785c}
+
+
+Constructor vacío de clase. 
+
+Pin de entrada hardware Métodos Constructores \index{Boton@{Boton}!Boton@{Boton}}
+\index{Boton@{Boton}!Boton@{Boton}}
+\subsubsection[{\texorpdfstring{Boton(int id, int pin, int sonido, vector$<$ int $>$ pin\+Led, int iluminacion, vector$<$ int $>$ pin\+Vibracion, int vibracion, int retardo, Pantalla pantalla)}{Boton(int id, int pin, int sonido, vector< int > pinLed, int iluminacion, vector< int > pinVibracion, int vibracion, int retardo, Pantalla pantalla)}}]{\setlength{\rightskip}{0pt plus 5cm}Boton\+::\+Boton (
+\begin{DoxyParamCaption}
+\item[{int}]{id, }
+\item[{int}]{pin, }
+\item[{int}]{sonido, }
+\item[{vector$<$ int $>$}]{pin\+Led, }
+\item[{int}]{iluminacion, }
+\item[{vector$<$ int $>$}]{pin\+Vibracion, }
+\item[{int}]{vibracion, }
+\item[{int}]{retardo, }
+\item[{{\bf Pantalla}}]{pantalla}
+\end{DoxyParamCaption}
+)\hspace{0.3cm}{\ttfamily [inline]}}\hypertarget{classBoton_afd02f1f5f10676a4c20686b7526071b9}{}\label{classBoton_afd02f1f5f10676a4c20686b7526071b9}
+
+
+Constructor de clase. 
+
+
+\begin{DoxyParams}{Parámetros}
+{\em id} & Identificador del boton \\
+\hline
+{\em pin} & Pin de entrada hardware \\
+\hline
+{\em sonido} & Sonido a reproducir \\
+\hline
+{\em pin\+Led} & Vector de pines de salida para efecto luminoso \\
+\hline
+{\em iluminacion} & Efecto luminoso \\
+\hline
+{\em pin\+Vibracion} & Vector de pines de salida para efecto de vibracion \\
+\hline
+{\em vibracion} & Efecto de vibracion \\
+\hline
+{\em retardo} & Tiempo que se mostrará la pantalla \\
+\hline
+{\em pantalla} & \hyperlink{classPantalla}{Pantalla} asociada a la interacción \\
+\hline
+\end{DoxyParams}
+\index{Boton@{Boton}!Boton@{Boton}}
+\index{Boton@{Boton}!Boton@{Boton}}
+\subsubsection[{\texorpdfstring{Boton(\+String id, String pin, String sonido, vector$<$ String $>$ pin\+Led, String iluminacion, vector$<$ String $>$ pin\+Vibracion, String vibracion, String retardo, Pantalla pantalla)}{Boton(String id, String pin, String sonido, vector< String > pinLed, String iluminacion, vector< String > pinVibracion, String vibracion, String retardo, Pantalla pantalla)}}]{\setlength{\rightskip}{0pt plus 5cm}Boton\+::\+Boton (
+\begin{DoxyParamCaption}
+\item[{String}]{id, }
+\item[{String}]{pin, }
+\item[{String}]{sonido, }
+\item[{vector$<$ String $>$}]{pin\+Led, }
+\item[{String}]{iluminacion, }
+\item[{vector$<$ String $>$}]{pin\+Vibracion, }
+\item[{String}]{vibracion, }
+\item[{String}]{retardo, }
+\item[{{\bf Pantalla}}]{pantalla}
+\end{DoxyParamCaption}
+)\hspace{0.3cm}{\ttfamily [inline]}}\hypertarget{classBoton_ad645a314a67b707de4d567e6f8ead71c}{}\label{classBoton_ad645a314a67b707de4d567e6f8ead71c}
+
+
+Constructor de clase. 
+
+
+\begin{DoxyParams}{Parámetros}
+{\em id} & Identificador del boton \\
+\hline
+{\em pin} & Pin de entrada hardware \\
+\hline
+{\em sonido} & Sonido a reproducir \\
+\hline
+{\em pin\+Led} & Vector de pines de salida para efecto luminoso \\
+\hline
+{\em iluminacion} & Efecto luminoso \\
+\hline
+{\em pin\+Vibracion} & Vector de pines de salida para efecto de vibracion \\
+\hline
+{\em vibracion} & Efecto de vibracion \\
+\hline
+{\em retardo} & Tiempo que se mostrará la pantalla \\
+\hline
+{\em pantalla} & \hyperlink{classPantalla}{Pantalla} asociada a la interacción \\
+\hline
+\end{DoxyParams}
+
+
+\subsection{Documentación de las funciones miembro}
+\index{Boton@{Boton}!get\+Id@{get\+Id}}
+\index{get\+Id@{get\+Id}!Boton@{Boton}}
+\subsubsection[{\texorpdfstring{get\+Id()}{getId()}}]{\setlength{\rightskip}{0pt plus 5cm}int Boton\+::get\+Id (
+\begin{DoxyParamCaption}
+{}
+\end{DoxyParamCaption}
+)\hspace{0.3cm}{\ttfamily [inline]}}\hypertarget{classBoton_a216abf9640f855c35574846d84826269}{}\label{classBoton_a216abf9640f855c35574846d84826269}
+
+
+Observador de variable id\+\_\+. 
+
+Métodos Observadores \begin{DoxyReturn}{Devuelve}
+Contenido de la variable id\+\_\+ 
+\end{DoxyReturn}
+\index{Boton@{Boton}!get\+Pin@{get\+Pin}}
+\index{get\+Pin@{get\+Pin}!Boton@{Boton}}
+\subsubsection[{\texorpdfstring{get\+Pin()}{getPin()}}]{\setlength{\rightskip}{0pt plus 5cm}int Boton\+::get\+Pin (
+\begin{DoxyParamCaption}
+{}
+\end{DoxyParamCaption}
+)\hspace{0.3cm}{\ttfamily [inline]}}\hypertarget{classBoton_adf7a8cd61ef049d8217f6935a9faa82e}{}\label{classBoton_adf7a8cd61ef049d8217f6935a9faa82e}
+
+
+Observador de variable pin\+\_\+. 
+
+\begin{DoxyReturn}{Devuelve}
+Contenido de la variable pin\+\_\+ 
+\end{DoxyReturn}
+\index{Boton@{Boton}!set\+Valores@{set\+Valores}}
+\index{set\+Valores@{set\+Valores}!Boton@{Boton}}
+\subsubsection[{\texorpdfstring{set\+Valores(\+String id, String pin, String sonido, vector$<$ String $>$ pin\+Led, String iluminacion, vector$<$ String $>$ pin\+Vibracion, String vibracion, String retardo, Pantalla pantalla)}{setValores(String id, String pin, String sonido, vector< String > pinLed, String iluminacion, vector< String > pinVibracion, String vibracion, String retardo, Pantalla pantalla)}}]{\setlength{\rightskip}{0pt plus 5cm}void Boton\+::set\+Valores (
+\begin{DoxyParamCaption}
+\item[{String}]{id, }
+\item[{String}]{pin, }
+\item[{String}]{sonido, }
+\item[{vector$<$ String $>$}]{pin\+Led, }
+\item[{String}]{iluminacion, }
+\item[{vector$<$ String $>$}]{pin\+Vibracion, }
+\item[{String}]{vibracion, }
+\item[{String}]{retardo, }
+\item[{{\bf Pantalla}}]{pantalla}
+\end{DoxyParamCaption}
+)\hspace{0.3cm}{\ttfamily [inline]}}\hypertarget{classBoton_aa5b46caccce94c91bf26487b0e57e242}{}\label{classBoton_aa5b46caccce94c91bf26487b0e57e242}
+
+
+Inicializador de valores. 
+
+Métodos Inicializadores 
+\begin{DoxyParams}{Parámetros}
+{\em id} & Identificador del boton \\
+\hline
+{\em pin} & Pin de entrada hardware \\
+\hline
+{\em sonido} & Sonido a reproducir \\
+\hline
+{\em pin\+Led} & Vector de pines de salida para efecto luminoso \\
+\hline
+{\em iluminacion} & Efecto luminoso \\
+\hline
+{\em pin\+Vibracion} & Vector de pines de salida para efecto de vibracion \\
+\hline
+{\em vibracion} & Efecto de vibracion \\
+\hline
+{\em retardo} & Tiempo que se mostrará la pantalla \\
+\hline
+{\em pantalla} & \hyperlink{classPantalla}{Pantalla} asociada a la interacción \\
+\hline
+\end{DoxyParams}
+\index{Boton@{Boton}!set\+Valores@{set\+Valores}}
+\index{set\+Valores@{set\+Valores}!Boton@{Boton}}
+\subsubsection[{\texorpdfstring{set\+Valores(int id, int pin, int sonido, vector$<$ int $>$ pin\+Led, int iluminacion, vector$<$ int $>$ pin\+Vibracion, int vibracion, int retardo, Pantalla pantalla)}{setValores(int id, int pin, int sonido, vector< int > pinLed, int iluminacion, vector< int > pinVibracion, int vibracion, int retardo, Pantalla pantalla)}}]{\setlength{\rightskip}{0pt plus 5cm}void Boton\+::set\+Valores (
+\begin{DoxyParamCaption}
+\item[{int}]{id, }
+\item[{int}]{pin, }
+\item[{int}]{sonido, }
+\item[{vector$<$ int $>$}]{pin\+Led, }
+\item[{int}]{iluminacion, }
+\item[{vector$<$ int $>$}]{pin\+Vibracion, }
+\item[{int}]{vibracion, }
+\item[{int}]{retardo, }
+\item[{{\bf Pantalla}}]{pantalla}
+\end{DoxyParamCaption}
+)\hspace{0.3cm}{\ttfamily [inline]}}\hypertarget{classBoton_aa1af20c03db07d9ae7b332445d4cd027}{}\label{classBoton_aa1af20c03db07d9ae7b332445d4cd027}
+
+
+Inicializador de valores. 
+
+
+\begin{DoxyParams}{Parámetros}
+{\em id} & Identificador del boton \\
+\hline
+{\em pin} & Pin de entrada hardware \\
+\hline
+{\em sonido} & Sonido a reproducir \\
+\hline
+{\em pin\+Led} & Vector de pines de salida para efecto luminoso \\
+\hline
+{\em iluminacion} & Efecto luminoso \\
+\hline
+{\em pin\+Vibracion} & Vector de pines de salida para efecto de vibracion \\
+\hline
+{\em vibracion} & Efecto de vibracion \\
+\hline
+{\em retardo} & Tiempo que se mostrará la pantalla \\
+\hline
+{\em pantalla} & \hyperlink{classPantalla}{Pantalla} asociada a la interacción \\
+\hline
+\end{DoxyParams}
+
+
+La documentación para esta clase fue generada a partir del siguiente fichero\+:\begin{DoxyCompactItemize}
+\item 
+/home/grego/\+Documentos/\+Emotion\+I\+O\+T/\+Emotion\+I\+O\+T\+\_\+\+Mega/lib/\+Boton/\hyperlink{Boton_8h}{Boton.\+h}\end{DoxyCompactItemize}

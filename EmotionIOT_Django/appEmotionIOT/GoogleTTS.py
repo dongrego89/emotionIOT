@@ -1,3 +1,10 @@
+"""!
+@package GoogleTTS.py
+@brief Archivo de funciones para el uso del texto a voz de Google
+@author Gregorio Corpas Prieto
+@date 13/03/2019
+"""
+
 import requests
 import os
 import tempfile

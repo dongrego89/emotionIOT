@@ -1,0 +1,205 @@
+\hypertarget{classBotonera}{}\section{Referencia de la Clase Botonera}
+\label{classBotonera}\index{Botonera@{Botonera}}
+
+
+{\ttfamily \#include $<$Botonera.\+h$>$}
+
+\subsection*{Métodos públicos}
+\begin{DoxyCompactItemize}
+\item 
+\hyperlink{classBotonera_abb00c73f3c6931fe4d18553c237d1ef1}{Botonera} ()
+\begin{DoxyCompactList}\small\item\em Constructor vacío de clase. \end{DoxyCompactList}\item 
+\hyperlink{classBotonera_ac1facc00874091d0e825486558b31854}{Botonera} (vector$<$ \hyperlink{classBoton}{Boton} $>$ botones\+\_\+)
+\begin{DoxyCompactList}\small\item\em Constructor de clase. \end{DoxyCompactList}\item 
+void \hyperlink{classBotonera_ac2128b0f95eb94cb4e5a4302429253b5}{set\+Boton} (\hyperlink{classBoton}{Boton} boton)
+\begin{DoxyCompactList}\small\item\em Agrega un nuevo boton al vector botones\+\_\+. \end{DoxyCompactList}\item 
+void \hyperlink{classBotonera_a195d5f965e5e924e03d2f9088622b30a}{set\+Boton} (int id, int pin, int sonido, vector$<$ int $>$ pin\+Led, int iluminacion, vector$<$ int $>$ pin\+Vibracion, int \hyperlink{Vibracion_8h_adc29bdc2016021e3f44d420abd54a301}{vibracion}, int retardo, \hyperlink{classPantalla}{Pantalla} pantalla)
+\begin{DoxyCompactList}\small\item\em Agrega un nuevo boton al vector botones\+\_\+. \end{DoxyCompactList}\item 
+void \hyperlink{classBotonera_a4fbcab2e2721502296c526c6801dcf08}{set\+Boton} (String id, String pin, String sonido, vector$<$ String $>$ pin\+Led, String iluminacion, vector$<$ String $>$ pin\+Vibracion, String \hyperlink{Vibracion_8h_adc29bdc2016021e3f44d420abd54a301}{vibracion}, String retardo, \hyperlink{classPantalla}{Pantalla} pantalla)
+\item 
+int \hyperlink{classBotonera_a6d24e446fde3c2d6957129eead787c0f}{get\+Size} ()
+\begin{DoxyCompactList}\small\item\em Calcula el numero de botones que componen la botonera. \end{DoxyCompactList}\item 
+\hyperlink{classBoton}{Boton} \hyperlink{classBotonera_a05ed196b4fb0cb7cabfda6776d29b7db}{get\+Boton} (int boton)
+\begin{DoxyCompactList}\small\item\em Observador del vector botones\+\_\+. \end{DoxyCompactList}\item 
+vector$<$ \hyperlink{classBoton}{Boton} $>$ \hyperlink{classBotonera_a026cd4bb93cd6822b2aed6b886df336d}{get\+Botones} ()
+\begin{DoxyCompactList}\small\item\em Observador del vector botones\+\_\+. \end{DoxyCompactList}\end{DoxyCompactItemize}
+
+
+\subsection{Descripción detallada}
+Instancia un objeto \hyperlink{classBotonera}{Botonera} que contiene los distintos botones que componen la interfaz 
+
+\subsection{Documentación del constructor y destructor}
+\index{Botonera@{Botonera}!Botonera@{Botonera}}
+\index{Botonera@{Botonera}!Botonera@{Botonera}}
+\subsubsection[{\texorpdfstring{Botonera()}{Botonera()}}]{\setlength{\rightskip}{0pt plus 5cm}Botonera\+::\+Botonera (
+\begin{DoxyParamCaption}
+{}
+\end{DoxyParamCaption}
+)\hspace{0.3cm}{\ttfamily [inline]}}\hypertarget{classBotonera_abb00c73f3c6931fe4d18553c237d1ef1}{}\label{classBotonera_abb00c73f3c6931fe4d18553c237d1ef1}
+
+
+Constructor vacío de clase. 
+
+Vector de botones Métodos Constructores \index{Botonera@{Botonera}!Botonera@{Botonera}}
+\index{Botonera@{Botonera}!Botonera@{Botonera}}
+\subsubsection[{\texorpdfstring{Botonera(vector$<$ Boton $>$ botones\+\_\+)}{Botonera(vector< Boton > botones_)}}]{\setlength{\rightskip}{0pt plus 5cm}Botonera\+::\+Botonera (
+\begin{DoxyParamCaption}
+\item[{vector$<$ {\bf Boton} $>$}]{botones\+\_\+}
+\end{DoxyParamCaption}
+)}\hypertarget{classBotonera_ac1facc00874091d0e825486558b31854}{}\label{classBotonera_ac1facc00874091d0e825486558b31854}
+
+
+Constructor de clase. 
+
+
+\begin{DoxyParams}{Parámetros}
+{\em botones\+\_\+} & Vector de botones que conforman la botonera \\
+\hline
+\end{DoxyParams}
+
+
+\subsection{Documentación de las funciones miembro}
+\index{Botonera@{Botonera}!get\+Boton@{get\+Boton}}
+\index{get\+Boton@{get\+Boton}!Botonera@{Botonera}}
+\subsubsection[{\texorpdfstring{get\+Boton(int boton)}{getBoton(int boton)}}]{\setlength{\rightskip}{0pt plus 5cm}{\bf Boton} Botonera\+::get\+Boton (
+\begin{DoxyParamCaption}
+\item[{int}]{boton}
+\end{DoxyParamCaption}
+)\hspace{0.3cm}{\ttfamily [inline]}}\hypertarget{classBotonera_a05ed196b4fb0cb7cabfda6776d29b7db}{}\label{classBotonera_a05ed196b4fb0cb7cabfda6776d29b7db}
+
+
+Observador del vector botones\+\_\+. 
+
+
+\begin{DoxyParams}{Parámetros}
+{\em id} & del boton \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Devuelve}
+\hyperlink{classBoton}{Boton} con identificador id\+\_\+ del vector botones\+\_\+ 
+\end{DoxyReturn}
+\index{Botonera@{Botonera}!get\+Botones@{get\+Botones}}
+\index{get\+Botones@{get\+Botones}!Botonera@{Botonera}}
+\subsubsection[{\texorpdfstring{get\+Botones()}{getBotones()}}]{\setlength{\rightskip}{0pt plus 5cm}vector$<${\bf Boton}$>$ Botonera\+::get\+Botones (
+\begin{DoxyParamCaption}
+{}
+\end{DoxyParamCaption}
+)\hspace{0.3cm}{\ttfamily [inline]}}\hypertarget{classBotonera_a026cd4bb93cd6822b2aed6b886df336d}{}\label{classBotonera_a026cd4bb93cd6822b2aed6b886df336d}
+
+
+Observador del vector botones\+\_\+. 
+
+\begin{DoxyReturn}{Devuelve}
+Vector con botones 
+\end{DoxyReturn}
+\index{Botonera@{Botonera}!get\+Size@{get\+Size}}
+\index{get\+Size@{get\+Size}!Botonera@{Botonera}}
+\subsubsection[{\texorpdfstring{get\+Size()}{getSize()}}]{\setlength{\rightskip}{0pt plus 5cm}int Botonera\+::get\+Size (
+\begin{DoxyParamCaption}
+{}
+\end{DoxyParamCaption}
+)\hspace{0.3cm}{\ttfamily [inline]}}\hypertarget{classBotonera_a6d24e446fde3c2d6957129eead787c0f}{}\label{classBotonera_a6d24e446fde3c2d6957129eead787c0f}
+
+
+Calcula el numero de botones que componen la botonera. 
+
+Métodos Observadores \begin{DoxyReturn}{Devuelve}
+Numero de elementos del vector botones\+\_\+ 
+\end{DoxyReturn}
+\index{Botonera@{Botonera}!set\+Boton@{set\+Boton}}
+\index{set\+Boton@{set\+Boton}!Botonera@{Botonera}}
+\subsubsection[{\texorpdfstring{set\+Boton(\+Boton boton)}{setBoton(Boton boton)}}]{\setlength{\rightskip}{0pt plus 5cm}void Botonera\+::set\+Boton (
+\begin{DoxyParamCaption}
+\item[{{\bf Boton}}]{boton}
+\end{DoxyParamCaption}
+)\hspace{0.3cm}{\ttfamily [inline]}}\hypertarget{classBotonera_ac2128b0f95eb94cb4e5a4302429253b5}{}\label{classBotonera_ac2128b0f95eb94cb4e5a4302429253b5}
+
+
+Agrega un nuevo boton al vector botones\+\_\+. 
+
+Métodos Inicializadores 
+\begin{DoxyParams}{Parámetros}
+{\em boton} & \hyperlink{classBoton}{Boton} para agregar al vector \\
+\hline
+\end{DoxyParams}
+\index{Botonera@{Botonera}!set\+Boton@{set\+Boton}}
+\index{set\+Boton@{set\+Boton}!Botonera@{Botonera}}
+\subsubsection[{\texorpdfstring{set\+Boton(int id, int pin, int sonido, vector$<$ int $>$ pin\+Led, int iluminacion, vector$<$ int $>$ pin\+Vibracion, int vibracion, int retardo, Pantalla pantalla)}{setBoton(int id, int pin, int sonido, vector< int > pinLed, int iluminacion, vector< int > pinVibracion, int vibracion, int retardo, Pantalla pantalla)}}]{\setlength{\rightskip}{0pt plus 5cm}void Botonera\+::set\+Boton (
+\begin{DoxyParamCaption}
+\item[{int}]{id, }
+\item[{int}]{pin, }
+\item[{int}]{sonido, }
+\item[{vector$<$ int $>$}]{pin\+Led, }
+\item[{int}]{iluminacion, }
+\item[{vector$<$ int $>$}]{pin\+Vibracion, }
+\item[{int}]{vibracion, }
+\item[{int}]{retardo, }
+\item[{{\bf Pantalla}}]{pantalla}
+\end{DoxyParamCaption}
+)\hspace{0.3cm}{\ttfamily [inline]}}\hypertarget{classBotonera_a195d5f965e5e924e03d2f9088622b30a}{}\label{classBotonera_a195d5f965e5e924e03d2f9088622b30a}
+
+
+Agrega un nuevo boton al vector botones\+\_\+. 
+
+
+\begin{DoxyParams}{Parámetros}
+{\em id} & Identificador del boton \\
+\hline
+{\em pin} & Pin de entrada hardware \\
+\hline
+{\em sonido} & Sonido a reproducir \\
+\hline
+{\em pin\+Led} & Vector de pines de salida para efecto luminoso \\
+\hline
+{\em iluminacion} & Efecto luminoso \\
+\hline
+{\em pin\+Vibracion} & Vector de pines de salida para efecto de vibracion \\
+\hline
+{\em vibracion} & Efecto de vibracion \\
+\hline
+{\em retardo} & Tiempo que se mostrará la pantalla \\
+\hline
+{\em pantalla} & \hyperlink{classPantalla}{Pantalla} asociada a la interacción \\
+\hline
+\end{DoxyParams}
+\index{Botonera@{Botonera}!set\+Boton@{set\+Boton}}
+\index{set\+Boton@{set\+Boton}!Botonera@{Botonera}}
+\subsubsection[{\texorpdfstring{set\+Boton(\+String id, String pin, String sonido, vector$<$ String $>$ pin\+Led, String iluminacion, vector$<$ String $>$ pin\+Vibracion, String vibracion, String retardo, Pantalla pantalla)}{setBoton(String id, String pin, String sonido, vector< String > pinLed, String iluminacion, vector< String > pinVibracion, String vibracion, String retardo, Pantalla pantalla)}}]{\setlength{\rightskip}{0pt plus 5cm}void Botonera\+::set\+Boton (
+\begin{DoxyParamCaption}
+\item[{String}]{id, }
+\item[{String}]{pin, }
+\item[{String}]{sonido, }
+\item[{vector$<$ String $>$}]{pin\+Led, }
+\item[{String}]{iluminacion, }
+\item[{vector$<$ String $>$}]{pin\+Vibracion, }
+\item[{String}]{vibracion, }
+\item[{String}]{retardo, }
+\item[{{\bf Pantalla}}]{pantalla}
+\end{DoxyParamCaption}
+)\hspace{0.3cm}{\ttfamily [inline]}}\hypertarget{classBotonera_a4fbcab2e2721502296c526c6801dcf08}{}\label{classBotonera_a4fbcab2e2721502296c526c6801dcf08}
+
+\begin{DoxyParams}{Parámetros}
+{\em id} & Identificador del boton \\
+\hline
+{\em pin} & Pin de entrada hardware \\
+\hline
+{\em sonido} & Sonido a reproducir \\
+\hline
+{\em pin\+Led} & Vector de pines de salida para efecto luminoso \\
+\hline
+{\em iluminacion} & Efecto luminoso \\
+\hline
+{\em pin\+Vibracion} & Vector de pines de salida para efecto de vibracion \\
+\hline
+{\em vibracion} & Efecto de vibracion \\
+\hline
+{\em retardo} & Tiempo que se mostrará la pantalla \\
+\hline
+{\em pantalla} & \hyperlink{classPantalla}{Pantalla} asociada a la interacción \\
+\hline
+\end{DoxyParams}
+
+
+La documentación para esta clase fue generada a partir del siguiente fichero\+:\begin{DoxyCompactItemize}
+\item 
+/home/grego/\+Documentos/\+Emotion\+I\+O\+T/\+Emotion\+I\+O\+T\+\_\+\+Mega/lib/\+Botonera/\hyperlink{Botonera_8h}{Botonera.\+h}\end{DoxyCompactItemize}

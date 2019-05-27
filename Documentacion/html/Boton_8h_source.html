@@ -1,0 +1,112 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="Content-Type" content="text/xhtml;charset=UTF-8"/>
+<meta http-equiv="X-UA-Compatible" content="IE=9"/>
+<meta name="generator" content="Doxygen 1.8.11"/>
+<title>EmotionIOT: Fichero Fuente /home/grego/Documentos/EmotionIOT/EmotionIOT_Mega/lib/Boton/Boton.h</title>
+<link href="tabs.css" rel="stylesheet" type="text/css"/>
+<script type="text/javascript" src="jquery.js"></script>
+<script type="text/javascript" src="dynsections.js"></script>
+<link href="search/search.css" rel="stylesheet" type="text/css"/>
+<script type="text/javascript" src="search/searchdata.js"></script>
+<script type="text/javascript" src="search/search.js"></script>
+<script type="text/javascript">
+  $(document).ready(function() { init_search(); });
+</script>
+<link href="doxygen.css" rel="stylesheet" type="text/css" />
+</head>
+<body>
+<div id="top"><!-- do not remove this div, it is closed by doxygen! -->
+<div id="titlearea">
+<table cellspacing="0" cellpadding="0">
+ <tbody>
+ <tr style="height: 56px;">
+  <td id="projectalign" style="padding-left: 0.5em;">
+   <div id="projectname">EmotionIOT
+   </div>
+  </td>
+ </tr>
+ </tbody>
+</table>
+</div>
+<!-- end header part -->
+<!-- Generado por Doxygen 1.8.11 -->
+<script type="text/javascript">
+var searchBox = new SearchBox("searchBox", "search",false,'Buscar');
+</script>
+  <div id="navrow1" class="tabs">
+    <ul class="tablist">
+      <li><a href="index.html"><span>Página&#160;principal</span></a></li>
+      <li><a href="annotated.html"><span>Clases</span></a></li>
+      <li class="current"><a href="files.html"><span>Archivos</span></a></li>
+      <li>
+        <div id="MSearchBox" class="MSearchBoxInactive">
+        <span class="left">
+          <img id="MSearchSelect" src="search/mag_sel.png"
+               onmouseover="return searchBox.OnSearchSelectShow()"
+               onmouseout="return searchBox.OnSearchSelectHide()"
+               alt=""/>
+          <input type="text" id="MSearchField" value="Buscar" accesskey="S"
+               onfocus="searchBox.OnSearchFieldFocus(true)" 
+               onblur="searchBox.OnSearchFieldFocus(false)" 
+               onkeyup="searchBox.OnSearchFieldChange(event)"/>
+          </span><span class="right">
+            <a id="MSearchClose" href="javascript:searchBox.CloseResultsWindow()"><img id="MSearchCloseImg" border="0" src="search/close.png" alt=""/></a>
+          </span>
+        </div>
+      </li>
+    </ul>
+  </div>
+  <div id="navrow2" class="tabs2">
+    <ul class="tablist">
+      <li><a href="files.html"><span>Lista&#160;de&#160;archivos</span></a></li>
+      <li><a href="globals.html"><span>Miembros&#160;de&#160;los&#160;ficheros</span></a></li>
+    </ul>
+  </div>
+<!-- window showing the filter options -->
+<div id="MSearchSelectWindow"
+     onmouseover="return searchBox.OnSearchSelectShow()"
+     onmouseout="return searchBox.OnSearchSelectHide()"
+     onkeydown="return searchBox.OnSearchSelectKey(event)">
+</div>
+
+<!-- iframe showing the search results (closed by default) -->
+<div id="MSearchResultsWindow">
+<iframe src="javascript:void(0)" frameborder="0" 
+        name="MSearchResults" id="MSearchResults">
+</iframe>
+</div>
+
+<div id="nav-path" class="navpath">
+  <ul>
+<li class="navelem"><a class="el" href="dir_3209f93ff5b986328103f124d30ca1db.html">EmotionIOT_Mega</a></li><li class="navelem"><a class="el" href="dir_065b04f50b9d527b8a22ae1f8b2ae8aa.html">lib</a></li><li class="navelem"><a class="el" href="dir_87f48b89d35b05a8be275c941924f67e.html">Boton</a></li>  </ul>
+</div>
+</div><!-- top -->
+<div class="header">
+  <div class="headertitle">
+<div class="title">Boton.h</div>  </div>
+</div><!--header-->
+<div class="contents">
+<a href="Boton_8h.html">Ir a la documentación de este archivo.</a><div class="fragment"><div class="line"><a name="l00001"></a><span class="lineno">    1</span>&#160;</div><div class="line"><a name="l00008"></a><span class="lineno">    8</span>&#160;<span class="preprocessor">#ifndef BOTON_H</span></div><div class="line"><a name="l00009"></a><span class="lineno">    9</span>&#160;<span class="preprocessor">#define BOTON_H</span></div><div class="line"><a name="l00010"></a><span class="lineno">   10</span>&#160;</div><div class="line"><a name="l00011"></a><span class="lineno">   11</span>&#160;<span class="preprocessor">#include &lt;Interaccion.h&gt;</span></div><div class="line"><a name="l00012"></a><span class="lineno">   12</span>&#160;</div><div class="line"><a name="l00013"></a><span class="lineno">   13</span>&#160;<span class="keyword">using namespace </span><a class="code" href="namespacestd.html">std</a>;</div><div class="line"><a name="l00014"></a><span class="lineno">   14</span>&#160;</div><div class="line"><a name="l00019"></a><span class="lineno"><a class="line" href="classBoton.html">   19</a></span>&#160;<span class="keyword">class </span><a class="code" href="classBoton.html">Boton</a>: <span class="keyword">public</span> <a class="code" href="classInteraccion.html">Interaccion</a>{</div><div class="line"><a name="l00020"></a><span class="lineno">   20</span>&#160;<span class="keyword">private</span>:</div><div class="line"><a name="l00021"></a><span class="lineno">   21</span>&#160;  <span class="keywordtype">int</span> id_;</div><div class="line"><a name="l00022"></a><span class="lineno">   22</span>&#160;  <span class="keywordtype">int</span> pin_;</div><div class="line"><a name="l00024"></a><span class="lineno">   24</span>&#160;<span class="keyword">public</span>:</div><div class="line"><a name="l00029"></a><span class="lineno"><a class="line" href="classBoton.html#ad4aa53d4e2613ee16a3474d96264785c">   29</a></span>&#160;<a class="code" href="classBoton.html#ad4aa53d4e2613ee16a3474d96264785c">Boton</a>(){};</div><div class="line"><a name="l00030"></a><span class="lineno">   30</span>&#160;</div><div class="line"><a name="l00043"></a><span class="lineno"><a class="line" href="classBoton.html#afd02f1f5f10676a4c20686b7526071b9">   43</a></span>&#160;<a class="code" href="classBoton.html#afd02f1f5f10676a4c20686b7526071b9">Boton</a>(<span class="keywordtype">int</span> <span class="keywordtype">id</span>,<span class="keywordtype">int</span> pin,<span class="keywordtype">int</span> sonido,vector&lt;int&gt; pinLed,<span class="keywordtype">int</span> iluminacion,vector&lt;int&gt; pinVibracion,<span class="keywordtype">int</span> <a class="code" href="Vibracion_8h.html#adc29bdc2016021e3f44d420abd54a301">vibracion</a>,<span class="keywordtype">int</span> retardo,<a class="code" href="classPantalla.html">Pantalla</a> pantalla){</div><div class="line"><a name="l00044"></a><span class="lineno">   44</span>&#160;  this-&gt;setValores(<span class="keywordtype">id</span>,pin,sonido,pinLed,iluminacion,pinVibracion,vibracion,retardo,pantalla);</div><div class="line"><a name="l00045"></a><span class="lineno">   45</span>&#160;}</div><div class="line"><a name="l00046"></a><span class="lineno">   46</span>&#160;</div><div class="line"><a name="l00060"></a><span class="lineno"><a class="line" href="classBoton.html#ad645a314a67b707de4d567e6f8ead71c">   60</a></span>&#160;<a class="code" href="classBoton.html#ad645a314a67b707de4d567e6f8ead71c">Boton</a>(String <span class="keywordtype">id</span>,String pin,String sonido,vector&lt;String&gt; pinLed,String iluminacion,vector&lt;String&gt; pinVibracion,String <a class="code" href="Vibracion_8h.html#adc29bdc2016021e3f44d420abd54a301">vibracion</a>,String retardo,<a class="code" href="classPantalla.html">Pantalla</a> pantalla){</div><div class="line"><a name="l00061"></a><span class="lineno">   61</span>&#160;  this-&gt;setValores(<span class="keywordtype">id</span>,pin,sonido,pinLed,iluminacion,pinVibracion,vibracion,retardo,pantalla);</div><div class="line"><a name="l00062"></a><span class="lineno">   62</span>&#160;}</div><div class="line"><a name="l00063"></a><span class="lineno">   63</span>&#160;</div><div class="line"><a name="l00079"></a><span class="lineno"><a class="line" href="classBoton.html#aa5b46caccce94c91bf26487b0e57e242">   79</a></span>&#160;<span class="keywordtype">void</span> <a class="code" href="classBoton.html#aa5b46caccce94c91bf26487b0e57e242">setValores</a>(String <span class="keywordtype">id</span>,String pin,String sonido,vector&lt;String&gt; pinLed,String iluminacion,vector&lt;String&gt; pinVibracion,String <a class="code" href="Vibracion_8h.html#adc29bdc2016021e3f44d420abd54a301">vibracion</a>,String retardo,<a class="code" href="classPantalla.html">Pantalla</a> pantalla){</div><div class="line"><a name="l00080"></a><span class="lineno">   80</span>&#160;  <a class="code" href="classInteraccion.html#a2e36a98f93c4df8f5ddada4197ef0323">Interaccion::setValores</a>(sonido,pinLed,iluminacion,pinVibracion,vibracion,retardo,pantalla);</div><div class="line"><a name="l00081"></a><span class="lineno">   81</span>&#160;  this-&gt;id_=<span class="keywordtype">id</span>.toInt();</div><div class="line"><a name="l00082"></a><span class="lineno">   82</span>&#160;  this-&gt;pin_=pin.toInt();</div><div class="line"><a name="l00083"></a><span class="lineno">   83</span>&#160;}</div><div class="line"><a name="l00084"></a><span class="lineno">   84</span>&#160;</div><div class="line"><a name="l00098"></a><span class="lineno"><a class="line" href="classBoton.html#aa1af20c03db07d9ae7b332445d4cd027">   98</a></span>&#160;<span class="keywordtype">void</span> <a class="code" href="classBoton.html#aa1af20c03db07d9ae7b332445d4cd027">setValores</a>(<span class="keywordtype">int</span> <span class="keywordtype">id</span>,<span class="keywordtype">int</span> pin,<span class="keywordtype">int</span> sonido,vector&lt;int&gt; pinLed,<span class="keywordtype">int</span> iluminacion,vector&lt;int&gt; pinVibracion,<span class="keywordtype">int</span> <a class="code" href="Vibracion_8h.html#adc29bdc2016021e3f44d420abd54a301">vibracion</a>,<span class="keywordtype">int</span> retardo,<a class="code" href="classPantalla.html">Pantalla</a> pantalla){</div><div class="line"><a name="l00099"></a><span class="lineno">   99</span>&#160;  <a class="code" href="classInteraccion.html#a2e36a98f93c4df8f5ddada4197ef0323">Interaccion::setValores</a>(sonido,pinLed,iluminacion,pinVibracion,vibracion,retardo,pantalla);</div><div class="line"><a name="l00100"></a><span class="lineno">  100</span>&#160;  this-&gt;id_=id;</div><div class="line"><a name="l00101"></a><span class="lineno">  101</span>&#160;  this-&gt;pin_=pin;</div><div class="line"><a name="l00102"></a><span class="lineno">  102</span>&#160;}</div><div class="line"><a name="l00103"></a><span class="lineno">  103</span>&#160;</div><div class="line"><a name="l00109"></a><span class="lineno"><a class="line" href="classBoton.html#a216abf9640f855c35574846d84826269">  109</a></span>&#160;<span class="keywordtype">int</span> <a class="code" href="classBoton.html#a216abf9640f855c35574846d84826269">getId</a>(){</div><div class="line"><a name="l00110"></a><span class="lineno">  110</span>&#160;  <span class="keywordflow">return</span> this-&gt;id_;</div><div class="line"><a name="l00111"></a><span class="lineno">  111</span>&#160;}</div><div class="line"><a name="l00116"></a><span class="lineno"><a class="line" href="classBoton.html#adf7a8cd61ef049d8217f6935a9faa82e">  116</a></span>&#160;<span class="keywordtype">int</span> <a class="code" href="classBoton.html#adf7a8cd61ef049d8217f6935a9faa82e">getPin</a>(){</div><div class="line"><a name="l00117"></a><span class="lineno">  117</span>&#160;  <span class="keywordflow">return</span> this-&gt;pin_;</div><div class="line"><a name="l00118"></a><span class="lineno">  118</span>&#160;}</div><div class="line"><a name="l00119"></a><span class="lineno">  119</span>&#160;</div><div class="line"><a name="l00120"></a><span class="lineno">  120</span>&#160;};</div><div class="line"><a name="l00121"></a><span class="lineno">  121</span>&#160;</div><div class="line"><a name="l00122"></a><span class="lineno">  122</span>&#160;<span class="preprocessor">#endif</span></div><div class="ttc" id="classBoton_html_aa1af20c03db07d9ae7b332445d4cd027"><div class="ttname"><a href="classBoton.html#aa1af20c03db07d9ae7b332445d4cd027">Boton::setValores</a></div><div class="ttdeci">void setValores(int id, int pin, int sonido, vector&lt; int &gt; pinLed, int iluminacion, vector&lt; int &gt; pinVibracion, int vibracion, int retardo, Pantalla pantalla)</div><div class="ttdoc">Inicializador de valores. </div><div class="ttdef"><b>Definition:</b> Boton.h:98</div></div>
+<div class="ttc" id="namespacestd_html"><div class="ttname"><a href="namespacestd.html">std</a></div></div>
+<div class="ttc" id="classBoton_html_ad645a314a67b707de4d567e6f8ead71c"><div class="ttname"><a href="classBoton.html#ad645a314a67b707de4d567e6f8ead71c">Boton::Boton</a></div><div class="ttdeci">Boton(String id, String pin, String sonido, vector&lt; String &gt; pinLed, String iluminacion, vector&lt; String &gt; pinVibracion, String vibracion, String retardo, Pantalla pantalla)</div><div class="ttdoc">Constructor de clase. </div><div class="ttdef"><b>Definition:</b> Boton.h:60</div></div>
+<div class="ttc" id="classBoton_html_aa5b46caccce94c91bf26487b0e57e242"><div class="ttname"><a href="classBoton.html#aa5b46caccce94c91bf26487b0e57e242">Boton::setValores</a></div><div class="ttdeci">void setValores(String id, String pin, String sonido, vector&lt; String &gt; pinLed, String iluminacion, vector&lt; String &gt; pinVibracion, String vibracion, String retardo, Pantalla pantalla)</div><div class="ttdoc">Inicializador de valores. </div><div class="ttdef"><b>Definition:</b> Boton.h:79</div></div>
+<div class="ttc" id="classBoton_html_adf7a8cd61ef049d8217f6935a9faa82e"><div class="ttname"><a href="classBoton.html#adf7a8cd61ef049d8217f6935a9faa82e">Boton::getPin</a></div><div class="ttdeci">int getPin()</div><div class="ttdoc">Observador de variable pin_. </div><div class="ttdef"><b>Definition:</b> Boton.h:116</div></div>
+<div class="ttc" id="classInteraccion_html_a2e36a98f93c4df8f5ddada4197ef0323"><div class="ttname"><a href="classInteraccion.html#a2e36a98f93c4df8f5ddada4197ef0323">Interaccion::setValores</a></div><div class="ttdeci">virtual void setValores(int sonido, vector&lt; int &gt; pinLed, int iluminacion, vector&lt; int &gt; pinVibracion, int vibracion, int retardo, Pantalla pantalla)</div><div class="ttdoc">Inicializador de valores. </div><div class="ttdef"><b>Definition:</b> Interaccion.h:80</div></div>
+<div class="ttc" id="classInteraccion_html"><div class="ttname"><a href="classInteraccion.html">Interaccion</a></div><div class="ttdef"><b>Definition:</b> Interaccion.h:23</div></div>
+<div class="ttc" id="classBoton_html_a216abf9640f855c35574846d84826269"><div class="ttname"><a href="classBoton.html#a216abf9640f855c35574846d84826269">Boton::getId</a></div><div class="ttdeci">int getId()</div><div class="ttdoc">Observador de variable id_. </div><div class="ttdef"><b>Definition:</b> Boton.h:109</div></div>
+<div class="ttc" id="Vibracion_8h_html_adc29bdc2016021e3f44d420abd54a301"><div class="ttname"><a href="Vibracion_8h.html#adc29bdc2016021e3f44d420abd54a301">vibracion</a></div><div class="ttdeci">void vibracion(vector&lt; int &gt; pinVibracion, int vibracion)</div><div class="ttdoc">Ejecuta un efecto de vibracion. </div><div class="ttdef"><b>Definition:</b> Vibracion.h:20</div></div>
+<div class="ttc" id="classPantalla_html"><div class="ttname"><a href="classPantalla.html">Pantalla</a></div><div class="ttdef"><b>Definition:</b> Pantalla.h:20</div></div>
+<div class="ttc" id="classBoton_html_ad4aa53d4e2613ee16a3474d96264785c"><div class="ttname"><a href="classBoton.html#ad4aa53d4e2613ee16a3474d96264785c">Boton::Boton</a></div><div class="ttdeci">Boton()</div><div class="ttdoc">Constructor vacío de clase. </div><div class="ttdef"><b>Definition:</b> Boton.h:29</div></div>
+<div class="ttc" id="classBoton_html"><div class="ttname"><a href="classBoton.html">Boton</a></div><div class="ttdef"><b>Definition:</b> Boton.h:19</div></div>
+<div class="ttc" id="classBoton_html_afd02f1f5f10676a4c20686b7526071b9"><div class="ttname"><a href="classBoton.html#afd02f1f5f10676a4c20686b7526071b9">Boton::Boton</a></div><div class="ttdeci">Boton(int id, int pin, int sonido, vector&lt; int &gt; pinLed, int iluminacion, vector&lt; int &gt; pinVibracion, int vibracion, int retardo, Pantalla pantalla)</div><div class="ttdoc">Constructor de clase. </div><div class="ttdef"><b>Definition:</b> Boton.h:43</div></div>
+</div><!-- fragment --></div><!-- contents -->
+<!-- start footer part -->
+<hr class="footer"/><address class="footer"><small>
+Generado por &#160;<a href="http://www.doxygen.org/index.html">
+<img class="footer" src="doxygen.png" alt="doxygen"/>
+</a> 1.8.11
+</small></address>
+</body>
+</html>

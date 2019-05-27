@@ -1,0 +1,64 @@
+\hypertarget{classappEmotionIOT_1_1models_1_1Registro__Sesion}{}\section{Referencia de la Clase app\+Emotion\+I\+O\+T.\+models.\+Registro\+\_\+\+Sesion}
+\label{classappEmotionIOT_1_1models_1_1Registro__Sesion}\index{app\+Emotion\+I\+O\+T.\+models.\+Registro\+\_\+\+Sesion@{app\+Emotion\+I\+O\+T.\+models.\+Registro\+\_\+\+Sesion}}
+
+
+Clase que define un objeto \hyperlink{classappEmotionIOT_1_1models_1_1Registro__Sesion}{Registro\+\_\+\+Sesion} donde se guarda cada acción realizada en una \hyperlink{classappEmotionIOT_1_1models_1_1Actividad}{Actividad} para cada \hyperlink{classappEmotionIOT_1_1models_1_1Respuesta}{Respuesta} a cada \hyperlink{classappEmotionIOT_1_1models_1_1Pregunta}{Pregunta}.  
+
+
+
+
+Diagrama de herencias de app\+Emotion\+I\+O\+T.\+models.\+Registro\+\_\+\+Sesion
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=239pt]{classappEmotionIOT_1_1models_1_1Registro__Sesion__inherit__graph}
+\end{center}
+\end{figure}
+
+
+Diagrama de colaboración para app\+Emotion\+I\+O\+T.\+models.\+Registro\+\_\+\+Sesion\+:
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=239pt]{classappEmotionIOT_1_1models_1_1Registro__Sesion__coll__graph}
+\end{center}
+\end{figure}
+\subsection*{Clases}
+\begin{DoxyCompactItemize}
+\item 
+class \hyperlink{classappEmotionIOT_1_1models_1_1Registro__Sesion_1_1Meta}{Meta}
+\end{DoxyCompactItemize}
+\subsection*{Métodos públicos}
+\begin{DoxyCompactItemize}
+\item 
+def {\bfseries \+\_\+\+\_\+str\+\_\+\+\_\+} (self)\hypertarget{classappEmotionIOT_1_1models_1_1Registro__Sesion_a162dede043619be673f4609e5fb01e5d}{}\label{classappEmotionIOT_1_1models_1_1Registro__Sesion_a162dede043619be673f4609e5fb01e5d}
+
+\end{DoxyCompactItemize}
+\subsection*{Atributos públicos estáticos}
+\begin{DoxyCompactItemize}
+\item 
+\hyperlink{classappEmotionIOT_1_1models_1_1Registro__Sesion_afe606eb28657ea09b49cb33124c0cbcb}{id} = models.\+Auto\+Field(primary\+\_\+key=True)\hypertarget{classappEmotionIOT_1_1models_1_1Registro__Sesion_afe606eb28657ea09b49cb33124c0cbcb}{}\label{classappEmotionIOT_1_1models_1_1Registro__Sesion_afe606eb28657ea09b49cb33124c0cbcb}
+
+\begin{DoxyCompactList}\small\item\em Identificador para tupla. \end{DoxyCompactList}\item 
+\hyperlink{classappEmotionIOT_1_1models_1_1Registro__Sesion_ad1cd9a0414d42f5d5c5f03690153eaf6}{sesion} = models.\+Foreign\+Key(\char`\"{}Sesion\char`\"{},related\+\_\+name=\char`\"{}sesion+\char`\"{},blank=False,on\+\_\+delete=models.\+C\+A\+S\+C\+A\+DE)\hypertarget{classappEmotionIOT_1_1models_1_1Registro__Sesion_ad1cd9a0414d42f5d5c5f03690153eaf6}{}\label{classappEmotionIOT_1_1models_1_1Registro__Sesion_ad1cd9a0414d42f5d5c5f03690153eaf6}
+
+\begin{DoxyCompactList}\small\item\em \hyperlink{classappEmotionIOT_1_1models_1_1Sesion}{Sesion} a la que pertenece este registro. \end{DoxyCompactList}\item 
+\hyperlink{classappEmotionIOT_1_1models_1_1Registro__Sesion_a9da6847d846155c5a771dfc04a92a0db}{pregunta} = models.\+Foreign\+Key(\hyperlink{classappEmotionIOT_1_1models_1_1Pregunta}{Pregunta},on\+\_\+delete=models.\+C\+A\+S\+C\+A\+DE)\hypertarget{classappEmotionIOT_1_1models_1_1Registro__Sesion_a9da6847d846155c5a771dfc04a92a0db}{}\label{classappEmotionIOT_1_1models_1_1Registro__Sesion_a9da6847d846155c5a771dfc04a92a0db}
+
+\begin{DoxyCompactList}\small\item\em \hyperlink{classappEmotionIOT_1_1models_1_1Pregunta}{Pregunta} a la que pertenece este registro. \end{DoxyCompactList}\item 
+\hyperlink{classappEmotionIOT_1_1models_1_1Registro__Sesion_a7ed1dfc435d3d47d197f7a1a2cdaacfa}{multimedia\+Respuesta} = models.\+Foreign\+Key(\char`\"{}Multimedia\char`\"{},related\+\_\+name=\char`\"{}multimedia\+Respuesta+\char`\"{},null=True,blank=True,on\+\_\+delete=models.\+C\+A\+S\+C\+A\+DE)\hypertarget{classappEmotionIOT_1_1models_1_1Registro__Sesion_a7ed1dfc435d3d47d197f7a1a2cdaacfa}{}\label{classappEmotionIOT_1_1models_1_1Registro__Sesion_a7ed1dfc435d3d47d197f7a1a2cdaacfa}
+
+\begin{DoxyCompactList}\small\item\em Objeto multimedia utilizado como respuesta. \end{DoxyCompactList}\item 
+\hyperlink{classappEmotionIOT_1_1models_1_1Registro__Sesion_aa29e79206201a465671bcc5bdc05fc45}{fecha} = models.\+Date\+Time\+Field(auto\+\_\+now\+\_\+add=True)\hypertarget{classappEmotionIOT_1_1models_1_1Registro__Sesion_aa29e79206201a465671bcc5bdc05fc45}{}\label{classappEmotionIOT_1_1models_1_1Registro__Sesion_aa29e79206201a465671bcc5bdc05fc45}
+
+\begin{DoxyCompactList}\small\item\em Instante en el que se respondió \end{DoxyCompactList}\end{DoxyCompactItemize}
+
+
+\subsection{Descripción detallada}
+Clase que define un objeto \hyperlink{classappEmotionIOT_1_1models_1_1Registro__Sesion}{Registro\+\_\+\+Sesion} donde se guarda cada acción realizada en una \hyperlink{classappEmotionIOT_1_1models_1_1Actividad}{Actividad} para cada \hyperlink{classappEmotionIOT_1_1models_1_1Respuesta}{Respuesta} a cada \hyperlink{classappEmotionIOT_1_1models_1_1Pregunta}{Pregunta}. 
+
+La documentación para esta clase fue generada a partir del siguiente fichero\+:\begin{DoxyCompactItemize}
+\item 
+/home/grego/\+Documentos/\+Emotion\+I\+O\+T/\+Emotion\+I\+O\+T\+\_\+\+Django/app\+Emotion\+I\+O\+T/models.\+py\end{DoxyCompactItemize}

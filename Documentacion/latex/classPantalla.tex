@@ -1,0 +1,186 @@
+\hypertarget{classPantalla}{}\section{Referencia de la Clase Pantalla}
+\label{classPantalla}\index{Pantalla@{Pantalla}}
+
+
+{\ttfamily \#include $<$Pantalla.\+h$>$}
+
+\subsection*{Métodos públicos}
+\begin{DoxyCompactItemize}
+\item 
+\hyperlink{classPantalla_a75c7041a4ffcb3b911ff286fd0a45d30}{Pantalla} ()
+\begin{DoxyCompactList}\small\item\em Constructor vacío de clase. \end{DoxyCompactList}\item 
+\hyperlink{classPantalla_ac12a27baa3ba722fa7a98152d3561ef4}{Pantalla} (vector$<$ \hyperlink{classLinea}{Linea} $>$ lineas)
+\begin{DoxyCompactList}\small\item\em Constructor de clase. \end{DoxyCompactList}\item 
+void \hyperlink{classPantalla_a32dc100c46df7110cfd86b06a0890c7b}{set\+Pantalla} (vector$<$ \hyperlink{classLinea}{Linea} $>$ lineas)
+\begin{DoxyCompactList}\small\item\em Agrega una linea al vector lineas\+\_\+. \end{DoxyCompactList}\item 
+void \hyperlink{classPantalla_ab598291d3cc6a8361759d5f9afff4691}{set\+Linea} (String texto, int margen, int fila)
+\begin{DoxyCompactList}\small\item\em Agrega una linea al vector lineas\+\_\+. \end{DoxyCompactList}\item 
+void \hyperlink{classPantalla_a27c9c4d5447f4f87970da14979bc3aef}{set\+Linea} (String texto, String margen, String fila)
+\begin{DoxyCompactList}\small\item\em Agrega una linea al vector lineas\+\_\+. \end{DoxyCompactList}\item 
+void \hyperlink{classPantalla_a991d61db1425865ff6f997b529ea587e}{set\+Linea} (\hyperlink{classLinea}{Linea} \&linea)
+\begin{DoxyCompactList}\small\item\em Agrega una linea al vector lineas\+\_\+. \end{DoxyCompactList}\item 
+void \hyperlink{classPantalla_aec71a8b66e23950ec11c3b9f8cfd8a1a}{print} ()
+\begin{DoxyCompactList}\small\item\em Imprime las lineas del vector lineas\+\_\+ por pantalla L\+CD. \end{DoxyCompactList}\item 
+void \hyperlink{classPantalla_a4b3519c110049e0359f8217bdad155de}{clear} ()
+\begin{DoxyCompactList}\small\item\em Limpia la pantalla L\+CD. \end{DoxyCompactList}\item 
+void \hyperlink{classPantalla_a7d2fd74b38a601351cd5ed40ca4b1660}{vaciar} ()
+\begin{DoxyCompactList}\small\item\em Elimina todos los elementos linea del vector lineas\+\_\+. \end{DoxyCompactList}\end{DoxyCompactItemize}
+
+
+\subsection{Descripción detallada}
+Instancia un objeto con las características necesarias para configurar una pantalla L\+CD de varias líneas 
+
+\subsection{Documentación del constructor y destructor}
+\index{Pantalla@{Pantalla}!Pantalla@{Pantalla}}
+\index{Pantalla@{Pantalla}!Pantalla@{Pantalla}}
+\subsubsection[{\texorpdfstring{Pantalla()}{Pantalla()}}]{\setlength{\rightskip}{0pt plus 5cm}Pantalla\+::\+Pantalla (
+\begin{DoxyParamCaption}
+{}
+\end{DoxyParamCaption}
+)\hspace{0.3cm}{\ttfamily [inline]}}\hypertarget{classPantalla_a75c7041a4ffcb3b911ff286fd0a45d30}{}\label{classPantalla_a75c7041a4ffcb3b911ff286fd0a45d30}
+
+
+Constructor vacío de clase. 
+
+Vector de lineas que conforman la pantalla Métodos Constructores \index{Pantalla@{Pantalla}!Pantalla@{Pantalla}}
+\index{Pantalla@{Pantalla}!Pantalla@{Pantalla}}
+\subsubsection[{\texorpdfstring{Pantalla(vector$<$ Linea $>$ lineas)}{Pantalla(vector< Linea > lineas)}}]{\setlength{\rightskip}{0pt plus 5cm}Pantalla\+::\+Pantalla (
+\begin{DoxyParamCaption}
+\item[{vector$<$ {\bf Linea} $>$}]{lineas}
+\end{DoxyParamCaption}
+)\hspace{0.3cm}{\ttfamily [inline]}}\hypertarget{classPantalla_ac12a27baa3ba722fa7a98152d3561ef4}{}\label{classPantalla_ac12a27baa3ba722fa7a98152d3561ef4}
+
+
+Constructor de clase. 
+
+
+\begin{DoxyParams}{Parámetros}
+{\em lineas} & a almacenar en el vector \\
+\hline
+\end{DoxyParams}
+
+
+\subsection{Documentación de las funciones miembro}
+\index{Pantalla@{Pantalla}!clear@{clear}}
+\index{clear@{clear}!Pantalla@{Pantalla}}
+\subsubsection[{\texorpdfstring{clear()}{clear()}}]{\setlength{\rightskip}{0pt plus 5cm}void Pantalla\+::clear (
+\begin{DoxyParamCaption}
+{}
+\end{DoxyParamCaption}
+)\hspace{0.3cm}{\ttfamily [inline]}}\hypertarget{classPantalla_a4b3519c110049e0359f8217bdad155de}{}\label{classPantalla_a4b3519c110049e0359f8217bdad155de}
+
+
+Limpia la pantalla L\+CD. 
+
+\begin{DoxyPostcond}{Postcondición}
+\hyperlink{classPantalla}{Pantalla} L\+CD en blanco 
+\end{DoxyPostcond}
+\index{Pantalla@{Pantalla}!print@{print}}
+\index{print@{print}!Pantalla@{Pantalla}}
+\subsubsection[{\texorpdfstring{print()}{print()}}]{\setlength{\rightskip}{0pt plus 5cm}void Pantalla\+::print (
+\begin{DoxyParamCaption}
+{}
+\end{DoxyParamCaption}
+)\hspace{0.3cm}{\ttfamily [inline]}}\hypertarget{classPantalla_aec71a8b66e23950ec11c3b9f8cfd8a1a}{}\label{classPantalla_aec71a8b66e23950ec11c3b9f8cfd8a1a}
+
+
+Imprime las lineas del vector lineas\+\_\+ por pantalla L\+CD. 
+
+Otros Métodos \begin{DoxyPostcond}{Postcondición}
+Impresión de las lineas en la pantalla L\+CD 
+\end{DoxyPostcond}
+\index{Pantalla@{Pantalla}!set\+Linea@{set\+Linea}}
+\index{set\+Linea@{set\+Linea}!Pantalla@{Pantalla}}
+\subsubsection[{\texorpdfstring{set\+Linea(\+String texto, int margen, int fila)}{setLinea(String texto, int margen, int fila)}}]{\setlength{\rightskip}{0pt plus 5cm}void Pantalla\+::set\+Linea (
+\begin{DoxyParamCaption}
+\item[{String}]{texto, }
+\item[{int}]{margen, }
+\item[{int}]{fila}
+\end{DoxyParamCaption}
+)\hspace{0.3cm}{\ttfamily [inline]}}\hypertarget{classPantalla_ab598291d3cc6a8361759d5f9afff4691}{}\label{classPantalla_ab598291d3cc6a8361759d5f9afff4691}
+
+
+Agrega una linea al vector lineas\+\_\+. 
+
+
+\begin{DoxyParams}{Parámetros}
+{\em texto} & Texto de la linea \\
+\hline
+{\em margen} & Margen izquierdo para el texto de linea \\
+\hline
+{\em fila} & Identificador para la \hyperlink{classLinea}{Linea} \\
+\hline
+\end{DoxyParams}
+\index{Pantalla@{Pantalla}!set\+Linea@{set\+Linea}}
+\index{set\+Linea@{set\+Linea}!Pantalla@{Pantalla}}
+\subsubsection[{\texorpdfstring{set\+Linea(\+String texto, String margen, String fila)}{setLinea(String texto, String margen, String fila)}}]{\setlength{\rightskip}{0pt plus 5cm}void Pantalla\+::set\+Linea (
+\begin{DoxyParamCaption}
+\item[{String}]{texto, }
+\item[{String}]{margen, }
+\item[{String}]{fila}
+\end{DoxyParamCaption}
+)\hspace{0.3cm}{\ttfamily [inline]}}\hypertarget{classPantalla_a27c9c4d5447f4f87970da14979bc3aef}{}\label{classPantalla_a27c9c4d5447f4f87970da14979bc3aef}
+
+
+Agrega una linea al vector lineas\+\_\+. 
+
+
+\begin{DoxyParams}{Parámetros}
+{\em texto} & Texto de la linea \\
+\hline
+{\em margen} & Margen izquierdo para el texto de linea \\
+\hline
+{\em fila} & Identificador para la \hyperlink{classLinea}{Linea} \\
+\hline
+\end{DoxyParams}
+\index{Pantalla@{Pantalla}!set\+Linea@{set\+Linea}}
+\index{set\+Linea@{set\+Linea}!Pantalla@{Pantalla}}
+\subsubsection[{\texorpdfstring{set\+Linea(\+Linea \&linea)}{setLinea(Linea &linea)}}]{\setlength{\rightskip}{0pt plus 5cm}void Pantalla\+::set\+Linea (
+\begin{DoxyParamCaption}
+\item[{{\bf Linea} \&}]{linea}
+\end{DoxyParamCaption}
+)\hspace{0.3cm}{\ttfamily [inline]}}\hypertarget{classPantalla_a991d61db1425865ff6f997b529ea587e}{}\label{classPantalla_a991d61db1425865ff6f997b529ea587e}
+
+
+Agrega una linea al vector lineas\+\_\+. 
+
+
+\begin{DoxyParams}{Parámetros}
+{\em linea} & \hyperlink{classLinea}{Linea} de texto a añadir \\
+\hline
+\end{DoxyParams}
+\index{Pantalla@{Pantalla}!set\+Pantalla@{set\+Pantalla}}
+\index{set\+Pantalla@{set\+Pantalla}!Pantalla@{Pantalla}}
+\subsubsection[{\texorpdfstring{set\+Pantalla(vector$<$ Linea $>$ lineas)}{setPantalla(vector< Linea > lineas)}}]{\setlength{\rightskip}{0pt plus 5cm}void Pantalla\+::set\+Pantalla (
+\begin{DoxyParamCaption}
+\item[{vector$<$ {\bf Linea} $>$}]{lineas}
+\end{DoxyParamCaption}
+)\hspace{0.3cm}{\ttfamily [inline]}}\hypertarget{classPantalla_a32dc100c46df7110cfd86b06a0890c7b}{}\label{classPantalla_a32dc100c46df7110cfd86b06a0890c7b}
+
+
+Agrega una linea al vector lineas\+\_\+. 
+
+Métodos Inicializadores 
+\begin{DoxyParams}{Parámetros}
+{\em lineas\+\_\+} & Vector de lineas que conforman el objeto \hyperlink{classPantalla}{Pantalla} \\
+\hline
+\end{DoxyParams}
+\index{Pantalla@{Pantalla}!vaciar@{vaciar}}
+\index{vaciar@{vaciar}!Pantalla@{Pantalla}}
+\subsubsection[{\texorpdfstring{vaciar()}{vaciar()}}]{\setlength{\rightskip}{0pt plus 5cm}void Pantalla\+::vaciar (
+\begin{DoxyParamCaption}
+{}
+\end{DoxyParamCaption}
+)\hspace{0.3cm}{\ttfamily [inline]}}\hypertarget{classPantalla_a7d2fd74b38a601351cd5ed40ca4b1660}{}\label{classPantalla_a7d2fd74b38a601351cd5ed40ca4b1660}
+
+
+Elimina todos los elementos linea del vector lineas\+\_\+. 
+
+\begin{DoxyPostcond}{Postcondición}
+Vector \+\_\+lineas vacío 
+\end{DoxyPostcond}
+
+
+La documentación para esta clase fue generada a partir del siguiente fichero\+:\begin{DoxyCompactItemize}
+\item 
+/home/grego/\+Documentos/\+Emotion\+I\+O\+T/\+Emotion\+I\+O\+T\+\_\+\+Mega/lib/\+Pantalla/\hyperlink{Pantalla_8h}{Pantalla.\+h}\end{DoxyCompactItemize}

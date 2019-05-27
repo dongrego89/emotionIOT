@@ -1,0 +1,61 @@
+\hypertarget{classappEmotionIOT_1_1models_1_1Sesion}{}\section{Referencia de la Clase app\+Emotion\+I\+O\+T.\+models.\+Sesion}
+\label{classappEmotionIOT_1_1models_1_1Sesion}\index{app\+Emotion\+I\+O\+T.\+models.\+Sesion@{app\+Emotion\+I\+O\+T.\+models.\+Sesion}}
+
+
+Clase que define la Sesión de trabajo en una \hyperlink{classappEmotionIOT_1_1models_1_1Actividad}{Actividad}.  
+
+
+
+
+Diagrama de herencias de app\+Emotion\+I\+O\+T.\+models.\+Sesion
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=232pt]{classappEmotionIOT_1_1models_1_1Sesion__inherit__graph}
+\end{center}
+\end{figure}
+
+
+Diagrama de colaboración para app\+Emotion\+I\+O\+T.\+models.\+Sesion\+:
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=232pt]{classappEmotionIOT_1_1models_1_1Sesion__coll__graph}
+\end{center}
+\end{figure}
+\subsection*{Clases}
+\begin{DoxyCompactItemize}
+\item 
+class \hyperlink{classappEmotionIOT_1_1models_1_1Sesion_1_1Meta}{Meta}
+\end{DoxyCompactItemize}
+\subsection*{Métodos públicos}
+\begin{DoxyCompactItemize}
+\item 
+def {\bfseries \+\_\+\+\_\+str\+\_\+\+\_\+} (self)\hypertarget{classappEmotionIOT_1_1models_1_1Sesion_a23dbce02b4c4fcc7479feb3a70e65bf9}{}\label{classappEmotionIOT_1_1models_1_1Sesion_a23dbce02b4c4fcc7479feb3a70e65bf9}
+
+\end{DoxyCompactItemize}
+\subsection*{Atributos públicos estáticos}
+\begin{DoxyCompactItemize}
+\item 
+\hyperlink{classappEmotionIOT_1_1models_1_1Sesion_a24241c8647922e6c7332e26d6f11e6a7}{id} = models.\+Auto\+Field(primary\+\_\+key=True)\hypertarget{classappEmotionIOT_1_1models_1_1Sesion_a24241c8647922e6c7332e26d6f11e6a7}{}\label{classappEmotionIOT_1_1models_1_1Sesion_a24241c8647922e6c7332e26d6f11e6a7}
+
+\begin{DoxyCompactList}\small\item\em Identificador de tupla. \end{DoxyCompactList}\item 
+\hyperlink{classappEmotionIOT_1_1models_1_1Sesion_a574ab9f9834d41c45a5fb101c99b423b}{terapia\+\_\+tratamiento} = models.\+Foreign\+Key(\hyperlink{classappEmotionIOT_1_1models_1_1Terapia__Tratamiento}{Terapia\+\_\+\+Tratamiento},on\+\_\+delete=models.\+C\+A\+S\+C\+A\+DE)\hypertarget{classappEmotionIOT_1_1models_1_1Sesion_a574ab9f9834d41c45a5fb101c99b423b}{}\label{classappEmotionIOT_1_1models_1_1Sesion_a574ab9f9834d41c45a5fb101c99b423b}
+
+\begin{DoxyCompactList}\small\item\em Tupla de relación terapia\+\_\+tratamiento. \end{DoxyCompactList}\item 
+\hyperlink{classappEmotionIOT_1_1models_1_1Sesion_ab60b526717d076b290a76aac0596b98a}{actividad} = models.\+Foreign\+Key(\hyperlink{classappEmotionIOT_1_1models_1_1Actividad}{Actividad},on\+\_\+delete=models.\+C\+A\+S\+C\+A\+DE)\hypertarget{classappEmotionIOT_1_1models_1_1Sesion_ab60b526717d076b290a76aac0596b98a}{}\label{classappEmotionIOT_1_1models_1_1Sesion_ab60b526717d076b290a76aac0596b98a}
+
+\begin{DoxyCompactList}\small\item\em \hyperlink{classappEmotionIOT_1_1models_1_1Actividad}{Actividad} involucrada. \end{DoxyCompactList}\item 
+\hyperlink{classappEmotionIOT_1_1models_1_1Sesion_ac31ee92db7c2623708c94b46c1282e5d}{fecha} = models.\+Date\+Time\+Field(auto\+\_\+now\+\_\+add=True)\hypertarget{classappEmotionIOT_1_1models_1_1Sesion_ac31ee92db7c2623708c94b46c1282e5d}{}\label{classappEmotionIOT_1_1models_1_1Sesion_ac31ee92db7c2623708c94b46c1282e5d}
+
+\begin{DoxyCompactList}\small\item\em Instante de inserción. \end{DoxyCompactList}\end{DoxyCompactItemize}
+
+
+\subsection{Descripción detallada}
+Clase que define la Sesión de trabajo en una \hyperlink{classappEmotionIOT_1_1models_1_1Actividad}{Actividad}. 
+
+La documentación para esta clase fue generada a partir del siguiente fichero\+:\begin{DoxyCompactItemize}
+\item 
+/home/grego/\+Documentos/\+Emotion\+I\+O\+T/\+Emotion\+I\+O\+T\+\_\+\+Django/app\+Emotion\+I\+O\+T/models.\+py\end{DoxyCompactItemize}

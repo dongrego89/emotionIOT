@@ -1,0 +1,107 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="Content-Type" content="text/xhtml;charset=UTF-8"/>
+<meta http-equiv="X-UA-Compatible" content="IE=9"/>
+<meta name="generator" content="Doxygen 1.8.11"/>
+<title>EmotionIOT: Fichero Fuente /home/grego/Documentos/EmotionIOT/EmotionIOT_Mega/lib/LectorRFID/LectorRFID.h</title>
+<link href="tabs.css" rel="stylesheet" type="text/css"/>
+<script type="text/javascript" src="jquery.js"></script>
+<script type="text/javascript" src="dynsections.js"></script>
+<link href="search/search.css" rel="stylesheet" type="text/css"/>
+<script type="text/javascript" src="search/searchdata.js"></script>
+<script type="text/javascript" src="search/search.js"></script>
+<script type="text/javascript">
+  $(document).ready(function() { init_search(); });
+</script>
+<link href="doxygen.css" rel="stylesheet" type="text/css" />
+</head>
+<body>
+<div id="top"><!-- do not remove this div, it is closed by doxygen! -->
+<div id="titlearea">
+<table cellspacing="0" cellpadding="0">
+ <tbody>
+ <tr style="height: 56px;">
+  <td id="projectalign" style="padding-left: 0.5em;">
+   <div id="projectname">EmotionIOT
+   </div>
+  </td>
+ </tr>
+ </tbody>
+</table>
+</div>
+<!-- end header part -->
+<!-- Generado por Doxygen 1.8.11 -->
+<script type="text/javascript">
+var searchBox = new SearchBox("searchBox", "search",false,'Buscar');
+</script>
+  <div id="navrow1" class="tabs">
+    <ul class="tablist">
+      <li><a href="index.html"><span>Página&#160;principal</span></a></li>
+      <li><a href="annotated.html"><span>Clases</span></a></li>
+      <li class="current"><a href="files.html"><span>Archivos</span></a></li>
+      <li>
+        <div id="MSearchBox" class="MSearchBoxInactive">
+        <span class="left">
+          <img id="MSearchSelect" src="search/mag_sel.png"
+               onmouseover="return searchBox.OnSearchSelectShow()"
+               onmouseout="return searchBox.OnSearchSelectHide()"
+               alt=""/>
+          <input type="text" id="MSearchField" value="Buscar" accesskey="S"
+               onfocus="searchBox.OnSearchFieldFocus(true)" 
+               onblur="searchBox.OnSearchFieldFocus(false)" 
+               onkeyup="searchBox.OnSearchFieldChange(event)"/>
+          </span><span class="right">
+            <a id="MSearchClose" href="javascript:searchBox.CloseResultsWindow()"><img id="MSearchCloseImg" border="0" src="search/close.png" alt=""/></a>
+          </span>
+        </div>
+      </li>
+    </ul>
+  </div>
+  <div id="navrow2" class="tabs2">
+    <ul class="tablist">
+      <li><a href="files.html"><span>Lista&#160;de&#160;archivos</span></a></li>
+      <li><a href="globals.html"><span>Miembros&#160;de&#160;los&#160;ficheros</span></a></li>
+    </ul>
+  </div>
+<!-- window showing the filter options -->
+<div id="MSearchSelectWindow"
+     onmouseover="return searchBox.OnSearchSelectShow()"
+     onmouseout="return searchBox.OnSearchSelectHide()"
+     onkeydown="return searchBox.OnSearchSelectKey(event)">
+</div>
+
+<!-- iframe showing the search results (closed by default) -->
+<div id="MSearchResultsWindow">
+<iframe src="javascript:void(0)" frameborder="0" 
+        name="MSearchResults" id="MSearchResults">
+</iframe>
+</div>
+
+<div id="nav-path" class="navpath">
+  <ul>
+<li class="navelem"><a class="el" href="dir_3209f93ff5b986328103f124d30ca1db.html">EmotionIOT_Mega</a></li><li class="navelem"><a class="el" href="dir_065b04f50b9d527b8a22ae1f8b2ae8aa.html">lib</a></li><li class="navelem"><a class="el" href="dir_58056ab5d5ce2ff9a793b08ab3d71bdf.html">LectorRFID</a></li>  </ul>
+</div>
+</div><!-- top -->
+<div class="header">
+  <div class="headertitle">
+<div class="title">LectorRFID.h</div>  </div>
+</div><!--header-->
+<div class="contents">
+<div class="fragment"><div class="line"><a name="l00001"></a><span class="lineno">    1</span>&#160;</div><div class="line"><a name="l00008"></a><span class="lineno">    8</span>&#160;<span class="preprocessor">#ifndef LECTORRFID_H</span></div><div class="line"><a name="l00009"></a><span class="lineno">    9</span>&#160;<span class="preprocessor">#define LECTORRFID_H</span></div><div class="line"><a name="l00010"></a><span class="lineno">   10</span>&#160;</div><div class="line"><a name="l00011"></a><span class="lineno">   11</span>&#160;<span class="preprocessor">#include &lt;ArduinoSTL.h&gt;</span></div><div class="line"><a name="l00012"></a><span class="lineno">   12</span>&#160;<span class="preprocessor">#include &lt;sstream&gt;</span></div><div class="line"><a name="l00013"></a><span class="lineno">   13</span>&#160;<span class="preprocessor">#include &lt;iomanip&gt;</span></div><div class="line"><a name="l00014"></a><span class="lineno">   14</span>&#160;<span class="preprocessor">#include &lt;algorithm&gt;</span></div><div class="line"><a name="l00015"></a><span class="lineno">   15</span>&#160;</div><div class="line"><a name="l00016"></a><span class="lineno">   16</span>&#160;<span class="preprocessor">#include &lt;Interaccion.h&gt;</span></div><div class="line"><a name="l00017"></a><span class="lineno">   17</span>&#160;<span class="preprocessor">#include &lt;<a class="code" href="Pantalla_8h.html">Pantalla.h</a>&gt;</span></div><div class="line"><a name="l00018"></a><span class="lineno">   18</span>&#160;</div><div class="line"><a name="l00019"></a><span class="lineno">   19</span>&#160;<span class="keyword">using namespace </span><a class="code" href="namespacestd.html">std</a>;</div><div class="line"><a name="l00020"></a><span class="lineno">   20</span>&#160;</div><div class="line"><a name="l00026"></a><span class="lineno">   26</span>&#160;String intToHex(<span class="keywordtype">int</span> num){</div><div class="line"><a name="l00027"></a><span class="lineno">   27</span>&#160;  stringstream ss;</div><div class="line"><a name="l00028"></a><span class="lineno">   28</span>&#160;</div><div class="line"><a name="l00029"></a><span class="lineno">   29</span>&#160;  ss &lt;&lt; hex &lt;&lt; num;</div><div class="line"><a name="l00030"></a><span class="lineno">   30</span>&#160;  <span class="keywordtype">string</span> res = ss.str();</div><div class="line"><a name="l00031"></a><span class="lineno">   31</span>&#160;  transform(res.begin(), res.end(),res.begin(), ::toupper);</div><div class="line"><a name="l00032"></a><span class="lineno">   32</span>&#160;  <span class="keywordflow">return</span> String(res.c_str());</div><div class="line"><a name="l00033"></a><span class="lineno">   33</span>&#160;}</div><div class="line"><a name="l00034"></a><span class="lineno">   34</span>&#160;</div><div class="line"><a name="l00041"></a><span class="lineno">   41</span>&#160;<span class="keywordtype">void</span> imprimirArray(byte *buffer, byte bufferSize,<a class="code" href="classInteraccion.html">Interaccion</a> &amp; interaccionRFID){</div><div class="line"><a name="l00042"></a><span class="lineno">   42</span>&#160;  String codigo=<span class="stringliteral">&quot;&quot;</span>;</div><div class="line"><a name="l00043"></a><span class="lineno">   43</span>&#160;  String valorAux;</div><div class="line"><a name="l00044"></a><span class="lineno">   44</span>&#160;</div><div class="line"><a name="l00045"></a><span class="lineno">   45</span>&#160;  <a class="code" href="classPantalla.html">Pantalla</a> pantallaAuxiliar;</div><div class="line"><a name="l00046"></a><span class="lineno">   46</span>&#160;</div><div class="line"><a name="l00047"></a><span class="lineno">   47</span>&#160;  <span class="keywordflow">for</span> (byte i = 0; i &lt; bufferSize; i++){</div><div class="line"><a name="l00048"></a><span class="lineno">   48</span>&#160;    <span class="keywordflow">if</span>(i!=0){</div><div class="line"><a name="l00049"></a><span class="lineno">   49</span>&#160;      codigo+=buffer[i] &lt; 0x10 ? <span class="stringliteral">&quot;0&quot;</span> : <span class="stringliteral">&quot;:&quot;</span>;</div><div class="line"><a name="l00050"></a><span class="lineno">   50</span>&#160;    }</div><div class="line"><a name="l00051"></a><span class="lineno">   51</span>&#160;    valorAux=buffer[i];</div><div class="line"><a name="l00052"></a><span class="lineno">   52</span>&#160;    codigo+=intToHex(valorAux.toInt());</div><div class="line"><a name="l00053"></a><span class="lineno">   53</span>&#160;  }</div><div class="line"><a name="l00054"></a><span class="lineno">   54</span>&#160;  pantallaAuxiliar=interaccionRFID.<a class="code" href="classInteraccion.html#a276d1a10b7df6037d55a4d6819138bc1">getPantalla</a>();</div><div class="line"><a name="l00055"></a><span class="lineno">   55</span>&#160;  pantallaAuxiliar.<a class="code" href="classPantalla.html#ab598291d3cc6a8361759d5f9afff4691">setLinea</a>(codigo,4,2);</div><div class="line"><a name="l00056"></a><span class="lineno">   56</span>&#160;  interaccionRFID.<a class="code" href="classInteraccion.html#ad6db2ac6c70998f627af94fff1733372">setPantalla</a>(pantallaAuxiliar);</div><div class="line"><a name="l00057"></a><span class="lineno">   57</span>&#160;  codigo=<span class="stringliteral">&quot;Tarjeta;&quot;</span> + codigo + <span class="stringliteral">&quot;;&quot;</span>;</div><div class="line"><a name="l00058"></a><span class="lineno">   58</span>&#160;  <a class="code" href="namespaceSerial.html">Serial</a>.println(codigo);</div><div class="line"><a name="l00059"></a><span class="lineno">   59</span>&#160;}</div><div class="line"><a name="l00060"></a><span class="lineno">   60</span>&#160;</div><div class="line"><a name="l00066"></a><span class="lineno">   66</span>&#160;<span class="keywordtype">bool</span> deteccionTarjeta(<a class="code" href="classInteraccion.html">Interaccion</a> &amp; interaccionRFID){</div><div class="line"><a name="l00067"></a><span class="lineno">   67</span>&#160;  <span class="keywordflow">if</span> (mfrc522.PICC_IsNewCardPresent()){</div><div class="line"><a name="l00068"></a><span class="lineno">   68</span>&#160;    <span class="keywordflow">if</span> (mfrc522.PICC_ReadCardSerial()){</div><div class="line"><a name="l00069"></a><span class="lineno">   69</span>&#160;      imprimirArray(mfrc522.uid.uidByte, mfrc522.uid.size, interaccionRFID);</div><div class="line"><a name="l00070"></a><span class="lineno">   70</span>&#160;      mfrc522.PICC_HaltA();</div><div class="line"><a name="l00071"></a><span class="lineno">   71</span>&#160;      <span class="keywordflow">return</span> <span class="keyword">true</span>;</div><div class="line"><a name="l00072"></a><span class="lineno">   72</span>&#160;    }</div><div class="line"><a name="l00073"></a><span class="lineno">   73</span>&#160;  }</div><div class="line"><a name="l00074"></a><span class="lineno">   74</span>&#160;  <span class="keywordflow">return</span> <span class="keyword">false</span>;</div><div class="line"><a name="l00075"></a><span class="lineno">   75</span>&#160;}</div><div class="line"><a name="l00076"></a><span class="lineno">   76</span>&#160;</div><div class="line"><a name="l00077"></a><span class="lineno">   77</span>&#160;<span class="preprocessor">#endif</span></div><div class="ttc" id="classInteraccion_html_a276d1a10b7df6037d55a4d6819138bc1"><div class="ttname"><a href="classInteraccion.html#a276d1a10b7df6037d55a4d6819138bc1">Interaccion::getPantalla</a></div><div class="ttdeci">Pantalla getPantalla()</div><div class="ttdoc">Observador de variable pantalla_. </div><div class="ttdef"><b>Definition:</b> Interaccion.h:169</div></div>
+<div class="ttc" id="namespacestd_html"><div class="ttname"><a href="namespacestd.html">std</a></div></div>
+<div class="ttc" id="classPantalla_html_ab598291d3cc6a8361759d5f9afff4691"><div class="ttname"><a href="classPantalla.html#ab598291d3cc6a8361759d5f9afff4691">Pantalla::setLinea</a></div><div class="ttdeci">void setLinea(String texto, int margen, int fila)</div><div class="ttdoc">Agrega una linea al vector lineas_. </div><div class="ttdef"><b>Definition:</b> Pantalla.h:56</div></div>
+<div class="ttc" id="classInteraccion_html"><div class="ttname"><a href="classInteraccion.html">Interaccion</a></div><div class="ttdef"><b>Definition:</b> Interaccion.h:23</div></div>
+<div class="ttc" id="Pantalla_8h_html"><div class="ttname"><a href="Pantalla_8h.html">Pantalla.h</a></div><div class="ttdoc">Definición de clase Pantalla. </div></div>
+<div class="ttc" id="namespaceSerial_html"><div class="ttname"><a href="namespaceSerial.html">Serial</a></div></div>
+<div class="ttc" id="classPantalla_html"><div class="ttname"><a href="classPantalla.html">Pantalla</a></div><div class="ttdef"><b>Definition:</b> Pantalla.h:20</div></div>
+<div class="ttc" id="classInteraccion_html_ad6db2ac6c70998f627af94fff1733372"><div class="ttname"><a href="classInteraccion.html#ad6db2ac6c70998f627af94fff1733372">Interaccion::setPantalla</a></div><div class="ttdeci">void setPantalla(Pantalla &amp;pantalla)</div><div class="ttdoc">Inicializar pantalla. </div><div class="ttdef"><b>Definition:</b> Interaccion.h:118</div></div>
+</div><!-- fragment --></div><!-- contents -->
+<!-- start footer part -->
+<hr class="footer"/><address class="footer"><small>
+Generado por &#160;<a href="http://www.doxygen.org/index.html">
+<img class="footer" src="doxygen.png" alt="doxygen"/>
+</a> 1.8.11
+</small></address>
+</body>
+</html>

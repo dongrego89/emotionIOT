@@ -1,3 +1,10 @@
+"""!
+@package Audio.py
+@brief Archivo de funciones para el uso de las librerías de audio
+@author Gregorio Corpas Prieto
+@date 13/03/2019
+"""
+
 from appEmotionIOT.GoogleTTS import *
 
 import pygame

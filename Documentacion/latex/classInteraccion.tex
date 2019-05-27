@@ -1,0 +1,526 @@
+\hypertarget{classInteraccion}{}\section{Referencia de la Clase Interaccion}
+\label{classInteraccion}\index{Interaccion@{Interaccion}}
+
+
+{\ttfamily \#include $<$Interaccion.\+h$>$}
+
+
+
+Diagrama de herencias de Interaccion
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=145pt]{classInteraccion__inherit__graph}
+\end{center}
+\end{figure}
+\subsection*{Métodos públicos}
+\begin{DoxyCompactItemize}
+\item 
+\hyperlink{classInteraccion_a8a59812401c3a6dbe06b424e537be173}{Interaccion} ()
+\begin{DoxyCompactList}\small\item\em Constructor vacío de clase. \end{DoxyCompactList}\item 
+\hyperlink{classInteraccion_abe22804965bc9c371ed66ccab260e001}{Interaccion} (int sonido, vector$<$ int $>$ pin\+Led, int iluminacion, vector$<$ int $>$ pin\+Vibracion, int \hyperlink{Vibracion_8h_adc29bdc2016021e3f44d420abd54a301}{vibracion}, int retardo, \hyperlink{classPantalla}{Pantalla} pantalla)
+\begin{DoxyCompactList}\small\item\em Constructor de clase. \end{DoxyCompactList}\item 
+\hyperlink{classInteraccion_a5e5717c198985a4b8402b2111c80d78d}{Interaccion} (String sonido, vector$<$ String $>$ pin\+Led, String iluminacion, vector$<$ String $>$ pin\+Vibracion, String \hyperlink{Vibracion_8h_adc29bdc2016021e3f44d420abd54a301}{vibracion}, String retardo, \hyperlink{classPantalla}{Pantalla} pantalla)
+\begin{DoxyCompactList}\small\item\em Constructor de clase. \end{DoxyCompactList}\item 
+virtual void \hyperlink{classInteraccion_a2e36a98f93c4df8f5ddada4197ef0323}{set\+Valores} (int sonido, vector$<$ int $>$ pin\+Led, int iluminacion, vector$<$ int $>$ pin\+Vibracion, int \hyperlink{Vibracion_8h_adc29bdc2016021e3f44d420abd54a301}{vibracion}, int retardo, \hyperlink{classPantalla}{Pantalla} pantalla)
+\begin{DoxyCompactList}\small\item\em Inicializador de valores. \end{DoxyCompactList}\item 
+virtual void \hyperlink{classInteraccion_ac9f35e8ceda5eb33fc1bed64c819ae5f}{set\+Valores} (String sonido, vector$<$ String $>$ pin\+Led, String iluminacion, vector$<$ String $>$ pin\+Vibracion, String \hyperlink{Vibracion_8h_adc29bdc2016021e3f44d420abd54a301}{vibracion}, String retardo, \hyperlink{classPantalla}{Pantalla} pantalla)
+\begin{DoxyCompactList}\small\item\em Inicializador de valores. \end{DoxyCompactList}\item 
+void \hyperlink{classInteraccion_ad6db2ac6c70998f627af94fff1733372}{set\+Pantalla} (\hyperlink{classPantalla}{Pantalla} \&pantalla)
+\begin{DoxyCompactList}\small\item\em Inicializar pantalla. \end{DoxyCompactList}\item 
+int \hyperlink{classInteraccion_a2dea5d3d96252712556e7d8ca5609544}{get\+Sonido} ()
+\begin{DoxyCompactList}\small\item\em Observador de variable sonido\+\_\+. \end{DoxyCompactList}\item 
+vector$<$ int $>$ \hyperlink{classInteraccion_a048731e6be4184f31ecd21cd443f36dc}{get\+Pin\+Led} ()
+\begin{DoxyCompactList}\small\item\em Observador del vector pin\+Led\+\_\+. \end{DoxyCompactList}\item 
+int \hyperlink{classInteraccion_a1f36975ed2a6163b6ae16f56edcc4285}{get\+Iluminacion} ()
+\begin{DoxyCompactList}\small\item\em Observador de variable iluminacion\+\_\+. \end{DoxyCompactList}\item 
+vector$<$ int $>$ \hyperlink{classInteraccion_a198693ea80bcfaaf34e68b5f67e989f5}{get\+Pin\+Vibracion} ()
+\begin{DoxyCompactList}\small\item\em Observador del vector pin\+Vibracion\+\_\+. \end{DoxyCompactList}\item 
+int \hyperlink{classInteraccion_acd8df89de11bdfbc666361442be61074}{get\+Vibracion} ()
+\begin{DoxyCompactList}\small\item\em Observador de variable vibracion\+\_\+. \end{DoxyCompactList}\item 
+int \hyperlink{classInteraccion_ac4eedd10ae26a85e19c421d3f8024996}{get\+Retardo} ()
+\begin{DoxyCompactList}\small\item\em Observador de variable retardo\+\_\+. \end{DoxyCompactList}\item 
+\hyperlink{classPantalla}{Pantalla} \hyperlink{classInteraccion_a276d1a10b7df6037d55a4d6819138bc1}{get\+Pantalla} ()
+\begin{DoxyCompactList}\small\item\em Observador de variable pantalla\+\_\+. \end{DoxyCompactList}\item 
+void \hyperlink{classInteraccion_a201bf7c2fc701649fb636f2440f8b706}{reproducir\+Interaccion} ()\hypertarget{classInteraccion_a201bf7c2fc701649fb636f2440f8b706}{}\label{classInteraccion_a201bf7c2fc701649fb636f2440f8b706}
+
+\begin{DoxyCompactList}\small\item\em Reproduce las interacciones multimedia de sonido e iluminación. \end{DoxyCompactList}\item 
+void \hyperlink{classInteraccion_a46fe9723017b35ed447e377aef2a58e8}{reproducir\+Iluminacion} ()\hypertarget{classInteraccion_a46fe9723017b35ed447e377aef2a58e8}{}\label{classInteraccion_a46fe9723017b35ed447e377aef2a58e8}
+
+\begin{DoxyCompactList}\small\item\em Reproduce la interacción de iluminación. \end{DoxyCompactList}\item 
+void \hyperlink{classInteraccion_a2f70fe1701d309d606a3b86787e332cc}{reproducir\+Sonido} ()\hypertarget{classInteraccion_a2f70fe1701d309d606a3b86787e332cc}{}\label{classInteraccion_a2f70fe1701d309d606a3b86787e332cc}
+
+\begin{DoxyCompactList}\small\item\em Reproduce la interacción de sonido. \end{DoxyCompactList}\item 
+void \hyperlink{classInteraccion_a9be00864ffbe9dcc95d6d8153b6bed1e}{reproducir\+Vibracion} ()\hypertarget{classInteraccion_a9be00864ffbe9dcc95d6d8153b6bed1e}{}\label{classInteraccion_a9be00864ffbe9dcc95d6d8153b6bed1e}
+
+\begin{DoxyCompactList}\small\item\em Reproduce la interacción de vibracion. \end{DoxyCompactList}\item 
+\hyperlink{classInteraccion_a8a59812401c3a6dbe06b424e537be173}{Interaccion} ()
+\begin{DoxyCompactList}\small\item\em Constructor vacío de clase. \end{DoxyCompactList}\item 
+\hyperlink{classInteraccion_a2019332345e3420911cc156395a47f58}{Interaccion} (int sonido, vector$<$ int $>$ pin\+Led, int iluminacion, int retardo)
+\begin{DoxyCompactList}\small\item\em Constructor de clase. \end{DoxyCompactList}\item 
+\hyperlink{classInteraccion_aa1f774cfdca0e31205f370a5a3c0bfb4}{Interaccion} (String sonido, vector$<$ String $>$ pin\+Led, String iluminacion, String retardo)
+\begin{DoxyCompactList}\small\item\em Constructor de clase. \end{DoxyCompactList}\item 
+virtual void \hyperlink{classInteraccion_a468b7652bf7e2a4f41bda41f6b0f8481}{set\+Valores} (int sonido, vector$<$ int $>$ pin\+Led, int iluminacion, int retardo)
+\begin{DoxyCompactList}\small\item\em Inicializador de valores. \end{DoxyCompactList}\item 
+virtual void \hyperlink{classInteraccion_a6727e1e312fd6c8d2eef72c56015115d}{set\+Valores} (String sonido, vector$<$ String $>$ pin\+Led, String iluminacion, String retardo)
+\begin{DoxyCompactList}\small\item\em Inicializador de valores. \end{DoxyCompactList}\item 
+int \hyperlink{classInteraccion_a2dea5d3d96252712556e7d8ca5609544}{get\+Sonido} ()
+\begin{DoxyCompactList}\small\item\em Observador de variable sonido\+\_\+. \end{DoxyCompactList}\item 
+vector$<$ int $>$ \hyperlink{classInteraccion_a048731e6be4184f31ecd21cd443f36dc}{get\+Pin\+Led} ()
+\begin{DoxyCompactList}\small\item\em Observador del vector pin\+Led\+\_\+. \end{DoxyCompactList}\item 
+int \hyperlink{classInteraccion_a1f36975ed2a6163b6ae16f56edcc4285}{get\+Iluminacion} ()
+\begin{DoxyCompactList}\small\item\em Observador de variable iluminacion\+\_\+. \end{DoxyCompactList}\item 
+int \hyperlink{classInteraccion_ac4eedd10ae26a85e19c421d3f8024996}{get\+Retardo} ()
+\begin{DoxyCompactList}\small\item\em Observador de variable retardo\+\_\+. \end{DoxyCompactList}\item 
+void \hyperlink{classInteraccion_a201bf7c2fc701649fb636f2440f8b706}{reproducir\+Interaccion} ()\hypertarget{classInteraccion_a201bf7c2fc701649fb636f2440f8b706}{}\label{classInteraccion_a201bf7c2fc701649fb636f2440f8b706}
+
+\begin{DoxyCompactList}\small\item\em Reproduce las interacciones multimedia de sonido e iluminación. \end{DoxyCompactList}\item 
+void \hyperlink{classInteraccion_a46fe9723017b35ed447e377aef2a58e8}{reproducir\+Iluminacion} ()\hypertarget{classInteraccion_a46fe9723017b35ed447e377aef2a58e8}{}\label{classInteraccion_a46fe9723017b35ed447e377aef2a58e8}
+
+\begin{DoxyCompactList}\small\item\em Reproduce la interacción de iluminación. \end{DoxyCompactList}\item 
+void \hyperlink{classInteraccion_a2f70fe1701d309d606a3b86787e332cc}{reproducir\+Sonido} ()\hypertarget{classInteraccion_a2f70fe1701d309d606a3b86787e332cc}{}\label{classInteraccion_a2f70fe1701d309d606a3b86787e332cc}
+
+\begin{DoxyCompactList}\small\item\em Reproduce la interacción de sonido. \end{DoxyCompactList}\end{DoxyCompactItemize}
+
+
+\subsection{Descripción detallada}
+Instancia un objeto \hyperlink{classInteraccion}{Interaccion} con las propiedades y características asociadas al mismo 
+
+\subsection{Documentación del constructor y destructor}
+\index{Interaccion@{Interaccion}!Interaccion@{Interaccion}}
+\index{Interaccion@{Interaccion}!Interaccion@{Interaccion}}
+\subsubsection[{\texorpdfstring{Interaccion()}{Interaccion()}}]{\setlength{\rightskip}{0pt plus 5cm}Interaccion\+::\+Interaccion (
+\begin{DoxyParamCaption}
+{}
+\end{DoxyParamCaption}
+)\hspace{0.3cm}{\ttfamily [inline]}}\hypertarget{classInteraccion_a8a59812401c3a6dbe06b424e537be173}{}\label{classInteraccion_a8a59812401c3a6dbe06b424e537be173}
+
+
+Constructor vacío de clase. 
+
+\hyperlink{classPantalla}{Pantalla} asociada al boton Métodos Constructores \index{Interaccion@{Interaccion}!Interaccion@{Interaccion}}
+\index{Interaccion@{Interaccion}!Interaccion@{Interaccion}}
+\subsubsection[{\texorpdfstring{Interaccion(int sonido, vector$<$ int $>$ pin\+Led, int iluminacion, vector$<$ int $>$ pin\+Vibracion, int vibracion, int retardo, Pantalla pantalla)}{Interaccion(int sonido, vector< int > pinLed, int iluminacion, vector< int > pinVibracion, int vibracion, int retardo, Pantalla pantalla)}}]{\setlength{\rightskip}{0pt plus 5cm}Interaccion\+::\+Interaccion (
+\begin{DoxyParamCaption}
+\item[{int}]{sonido, }
+\item[{vector$<$ int $>$}]{pin\+Led, }
+\item[{int}]{iluminacion, }
+\item[{vector$<$ int $>$}]{pin\+Vibracion, }
+\item[{int}]{vibracion, }
+\item[{int}]{retardo, }
+\item[{{\bf Pantalla}}]{pantalla}
+\end{DoxyParamCaption}
+)\hspace{0.3cm}{\ttfamily [inline]}}\hypertarget{classInteraccion_abe22804965bc9c371ed66ccab260e001}{}\label{classInteraccion_abe22804965bc9c371ed66ccab260e001}
+
+
+Constructor de clase. 
+
+
+\begin{DoxyParams}{Parámetros}
+{\em sonido} & Sonido a reproducir \\
+\hline
+{\em pin\+Led} & Vector de pines de salida para efecto luminoso \\
+\hline
+{\em iluminacion} & Efecto luminoso \\
+\hline
+{\em pin\+Vibracion} & Vector de pines de salida para efecto de vibracion \\
+\hline
+{\em vibracion} & Efecto de vibracion \\
+\hline
+{\em retardo} & Tiempo que se mostrará la pantalla \\
+\hline
+{\em pantalla} & \hyperlink{classPantalla}{Pantalla} asociada a la interacción \\
+\hline
+\end{DoxyParams}
+\index{Interaccion@{Interaccion}!Interaccion@{Interaccion}}
+\index{Interaccion@{Interaccion}!Interaccion@{Interaccion}}
+\subsubsection[{\texorpdfstring{Interaccion(\+String sonido, vector$<$ String $>$ pin\+Led, String iluminacion, vector$<$ String $>$ pin\+Vibracion, String vibracion, String retardo, Pantalla pantalla)}{Interaccion(String sonido, vector< String > pinLed, String iluminacion, vector< String > pinVibracion, String vibracion, String retardo, Pantalla pantalla)}}]{\setlength{\rightskip}{0pt plus 5cm}Interaccion\+::\+Interaccion (
+\begin{DoxyParamCaption}
+\item[{String}]{sonido, }
+\item[{vector$<$ String $>$}]{pin\+Led, }
+\item[{String}]{iluminacion, }
+\item[{vector$<$ String $>$}]{pin\+Vibracion, }
+\item[{String}]{vibracion, }
+\item[{String}]{retardo, }
+\item[{{\bf Pantalla}}]{pantalla}
+\end{DoxyParamCaption}
+)\hspace{0.3cm}{\ttfamily [inline]}}\hypertarget{classInteraccion_a5e5717c198985a4b8402b2111c80d78d}{}\label{classInteraccion_a5e5717c198985a4b8402b2111c80d78d}
+
+
+Constructor de clase. 
+
+
+\begin{DoxyParams}{Parámetros}
+{\em sonido} & Sonido a reproducir \\
+\hline
+{\em pin\+Led} & Vector de pines de salida para efecto luminoso \\
+\hline
+{\em iluminacion} & Efecto luminoso \\
+\hline
+{\em pin\+Vibracion} & Vector de pines de salida para efecto de vibracion \\
+\hline
+{\em vibracion} & Efecto de vibracion \\
+\hline
+{\em retardo} & Tiempo que se mostrará la pantalla \\
+\hline
+{\em pantalla} & \hyperlink{classPantalla}{Pantalla} asociada a la interacción \\
+\hline
+\end{DoxyParams}
+\index{Interaccion@{Interaccion}!Interaccion@{Interaccion}}
+\index{Interaccion@{Interaccion}!Interaccion@{Interaccion}}
+\subsubsection[{\texorpdfstring{Interaccion()}{Interaccion()}}]{\setlength{\rightskip}{0pt plus 5cm}Interaccion\+::\+Interaccion (
+\begin{DoxyParamCaption}
+{}
+\end{DoxyParamCaption}
+)\hspace{0.3cm}{\ttfamily [inline]}}\hypertarget{classInteraccion_a8a59812401c3a6dbe06b424e537be173}{}\label{classInteraccion_a8a59812401c3a6dbe06b424e537be173}
+
+
+Constructor vacío de clase. 
+
+Pausa tras mostrar la pantalla asociada al botón Métodos Constructores \index{Interaccion@{Interaccion}!Interaccion@{Interaccion}}
+\index{Interaccion@{Interaccion}!Interaccion@{Interaccion}}
+\subsubsection[{\texorpdfstring{Interaccion(int sonido, vector$<$ int $>$ pin\+Led, int iluminacion, int retardo)}{Interaccion(int sonido, vector< int > pinLed, int iluminacion, int retardo)}}]{\setlength{\rightskip}{0pt plus 5cm}Interaccion\+::\+Interaccion (
+\begin{DoxyParamCaption}
+\item[{int}]{sonido, }
+\item[{vector$<$ int $>$}]{pin\+Led, }
+\item[{int}]{iluminacion, }
+\item[{int}]{retardo}
+\end{DoxyParamCaption}
+)\hspace{0.3cm}{\ttfamily [inline]}}\hypertarget{classInteraccion_a2019332345e3420911cc156395a47f58}{}\label{classInteraccion_a2019332345e3420911cc156395a47f58}
+
+
+Constructor de clase. 
+
+
+\begin{DoxyParams}{Parámetros}
+{\em sonido} & Sonido a reproducir \\
+\hline
+{\em pin\+Led} & Vector de pines de salida para efecto luminoso \\
+\hline
+{\em iluminacion} & Efecto luminoso \\
+\hline
+{\em retardo} & Tiempo que se mostrará la pantalla \\
+\hline
+\end{DoxyParams}
+\index{Interaccion@{Interaccion}!Interaccion@{Interaccion}}
+\index{Interaccion@{Interaccion}!Interaccion@{Interaccion}}
+\subsubsection[{\texorpdfstring{Interaccion(\+String sonido, vector$<$ String $>$ pin\+Led, String iluminacion, String retardo)}{Interaccion(String sonido, vector< String > pinLed, String iluminacion, String retardo)}}]{\setlength{\rightskip}{0pt plus 5cm}Interaccion\+::\+Interaccion (
+\begin{DoxyParamCaption}
+\item[{String}]{sonido, }
+\item[{vector$<$ String $>$}]{pin\+Led, }
+\item[{String}]{iluminacion, }
+\item[{String}]{retardo}
+\end{DoxyParamCaption}
+)\hspace{0.3cm}{\ttfamily [inline]}}\hypertarget{classInteraccion_aa1f774cfdca0e31205f370a5a3c0bfb4}{}\label{classInteraccion_aa1f774cfdca0e31205f370a5a3c0bfb4}
+
+
+Constructor de clase. 
+
+
+\begin{DoxyParams}{Parámetros}
+{\em sonido} & Sonido a reproducir \\
+\hline
+{\em pin\+Led} & Vector de pines de salida para efecto luminoso \\
+\hline
+{\em iluminacion} & Efecto luminoso \\
+\hline
+{\em retardo} & Tiempo que se mostrará la pantalla \\
+\hline
+\end{DoxyParams}
+
+
+\subsection{Documentación de las funciones miembro}
+\index{Interaccion@{Interaccion}!get\+Iluminacion@{get\+Iluminacion}}
+\index{get\+Iluminacion@{get\+Iluminacion}!Interaccion@{Interaccion}}
+\subsubsection[{\texorpdfstring{get\+Iluminacion()}{getIluminacion()}}]{\setlength{\rightskip}{0pt plus 5cm}int Interaccion\+::get\+Iluminacion (
+\begin{DoxyParamCaption}
+{}
+\end{DoxyParamCaption}
+)\hspace{0.3cm}{\ttfamily [inline]}}\hypertarget{classInteraccion_a1f36975ed2a6163b6ae16f56edcc4285}{}\label{classInteraccion_a1f36975ed2a6163b6ae16f56edcc4285}
+
+
+Observador de variable iluminacion\+\_\+. 
+
+\begin{DoxyReturn}{Devuelve}
+Contenido de la variable iluminacion\+\_\+ 
+\end{DoxyReturn}
+\index{Interaccion@{Interaccion}!get\+Iluminacion@{get\+Iluminacion}}
+\index{get\+Iluminacion@{get\+Iluminacion}!Interaccion@{Interaccion}}
+\subsubsection[{\texorpdfstring{get\+Iluminacion()}{getIluminacion()}}]{\setlength{\rightskip}{0pt plus 5cm}int Interaccion\+::get\+Iluminacion (
+\begin{DoxyParamCaption}
+{}
+\end{DoxyParamCaption}
+)\hspace{0.3cm}{\ttfamily [inline]}}\hypertarget{classInteraccion_a1f36975ed2a6163b6ae16f56edcc4285}{}\label{classInteraccion_a1f36975ed2a6163b6ae16f56edcc4285}
+
+
+Observador de variable iluminacion\+\_\+. 
+
+\begin{DoxyReturn}{Devuelve}
+Contenido de la variable iluminacion\+\_\+ 
+\end{DoxyReturn}
+\index{Interaccion@{Interaccion}!get\+Pantalla@{get\+Pantalla}}
+\index{get\+Pantalla@{get\+Pantalla}!Interaccion@{Interaccion}}
+\subsubsection[{\texorpdfstring{get\+Pantalla()}{getPantalla()}}]{\setlength{\rightskip}{0pt plus 5cm}{\bf Pantalla} Interaccion\+::get\+Pantalla (
+\begin{DoxyParamCaption}
+{}
+\end{DoxyParamCaption}
+)\hspace{0.3cm}{\ttfamily [inline]}}\hypertarget{classInteraccion_a276d1a10b7df6037d55a4d6819138bc1}{}\label{classInteraccion_a276d1a10b7df6037d55a4d6819138bc1}
+
+
+Observador de variable pantalla\+\_\+. 
+
+\begin{DoxyReturn}{Devuelve}
+Contenido de la variable pantalla\+\_\+ 
+\end{DoxyReturn}
+\index{Interaccion@{Interaccion}!get\+Pin\+Led@{get\+Pin\+Led}}
+\index{get\+Pin\+Led@{get\+Pin\+Led}!Interaccion@{Interaccion}}
+\subsubsection[{\texorpdfstring{get\+Pin\+Led()}{getPinLed()}}]{\setlength{\rightskip}{0pt plus 5cm}vector$<$int$>$ Interaccion\+::get\+Pin\+Led (
+\begin{DoxyParamCaption}
+{}
+\end{DoxyParamCaption}
+)\hspace{0.3cm}{\ttfamily [inline]}}\hypertarget{classInteraccion_a048731e6be4184f31ecd21cd443f36dc}{}\label{classInteraccion_a048731e6be4184f31ecd21cd443f36dc}
+
+
+Observador del vector pin\+Led\+\_\+. 
+
+\begin{DoxyReturn}{Devuelve}
+Contenido del vector pin\+Led\+\_\+ 
+\end{DoxyReturn}
+\index{Interaccion@{Interaccion}!get\+Pin\+Led@{get\+Pin\+Led}}
+\index{get\+Pin\+Led@{get\+Pin\+Led}!Interaccion@{Interaccion}}
+\subsubsection[{\texorpdfstring{get\+Pin\+Led()}{getPinLed()}}]{\setlength{\rightskip}{0pt plus 5cm}vector$<$int$>$ Interaccion\+::get\+Pin\+Led (
+\begin{DoxyParamCaption}
+{}
+\end{DoxyParamCaption}
+)\hspace{0.3cm}{\ttfamily [inline]}}\hypertarget{classInteraccion_a048731e6be4184f31ecd21cd443f36dc}{}\label{classInteraccion_a048731e6be4184f31ecd21cd443f36dc}
+
+
+Observador del vector pin\+Led\+\_\+. 
+
+\begin{DoxyReturn}{Devuelve}
+Contenido del vector pin\+Led\+\_\+ 
+\end{DoxyReturn}
+\index{Interaccion@{Interaccion}!get\+Pin\+Vibracion@{get\+Pin\+Vibracion}}
+\index{get\+Pin\+Vibracion@{get\+Pin\+Vibracion}!Interaccion@{Interaccion}}
+\subsubsection[{\texorpdfstring{get\+Pin\+Vibracion()}{getPinVibracion()}}]{\setlength{\rightskip}{0pt plus 5cm}vector$<$int$>$ Interaccion\+::get\+Pin\+Vibracion (
+\begin{DoxyParamCaption}
+{}
+\end{DoxyParamCaption}
+)\hspace{0.3cm}{\ttfamily [inline]}}\hypertarget{classInteraccion_a198693ea80bcfaaf34e68b5f67e989f5}{}\label{classInteraccion_a198693ea80bcfaaf34e68b5f67e989f5}
+
+
+Observador del vector pin\+Vibracion\+\_\+. 
+
+\begin{DoxyReturn}{Devuelve}
+Contenido del vector pin\+Vibracion\+\_\+ 
+\end{DoxyReturn}
+\index{Interaccion@{Interaccion}!get\+Retardo@{get\+Retardo}}
+\index{get\+Retardo@{get\+Retardo}!Interaccion@{Interaccion}}
+\subsubsection[{\texorpdfstring{get\+Retardo()}{getRetardo()}}]{\setlength{\rightskip}{0pt plus 5cm}int Interaccion\+::get\+Retardo (
+\begin{DoxyParamCaption}
+{}
+\end{DoxyParamCaption}
+)\hspace{0.3cm}{\ttfamily [inline]}}\hypertarget{classInteraccion_ac4eedd10ae26a85e19c421d3f8024996}{}\label{classInteraccion_ac4eedd10ae26a85e19c421d3f8024996}
+
+
+Observador de variable retardo\+\_\+. 
+
+\begin{DoxyReturn}{Devuelve}
+Contenido de la variable retardo\+\_\+ 
+\end{DoxyReturn}
+\index{Interaccion@{Interaccion}!get\+Retardo@{get\+Retardo}}
+\index{get\+Retardo@{get\+Retardo}!Interaccion@{Interaccion}}
+\subsubsection[{\texorpdfstring{get\+Retardo()}{getRetardo()}}]{\setlength{\rightskip}{0pt plus 5cm}int Interaccion\+::get\+Retardo (
+\begin{DoxyParamCaption}
+{}
+\end{DoxyParamCaption}
+)\hspace{0.3cm}{\ttfamily [inline]}}\hypertarget{classInteraccion_ac4eedd10ae26a85e19c421d3f8024996}{}\label{classInteraccion_ac4eedd10ae26a85e19c421d3f8024996}
+
+
+Observador de variable retardo\+\_\+. 
+
+\begin{DoxyReturn}{Devuelve}
+Contenido de la variable retardo\+\_\+ 
+\end{DoxyReturn}
+\index{Interaccion@{Interaccion}!get\+Sonido@{get\+Sonido}}
+\index{get\+Sonido@{get\+Sonido}!Interaccion@{Interaccion}}
+\subsubsection[{\texorpdfstring{get\+Sonido()}{getSonido()}}]{\setlength{\rightskip}{0pt plus 5cm}int Interaccion\+::get\+Sonido (
+\begin{DoxyParamCaption}
+{}
+\end{DoxyParamCaption}
+)\hspace{0.3cm}{\ttfamily [inline]}}\hypertarget{classInteraccion_a2dea5d3d96252712556e7d8ca5609544}{}\label{classInteraccion_a2dea5d3d96252712556e7d8ca5609544}
+
+
+Observador de variable sonido\+\_\+. 
+
+Métodos Observadores \begin{DoxyReturn}{Devuelve}
+Contenido de la variable sonido\+\_\+ 
+\end{DoxyReturn}
+\index{Interaccion@{Interaccion}!get\+Sonido@{get\+Sonido}}
+\index{get\+Sonido@{get\+Sonido}!Interaccion@{Interaccion}}
+\subsubsection[{\texorpdfstring{get\+Sonido()}{getSonido()}}]{\setlength{\rightskip}{0pt plus 5cm}int Interaccion\+::get\+Sonido (
+\begin{DoxyParamCaption}
+{}
+\end{DoxyParamCaption}
+)\hspace{0.3cm}{\ttfamily [inline]}}\hypertarget{classInteraccion_a2dea5d3d96252712556e7d8ca5609544}{}\label{classInteraccion_a2dea5d3d96252712556e7d8ca5609544}
+
+
+Observador de variable sonido\+\_\+. 
+
+Métodos Observadores \begin{DoxyReturn}{Devuelve}
+Contenido de la variable sonido\+\_\+ 
+\end{DoxyReturn}
+\index{Interaccion@{Interaccion}!get\+Vibracion@{get\+Vibracion}}
+\index{get\+Vibracion@{get\+Vibracion}!Interaccion@{Interaccion}}
+\subsubsection[{\texorpdfstring{get\+Vibracion()}{getVibracion()}}]{\setlength{\rightskip}{0pt plus 5cm}int Interaccion\+::get\+Vibracion (
+\begin{DoxyParamCaption}
+{}
+\end{DoxyParamCaption}
+)\hspace{0.3cm}{\ttfamily [inline]}}\hypertarget{classInteraccion_acd8df89de11bdfbc666361442be61074}{}\label{classInteraccion_acd8df89de11bdfbc666361442be61074}
+
+
+Observador de variable vibracion\+\_\+. 
+
+\begin{DoxyReturn}{Devuelve}
+Contenido de la variable vibracion\+\_\+ 
+\end{DoxyReturn}
+\index{Interaccion@{Interaccion}!set\+Pantalla@{set\+Pantalla}}
+\index{set\+Pantalla@{set\+Pantalla}!Interaccion@{Interaccion}}
+\subsubsection[{\texorpdfstring{set\+Pantalla(\+Pantalla \&pantalla)}{setPantalla(Pantalla &pantalla)}}]{\setlength{\rightskip}{0pt plus 5cm}void Interaccion\+::set\+Pantalla (
+\begin{DoxyParamCaption}
+\item[{{\bf Pantalla} \&}]{pantalla}
+\end{DoxyParamCaption}
+)\hspace{0.3cm}{\ttfamily [inline]}}\hypertarget{classInteraccion_ad6db2ac6c70998f627af94fff1733372}{}\label{classInteraccion_ad6db2ac6c70998f627af94fff1733372}
+
+
+Inicializar pantalla. 
+
+
+\begin{DoxyParams}{Parámetros}
+{\em pantalla} & Objeto pantalla \\
+\hline
+\end{DoxyParams}
+\index{Interaccion@{Interaccion}!set\+Valores@{set\+Valores}}
+\index{set\+Valores@{set\+Valores}!Interaccion@{Interaccion}}
+\subsubsection[{\texorpdfstring{set\+Valores(int sonido, vector$<$ int $>$ pin\+Led, int iluminacion, int retardo)}{setValores(int sonido, vector< int > pinLed, int iluminacion, int retardo)}}]{\setlength{\rightskip}{0pt plus 5cm}virtual void Interaccion\+::set\+Valores (
+\begin{DoxyParamCaption}
+\item[{int}]{sonido, }
+\item[{vector$<$ int $>$}]{pin\+Led, }
+\item[{int}]{iluminacion, }
+\item[{int}]{retardo}
+\end{DoxyParamCaption}
+)\hspace{0.3cm}{\ttfamily [inline]}, {\ttfamily [virtual]}}\hypertarget{classInteraccion_a468b7652bf7e2a4f41bda41f6b0f8481}{}\label{classInteraccion_a468b7652bf7e2a4f41bda41f6b0f8481}
+
+
+Inicializador de valores. 
+
+Métodos Inicializadores 
+\begin{DoxyParams}{Parámetros}
+{\em sonido} & Sonido a reproducir \\
+\hline
+{\em pin\+Led} & Vector de pines de salida para efecto luminoso \\
+\hline
+{\em iluminacion} & Efecto luminoso \\
+\hline
+{\em retardo} & Tiempo que se mostrará la pantalla \\
+\hline
+\end{DoxyParams}
+\index{Interaccion@{Interaccion}!set\+Valores@{set\+Valores}}
+\index{set\+Valores@{set\+Valores}!Interaccion@{Interaccion}}
+\subsubsection[{\texorpdfstring{set\+Valores(\+String sonido, vector$<$ String $>$ pin\+Led, String iluminacion, String retardo)}{setValores(String sonido, vector< String > pinLed, String iluminacion, String retardo)}}]{\setlength{\rightskip}{0pt plus 5cm}virtual void Interaccion\+::set\+Valores (
+\begin{DoxyParamCaption}
+\item[{String}]{sonido, }
+\item[{vector$<$ String $>$}]{pin\+Led, }
+\item[{String}]{iluminacion, }
+\item[{String}]{retardo}
+\end{DoxyParamCaption}
+)\hspace{0.3cm}{\ttfamily [inline]}, {\ttfamily [virtual]}}\hypertarget{classInteraccion_a6727e1e312fd6c8d2eef72c56015115d}{}\label{classInteraccion_a6727e1e312fd6c8d2eef72c56015115d}
+
+
+Inicializador de valores. 
+
+
+\begin{DoxyParams}{Parámetros}
+{\em sonido} & Sonido a reproducir \\
+\hline
+{\em pin\+Led} & Vector de pines de salida para efecto luminoso \\
+\hline
+{\em iluminacion} & Efecto luminoso \\
+\hline
+{\em retardo} & Tiempo que se mostrará la pantalla \\
+\hline
+\end{DoxyParams}
+\index{Interaccion@{Interaccion}!set\+Valores@{set\+Valores}}
+\index{set\+Valores@{set\+Valores}!Interaccion@{Interaccion}}
+\subsubsection[{\texorpdfstring{set\+Valores(int sonido, vector$<$ int $>$ pin\+Led, int iluminacion, vector$<$ int $>$ pin\+Vibracion, int vibracion, int retardo, Pantalla pantalla)}{setValores(int sonido, vector< int > pinLed, int iluminacion, vector< int > pinVibracion, int vibracion, int retardo, Pantalla pantalla)}}]{\setlength{\rightskip}{0pt plus 5cm}virtual void Interaccion\+::set\+Valores (
+\begin{DoxyParamCaption}
+\item[{int}]{sonido, }
+\item[{vector$<$ int $>$}]{pin\+Led, }
+\item[{int}]{iluminacion, }
+\item[{vector$<$ int $>$}]{pin\+Vibracion, }
+\item[{int}]{vibracion, }
+\item[{int}]{retardo, }
+\item[{{\bf Pantalla}}]{pantalla}
+\end{DoxyParamCaption}
+)\hspace{0.3cm}{\ttfamily [inline]}, {\ttfamily [virtual]}}\hypertarget{classInteraccion_a2e36a98f93c4df8f5ddada4197ef0323}{}\label{classInteraccion_a2e36a98f93c4df8f5ddada4197ef0323}
+
+
+Inicializador de valores. 
+
+Métodos Inicializadores 
+\begin{DoxyParams}{Parámetros}
+{\em sonido} & Sonido a reproducir \\
+\hline
+{\em pin\+Led} & Vector de pines de salida para efecto luminoso \\
+\hline
+{\em iluminacion} & Efecto luminoso \\
+\hline
+{\em pin\+Vibracion} & Vector de pines de salida para efecto de vibracion \\
+\hline
+{\em vibracion} & Efecto de vibracion \\
+\hline
+{\em retardo} & Tiempo que se mostrará la pantalla \\
+\hline
+{\em pantalla} & \hyperlink{classPantalla}{Pantalla} asociada a la interacción \\
+\hline
+\end{DoxyParams}
+\index{Interaccion@{Interaccion}!set\+Valores@{set\+Valores}}
+\index{set\+Valores@{set\+Valores}!Interaccion@{Interaccion}}
+\subsubsection[{\texorpdfstring{set\+Valores(\+String sonido, vector$<$ String $>$ pin\+Led, String iluminacion, vector$<$ String $>$ pin\+Vibracion, String vibracion, String retardo, Pantalla pantalla)}{setValores(String sonido, vector< String > pinLed, String iluminacion, vector< String > pinVibracion, String vibracion, String retardo, Pantalla pantalla)}}]{\setlength{\rightskip}{0pt plus 5cm}virtual void Interaccion\+::set\+Valores (
+\begin{DoxyParamCaption}
+\item[{String}]{sonido, }
+\item[{vector$<$ String $>$}]{pin\+Led, }
+\item[{String}]{iluminacion, }
+\item[{vector$<$ String $>$}]{pin\+Vibracion, }
+\item[{String}]{vibracion, }
+\item[{String}]{retardo, }
+\item[{{\bf Pantalla}}]{pantalla}
+\end{DoxyParamCaption}
+)\hspace{0.3cm}{\ttfamily [inline]}, {\ttfamily [virtual]}}\hypertarget{classInteraccion_ac9f35e8ceda5eb33fc1bed64c819ae5f}{}\label{classInteraccion_ac9f35e8ceda5eb33fc1bed64c819ae5f}
+
+
+Inicializador de valores. 
+
+
+\begin{DoxyParams}{Parámetros}
+{\em sonido} & Sonido a reproducir \\
+\hline
+{\em pin\+Led} & Vector de pines de salida para efecto luminoso \\
+\hline
+{\em iluminacion} & Efecto luminoso \\
+\hline
+{\em pin\+Vibracion} & Vector de pines de salida para efecto de vibracion \\
+\hline
+{\em vibracion} & Efecto de vibracion \\
+\hline
+{\em retardo} & Tiempo que se mostrará la pantalla \\
+\hline
+{\em pantalla} & \hyperlink{classPantalla}{Pantalla} asociada a la interacción \\
+\hline
+\end{DoxyParams}
+
+
+La documentación para esta clase fue generada a partir del siguiente fichero\+:\begin{DoxyCompactItemize}
+\item 
+/home/grego/\+Documentos/\+Emotion\+I\+O\+T/\+Emotion\+I\+O\+T\+\_\+\+Mega/lib/\+Interaccion/Interaccion.\+h\end{DoxyCompactItemize}

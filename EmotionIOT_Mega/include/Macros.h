@@ -42,12 +42,16 @@
 #define BOTON4 28
 
 
-/** Pines abiertos para entrada de botones*/
+/** Pin inicial abierto para entrada de botones*/
 #define BOTONINICIO 22
+
+/** Pin final abierto para entrada de botones*/
 #define BOTONFIN 40
 
-/** Pines abiertos para salida de señales*/
+/** Pines inicial abierto para salida de señales*/
 #define SALIDAINICIO 41
+
+/** Pines final abierto para salida de señales*/
 #define SALIDAFIN 49
 
 /** Efecto de iluminacion utilizado en lectura RFID*/

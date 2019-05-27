@@ -1,0 +1,30 @@
+<map id="Representación gráfica de la clase" name="Representación gráfica de la clase">
+<area shape="rect" id="node2" href="$classappEmotionIOT_1_1views_1_1Add__category__player.html" title="appEmotionIOT.views.Add\l_category_player" alt="" coords="221,5,400,47"/>
+<area shape="rect" id="node3" href="$classappEmotionIOT_1_1views_1_1Add__therapy__player.html" title="appEmotionIOT.views.Add\l_therapy_player" alt="" coords="221,71,400,112"/>
+<area shape="rect" id="node4" href="$classappEmotionIOT_1_1views_1_1Create__category.html" title="appEmotionIOT.views.Create\l_category" alt="" coords="213,136,408,177"/>
+<area shape="rect" id="node5" href="$classappEmotionIOT_1_1views_1_1Create__indicator.html" title="appEmotionIOT.views.Create\l_indicator" alt="" coords="213,201,408,243"/>
+<area shape="rect" id="node6" href="$classappEmotionIOT_1_1views_1_1Create__therapist.html" title="appEmotionIOT.views.Create\l_therapist" alt="" coords="213,267,408,308"/>
+<area shape="rect" id="node7" href="$classappEmotionIOT_1_1views_1_1Create__user.html" title="appEmotionIOT.views.Create_user" alt="" coords="197,333,424,359"/>
+<area shape="rect" id="node9" href="$classappEmotionIOT_1_1views_1_1Multimedia__detail.html" title="appEmotionIOT.views.Multimedia\l_detail" alt="" coords="201,384,420,425"/>
+<area shape="rect" id="node11" href="$classappEmotionIOT_1_1views_1_1Actividads__list.html" title="appEmotionIOT.views.Actividads_list" alt="" coords="191,786,431,813"/>
+<area shape="rect" id="node12" href="$classappEmotionIOT_1_1views_1_1Categories__list.html" title="appEmotionIOT.views.Categories_list" alt="" coords="189,450,432,477"/>
+<area shape="rect" id="node13" href="$classappEmotionIOT_1_1views_1_1Gallery.html" title="appEmotionIOT.views.Gallery" alt="" coords="213,501,409,527"/>
+<area shape="rect" id="node14" href="$classappEmotionIOT_1_1views_1_1Lista__Indicadores.html" title="appEmotionIOT.views.Lista\l_Indicadores" alt="" coords="219,552,402,593"/>
+<area shape="rect" id="node15" href="$classappEmotionIOT_1_1views_1_1Resultados.html" title="appEmotionIOT.views.Resultados" alt="" coords="200,618,421,645"/>
+<area shape="rect" id="node16" href="$classappEmotionIOT_1_1views_1_1Terapia__player__list.html" title="appEmotionIOT.views.Terapia\l_player_list" alt="" coords="211,669,410,711"/>
+<area shape="rect" id="node17" href="$classappEmotionIOT_1_1views_1_1Users__list.html" title="appEmotionIOT.views.Users_list" alt="" coords="203,735,418,762"/>
+<area shape="rect" id="node19" href="$classappEmotionIOT_1_1views_1_1Activity__settings.html" title="appEmotionIOT.views.Activity\l_settings" alt="" coords="211,1449,410,1491"/>
+<area shape="rect" id="node20" href="$classappEmotionIOT_1_1views_1_1Game__settings.html" title="appEmotionIOT.views.Game\l_settings" alt="" coords="215,1515,406,1556"/>
+<area shape="rect" id="node21" href="$classappEmotionIOT_1_1views_1_1Multimedia__update.html" title="appEmotionIOT.views.Multimedia\l_update" alt="" coords="201,955,420,996"/>
+<area shape="rect" id="node22" href="$classappEmotionIOT_1_1views_1_1Settings.html" title="appEmotionIOT.views.Settings" alt="" coords="209,1347,412,1374"/>
+<area shape="rect" id="node23" href="$classappEmotionIOT_1_1views_1_1Update__category.html" title="appEmotionIOT.views.Update\l_category" alt="" coords="212,1020,409,1061"/>
+<area shape="rect" id="node24" href="$classappEmotionIOT_1_1views_1_1Update__diagnostic.html" title="appEmotionIOT.views.Update\l_diagnostic" alt="" coords="212,1085,409,1127"/>
+<area shape="rect" id="node25" href="$classappEmotionIOT_1_1views_1_1Update__indicator.html" title="appEmotionIOT.views.Update\l_indicator" alt="" coords="212,1151,409,1192"/>
+<area shape="rect" id="node26" href="$classappEmotionIOT_1_1views_1_1Update__player.html" title="appEmotionIOT.views.Update\l_player" alt="" coords="212,1216,409,1257"/>
+<area shape="rect" id="node27" href="$classappEmotionIOT_1_1views_1_1Update__therapy.html" title="appEmotionIOT.views.Update\l_therapy" alt="" coords="212,1281,409,1323"/>
+<area shape="rect" id="node28" href="$classappEmotionIOT_1_1views_1_1Update__treatment.html" title="appEmotionIOT.views.Update\l_treatment" alt="" coords="212,837,409,879"/>
+<area shape="rect" id="node29" href="$classappEmotionIOT_1_1views_1_1Update__user.html" title="appEmotionIOT.views.Update_user" alt="" coords="196,903,425,930"/>
+<area shape="rect" id="node30" href="$classappEmotionIOT_1_1views_1_1User.html" title="appEmotionIOT.views.User" alt="" coords="219,1398,402,1425"/>
+<area shape="rect" id="node32" href="$classappEmotionIOT_1_1views_1_1ElegirTerapia.html" title="appEmotionIOT.views.Elegir\lTerapia" alt="" coords="217,1580,405,1621"/>
+<area shape="rect" id="node33" href="$classappEmotionIOT_1_1views_1_1LoginPacientes.html" title="Vista de la pantalla de login para pacientes. " alt="" coords="217,1645,404,1687"/>
+</map>
