@@ -19,7 +19,7 @@
 /** Pin SS para lector RFID */
 #define SS_PIN 53
 /** PIN RST para lector RFID */
-#define RST_PIN 8
+#define RST_PIN 5
 
 
 /** Pin de salida para zumbador */

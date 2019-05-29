@@ -15,16 +15,16 @@ void setup_wifi() {
   delay(10);
   WiFi.mode(WIFI_STA);//Ultima adicion
   WiFi.begin(ssid, password);
-  //delay(REACCION);
+  delay(REACCION);
 
   while (WiFi.status() != WL_CONNECTED) { //Mientras el estado de WiFi no sea CONECTADO
 
     now = millis();
 
-    if (now - lastMsg > 5000) {
-      lastMsg = now;
-        Serial.print("2;;10,11;2;;;500;1;4;Conectando a;2;6;red WiFi;");
-    }
+    //if (now - lastMsg > 5000) {
+    //  lastMsg = now;
+    //    Serial.print("2;;10,11;2;;;500;1;4;Conectando a;2;6;red WiFi;");
+  //}
 
     //Parpadear el led de estado azul
     digitalWrite(LEDAZUL,LOW);
