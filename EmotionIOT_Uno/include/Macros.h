@@ -20,11 +20,14 @@
 /** Declaración de objeto global RFID */
 MFRC522 mfrc522(SS_PIN, RST_PIN);
 
-/** Pin de salida para led de estado*/
-#define LEDESTADO 2
+/** Pin de salida para led verde*/
+#define LEDVERDE 7
+
+/** Pin de salida para led rojo*/
+#define LEDROJO 6
 
 /** Pin de salida para led de aviso*/
-#define LEDAVISO 3
+#define LEDAVISO 4
 
 /** Pin de salida para zumbador */
 #define ZUMBADOR 5

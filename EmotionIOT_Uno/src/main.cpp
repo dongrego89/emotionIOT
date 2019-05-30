@@ -15,7 +15,8 @@ void setup() {
   String opcion;
 
   //Configuración default interaccionRFID
-  pinLedAux.push_back(LEDESTADO);
+  pinLedAux.push_back(LEDROJO);
+  pinLedAux.push_back(LEDVERDE);
 
   interaccionRFID.setValores(TONORFID,pinLedAux,EFECTORFID,TIEMPORFID);
 
@@ -27,8 +28,11 @@ void setup() {
   mfrc522.PCD_Init(); // Iniciar MFRC522
 
   //Configurar los pines de salida por defecto
-  pinMode(LEDESTADO,OUTPUT);
   pinMode(LEDAVISO,OUTPUT);
+
+  pinMode(LEDVERDE,OUTPUT);
+  pinMode(LEDROJO,OUTPUT);
+  
   pinMode(ZUMBADOR,OUTPUT);
 
   //Inicializar el Modo
@@ -41,9 +45,9 @@ void loop(){
     case 0:
       modo=entradaSerial();
 
-      if(deteccionTarjeta())// En caso de leer una tarjeta RFID
+      if(deteccionTarjeta()){// En caso de leer una tarjeta RFID
         modo=3;
-
+      }
     break;
     case 1:
       digitalWrite(LEDAVISO,HIGH);
@@ -54,8 +58,27 @@ void loop(){
       modo=0;
     break;
     case 3:
-      interaccionRFID.reproducirInteraccion();
-      delay(interaccionRFID.getRetardo());
+    interaccionRFID.reproducirInteraccion();
+    delay(interaccionRFID.getRetardo());
+    modo=0;
+    break;
+    case 4:
+      digitalWrite(LEDROJO,HIGH);
+      modo=0;
+    break;
+    case 5:
+      digitalWrite(LEDROJO,LOW);
+      modo=0;
+    break;
+    case 6:
+      digitalWrite(LEDVERDE,HIGH);
+      modo=0;
+    break;
+    case 7:
+      digitalWrite(LEDVERDE,LOW);
+      modo=0;
+    break;
+    default:
       modo=0;
     break;
   }
