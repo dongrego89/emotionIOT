@@ -21,7 +21,7 @@
 		<a href="{% url 'create_treatment' %}">
 			<div class="btn btn-sm btn-info">
 				<p>Añadir tratamiento</p>
-			</div>	
+			</div>
 		</a>
 	<div class="QRM_box_in">
 		<div class="QRM_wrapper_table">
@@ -36,7 +36,7 @@
 						<th>Creado</th>
 						<th>Descripción</th>
 						<th>Activado</th>
-                        <th>Eliminar</th>				
+                        <th>Eliminar</th>
 			    	</tr>
 				</thead>
 				<tbody>
@@ -49,7 +49,7 @@
                                     </th>
 
 		              				<td style="width: 15%; vertical-align: middle;">
-		              					{{ object.tratamiento.paciente }}  					
+		              					{{ object.tratamiento.paciente }}
 		              				</td>
 
 		              				<td style="width: 15%; vertical-align: middle;">{{ object.tratamiento.fecha_inicio }}</td>
@@ -74,11 +74,11 @@
 
 										        <input type="hidden" name="object_id" value="{{ object.id }}"/>
 										        <button type="submit" class="btn btn-danger btn-sm">
-											        <p>✖</p>
+											        <p>x</p>
 										        </button>
 
 								        </form>
-							        </td>	
+							        </td>
 
 		            			</tr>x
 
@@ -92,7 +92,7 @@
 		<a href="{% url 'create_treatment' %}">
 			<div class="btn btn-sm btn-info">
 				<p>Añadir tratamiento</p>
-			</div>	
+			</div>
 		</a>
 </div>
 
@@ -123,7 +123,7 @@ var modal = document.getElementById('myModal');
 // Get the <span> element that closes the modal
 var span = document.getElementsByClassName("close")[0];
 
-// When the user clicks the button, open the modal 
+// When the user clicks the button, open the modal
 function btn() {
     modal.style.display = "block";
 }
@@ -149,7 +149,7 @@ window.onclick = function(event) {
 function  toggle_select(id) {
     var object = document.getElementById(id);
  	object.enabled = !object.enabled;
-}	
+}
 
 </script>
 

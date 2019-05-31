@@ -1,4 +1,11 @@
-"""QRMusical URL Configuration
+"""!
+@package urls.py
+@brief Archivo de urls del proyecto Django EmotionIOT
+@author Gregorio Corpas Prieto
+@date 13/03/2019
+"""
+
+"""EmotionIOT URL Configuration
 
 The `urlpatterns` list routes URLs to views. For more information please see:
     https://docs.djangoproject.com/en/1.11/topics/http/urls/

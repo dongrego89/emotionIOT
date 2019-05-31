@@ -1,3 +1,9 @@
+"""!
+@package global_vars.py
+@brief Archivo de variables globales de appEmotionIOT
+@author Gregorio Corpas Prieto
+@date 13/03/2019
+"""
 boton = None
 tarjeta = None
 

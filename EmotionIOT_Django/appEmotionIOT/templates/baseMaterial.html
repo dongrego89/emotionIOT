@@ -19,7 +19,7 @@
 	  <!-- Your custom styles (optional) -->
 		<link href="{% static 'material/css/style.css' %}" rel="stylesheet" type="text/css">
 
-		<link rel=”shortcut icon” type=”image/jpg href=”{% static 'favicon.jpg' %}/>
+		<link rel="shortcut icon" type="image/jpg" href="{% static 'favicon.jpg' %}"/>
 
 		<style type="text/css">
 		    .mi-container{
@@ -78,21 +78,19 @@
 function logoutUser() {
 	//Desconexion de usuario
 		var txt;
-		var r = confirm("Desconexión user\n¿Estas seguro de que deseas desconectarte?");
+		var r = confirm("Estas seguro de que deseas desconectarte?");
 		if (r == true) {
-				window.location.replace('/desconectar');
-		} else {
-		}
+			window.location.replace('/desconectar');
+			}
 }
 
 function logoutAdmin() {
 	//Desconexion de admin
-		var txt;
-		var r = confirm("Desconexión admin\n¿Estas seguro de que deseas desconectarte?");
-		if (r == true) {
-				 document.location.href ="/logout/"
-		} else {
-		}
+			var txt;
+			var r = confirm("Estas seguro de que deseas desconectarte?");
+			if (r == true) {
+					 document.location.href ="/logout/";
+			}
 }
 
 </script>

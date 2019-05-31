@@ -21,7 +21,7 @@
 		<script src="{% static 'js/jquery.min.js' %}"></script>
 		<script src="{% static 'js/bootstrap-select.min.js' %}"></script>
 		<script src="{% static 'js/bootstrap.min.js' %}"></script>
-		<link rel=”shortcut icon” type=”image/jpg href=”{% static 'favicon.jpg' %}/>
+		<link rel="shortcut icon" type="image/jpg" href="{% static 'favicon.jpg' %}"/>
 	</head>
 	<body>
 		<div id="sidebar" class="navbar QRM_nav navbar-static-top">
@@ -123,21 +123,19 @@
             window.history.back();
         }
 
-        function confirmationUser() {
-            var txt;
-            var r = confirm("¿Estas seguro de que deseas desconectarte?");
-            if (r == true) {
-                window.location.replace('/desconectar');
-            } else {
-            }
-        }
+				function confirmationUser(){
+					var txt;
+					var r = confirm("Estas seguro de que deseas desconectarte?");
+					if (r == true) {
+						window.location.replace('/desconectar');
+						}
+				}
 
-        function confirmation() {
-            var txt;
-            var r = confirm("¿Estas seguro de que deseas desconectarte?");
+        function confirmation(){
+					  var txt;
+            var r = confirm("Estas seguro de que deseas desconectarte?");
             if (r == true) {
-                 document.location.href ="/logout/"
-            } else {
+                 document.location.href ="/logout/";
             }
         }
 

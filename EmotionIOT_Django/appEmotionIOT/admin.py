@@ -1,3 +1,9 @@
+"""!
+@package admin.py
+@brief Archivo de models registrados para administrar de appEmotionIOT
+@author Gregorio Corpas Prieto
+@date 13/03/2019
+"""
 # -*- coding: utf-8 -*-
 from __future__ import unicode_literals
 
@@ -5,15 +11,11 @@ from django.contrib import admin
 from .models import Actividad, Multimedia, Paciente, Especialista, Terapia, Tratamiento
 from .models import Terapia_Tratamiento, Especialista_Terapia_Tratamiento, Supervisa, Diagnostico
 from .models import Sesion, Indicador, Terapia_Actividad, Resultado_Sesion, Categoria, Categoria_Actividad
-from .models import Contenido
-from .models import Pregunta, Pregunta_Matching, Pregunta_Quiz, Actividad_Pregunta, Respuesta
+from .models import Contenido, Pregunta, Pregunta_Matching, Pregunta_Quiz, Actividad_Pregunta, Respuesta
 from .models import Registro_Sesion
 
 
-#, Terapia_Indicador  Texto,
-
-
-# Register your models here. Qui,Quises,
+# Register your models here
 admin.site.register(Actividad)
 admin.site.register(Registro_Sesion)
 admin.site.register(Respuesta)

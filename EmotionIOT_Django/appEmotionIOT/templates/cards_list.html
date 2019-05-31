@@ -4,7 +4,7 @@
 {% block content_wrapper %}
 <a href="{% url 'play' %}">
 	<div>
-		<p>← Back</p>
+		<p>Back</p>
 	</div>
 </a>
 <div class="col-sm-12 QRM_box {{QRM_color}}">
@@ -15,9 +15,9 @@
 				<thead>
 					<tr>
 						<th>#</th>
-						<th>Image</th>						
+						<th>Image</th>
 						<th>List Name</th>
-						<th>Description</th>						
+						<th>Description</th>
 			    	</tr>
 				</thead>
 				<tbody>
@@ -29,7 +29,7 @@
 									{% if son.image %}
 				      					<img src="/{{ son.image.url }}" class="QRM_image_list">
 									{% endif %}
-			      				</td>								
+			      				</td>
 								<td style="vertical-align: middle;">{{ son.name }}</td>
 								<td style="vertical-align: middle;">{{ son.description }}</td>
 							</tr>

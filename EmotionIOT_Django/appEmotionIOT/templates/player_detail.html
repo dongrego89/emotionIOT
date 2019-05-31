@@ -46,7 +46,7 @@
 		<a href="{% url 'add_multimedia_to_player' object.id %}">
 			<div class="btn btn-sm btn-info">
 				<p>Añadir Multimedia</p>
-			</div>	
+			</div>
 		</a>
 		{% endif %}
 
@@ -57,8 +57,8 @@
 					<th>Imagen</th>
 					<th>Nombre</th>
 					<th>Tarjeta</th>
-					<th>Audio</th>	
-					<th>Eliminar de esta actividad</th>						
+					<th>Audio</th>
+					<th>Eliminar de esta actividad</th>
 
 		    	</tr>
 			</thead>
@@ -90,10 +90,10 @@
 
 									<input type="hidden" name="son_id" value="{{ son.contenido.id_contenido }}"/>
 									<button type="submit" class="btn btn-default btn-sm">
-										<p>✖</p>
+										<p>x</p>
 									</button>
 							</form>
-						</td>							
+						</td>
 	    			</tr>
 				{% endfor %}
 			</tbody>
@@ -103,7 +103,7 @@
 		<a href="{% url 'add_multimedia_to_player' object.id %}">
 			<div class="btn btn-sm btn-info">
 				<p>Añadir Multimedia</p>
-			</div>	
+			</div>
 		</a>
 		{% endif %}
 	</div>

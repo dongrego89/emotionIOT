@@ -18,7 +18,7 @@
 		<a href="{% url 'create_player' %}">
 			<div class="btn btn-sm btn-info">
 				<p>Añadir Actividad</p>
-			</div>	
+			</div>
 		</a>
 		<div class="QRM_wrapper_table">
 			<table class="table table-hover">
@@ -28,7 +28,7 @@
 						<th>Descripción</th>
 						<th>Propósito</th>
 						<th>Categoría</th>
-						<th>Eliminar</th>						
+						<th>Eliminar</th>
 			    	</tr>
 				</thead>
 				<tbody>
@@ -36,16 +36,16 @@
 						<tr onclick="document.location = '{% url 'update_player' object.id %}';">
 
 		      				<td style="width: 20%; vertical-align: middle;">
-		      					{{ object.nombre }}				
+		      					{{ object.nombre }}
 		      				</td>
 
 		      				<td style="width: 40%; vertical-align: middle;">{{ object.descripcion }}</td>
-							
+
 							<td style="width: 10%; vertical-align: middle;">{{ object.proposito }}</td>
-							
+
                             <td style="width: 30%; vertical-align: middle;">
                             {% for i in categoria %}
-                                {% if i.actividad.id == object.id %} 
+                                {% if i.actividad.id == object.id %}
                                     {% if i.categoria %}
                                         {{ i.categoria }},
                                     {% endif %}
@@ -58,11 +58,11 @@
 									<center>
 										<input type="hidden" name="object_id" value="{{ object.id }}"/>
 										<button type="submit" class="btn btn-danger btn-sm">
-											<p>✖</p>
+											<p>x</p>
 										</button>
 									</center>
 								</form>
-							</td>	
+							</td>
 
 		    			</tr>
 					{% endfor %}
@@ -73,7 +73,7 @@
 			<div class="btn btn-sm btn-info">
 
 				<p>Añadir Actividad</p>
-			</div>	
+			</div>
 		</a>
 	</div>
 </div>
@@ -82,7 +82,7 @@
 function  toggle_select(id) {
     var object = document.getElementById(id);
  	object.enabled = !object.enabled;
-}	
+}
 
 </script>
 {% endblock content_wrapper %}

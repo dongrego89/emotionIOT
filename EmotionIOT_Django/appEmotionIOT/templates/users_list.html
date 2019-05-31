@@ -20,7 +20,7 @@
 		<a href="{% url 'create_user' %}">
 			<div class="btn btn-sm btn-info">
 				<p>Añadir Paciente</p>
-			</div>	
+			</div>
 		</a>
 
 	<div class="QRM_box_in">
@@ -35,11 +35,11 @@
 						<th>Género</th>
 						<th>Edad</th>
 						<th>Nivel</th>
-						<th>Diagnóstico</th>                        
+						<th>Diagnóstico</th>
 						<th>Tarjeta</th>
                         <th>Cambiar Tarjeta</th>
                         <th>Eliminar Tarjeta</th>
-						<th>Eliminar</th>						
+						<th>Eliminar</th>
 			    	</tr>
 				</thead>
 				<tbody>
@@ -54,7 +54,7 @@
                             </th>
 
 		      				<td style="width: 10%; vertical-align: middle;">
-		      					{{ object.nombre }}  					
+		      					{{ object.nombre }}
 		      				</td>
 
 		      				<td style="width: 15%; vertical-align: middle;">{{ object.apellido }}</td>
@@ -64,21 +64,21 @@
 		      				<td style="width: 5%; vertical-align: middle;">{{ object.edad }}</td>
 
 		      				<td style="width: 5%; vertical-align: middle;">{{ object.nivel }}</td>
-        
+
 		      				<td style="width: 5%; vertical-align: middle;">
 
                             <form action="{% url 'diagnostic_list' object.id %}" method="post">
 									    {% csrf_token %}
                             <button type="submit"  class="btn btn-primary">Diagnósticos</button>
                             </form>
-                            </td>							
+                            </td>
 
 							<td style="width: 20%; vertical-align: middle;">
-                               
-                                 {% if object.codigo %}	      					
-                                       
+
+                                 {% if object.codigo %}
+
                                     {{ object.codigo }}
-                                  
+
                             </td>
                             <td style="width: 5%; vertical-align: left;">
                                 <form onclick="btn()" action="{% url 'user_id' object.id %}" method="post">
@@ -111,11 +111,11 @@
 
 										<input type="hidden" name="object_id" value="{{ object.id }}"/>
 										<button type="submit" class="btn btn-danger btn-sm">
-											<p>✖</p>
+											<p>x</p>
 										</button>
 
 								</form>
-							</td>	
+							</td>
 
 		    			</tr>
 					{% endfor %}
@@ -127,7 +127,7 @@
 		<a href="{% url 'create_user' %}">
 			<div class="btn btn-sm btn-info">
 				<p>Añadir Paciente</p>
-			</div>	
+			</div>
 		</a>
 </div>
 
@@ -157,7 +157,7 @@ var modal = document.getElementById('myModal');
 // Get the <span> element that closes the modal
 var span = document.getElementsByClassName("close")[0];
 
-// When the user clicks the button, open the modal 
+// When the user clicks the button, open the modal
 function btn() {
     modal.style.display = "block";
 }
@@ -183,7 +183,7 @@ window.onclick = function(event) {
 function  toggle_select(id) {
     var object = document.getElementById(id);
  	object.enabled = !object.enabled;
-}	
+}
 
 </script>
 

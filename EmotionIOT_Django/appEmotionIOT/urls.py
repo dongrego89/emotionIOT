@@ -1,3 +1,10 @@
+"""!
+@package urls.py
+@brief Archivo de urls de appEmotionIOT
+@author Gregorio Corpas Prieto
+@date 13/03/2019
+"""
+
 from django.conf.urls import url, include
 from django.contrib import admin
 

@@ -7,7 +7,7 @@
 		<a href="{% url 'create_diagnostic' ide %}">
 			<div class="btn btn-sm btn-info">
 				<p>Añadir Diagnóstico</p>
-			</div>	
+			</div>
 		</a>
 	<div class="QRM_box_in">
 		<div class="QRM_wrapper_table">
@@ -17,8 +17,8 @@
 					<tr>
 						<th>Fecha</th>
 						<th>Valoración</th>
-						<th>Notas</th>				
-						<th>Eliminar</th>				
+						<th>Notas</th>
+						<th>Eliminar</th>
 			    	</tr>
 				</thead>
 				<tbody>
@@ -29,23 +29,23 @@
                             </th>
 
 		      				<td style="width: 30%; vertical-align: middle;">
-		      					{{ object.valoracion }}  					
+		      					{{ object.valoracion }}
 		      				</td>
 
 		      				<td style="width: 30%; vertical-align: middle;">{{ object.notas }}</td>
 
-		      				
+
 							<td style=" vertical-align: middle;">
 								<form action="{% url 'delete_diagnostic' object.id_diagnostico %}" method="post">
 									{% csrf_token %}
 
 										<input type="hidden" name="object_id" value="{{ object.id_diagnostico }}"/>
 										<button type="submit" class="btn btn-danger btn-sm">
-											<p>✖</p>
+											<p>x</p>
 										</button>
 
 								</form>
-							</td>	
+							</td>
 
 		    			</tr>
 					{% endfor %}
@@ -56,7 +56,7 @@
 		<a href="{% url 'create_diagnostic' ide %}">
 			<div class="btn btn-sm btn-info">
 				<p>Añadir Diagnóstico</p>
-			</div>	
+			</div>
 		</a>
 
 {% endblock content_wrapper %}

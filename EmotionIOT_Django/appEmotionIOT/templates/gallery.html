@@ -23,7 +23,7 @@
 		<a href="{% url 'upload_multimedia' %}">
 			<div class="btn btn-sm btn-info">
 				<p>Añadir elemento Multimedia</p>
-			</div>	
+			</div>
 		</a>
 
 	<div class="QRM_box_in">
@@ -37,11 +37,11 @@
 						<th>Nombre</th>
 						<th>Actividades en las que aparece</th>
                         <th>Tarjeta</th>
-                        <th>Cambiar Tarjeta</th>						
-                        <th>Eliminar Tarjeta</th>					
-						<th>QR</th>	
-						<th>Audio</th>						
-						<th>Eliminar</th>						
+                        <th>Cambiar Tarjeta</th>
+                        <th>Eliminar Tarjeta</th>
+						<th>QR</th>
+						<th>Audio</th>
+						<th>Eliminar</th>
 
 			    	</tr>
 				</thead>
@@ -60,11 +60,11 @@
 				      						<a>{{ Actividad.actividad }},</a>
 {%endif%}
 				      					{% endfor %}
-			      					</small>	
+			      					</small>
 			      				</p>
 		      				</td>
                             <td style="width: 10%;">
-                                {% if son.codigo %}	      					
+                                {% if son.codigo %}
 
                                     {{ son.codigo }}
 
@@ -101,7 +101,7 @@
 									<div class="btn btn-sm btn-info">
 										<p>QR</p>
 									</div>
-								</a>								
+								</a>
 							</td>
 
 		      				<td style="width: 15%;">
@@ -119,11 +119,11 @@
 									<center>
 										<input type="hidden" name="son_id" value="{{ son.id }}"/>
 										<button type="submit" class="btn btn-danger btn-sm">
-											<p>✖</p>
+											<p>x</p>
 										</button>
 									</center>
 								</form>
-							</td>							
+							</td>
 		    			</tr>
 					{% endfor %}
 				</tbody>
@@ -133,7 +133,7 @@
 		<a href="{% url 'upload_multimedia' %}">
 			<div class="btn btn-sm btn-info">
 				<p>Añadir elemento Multimedia</p>
-			</div>	
+			</div>
 		</a>
 </div>
 
@@ -164,7 +164,7 @@ var modal = document.getElementById('myModal');
 // Get the <span> element that closes the modal
 var span = document.getElementsByClassName("close")[0];
 
-// When the user clicks the button, open the modal 
+// When the user clicks the button, open the modal
 function btn() {
     modal.style.display = "block";
 }

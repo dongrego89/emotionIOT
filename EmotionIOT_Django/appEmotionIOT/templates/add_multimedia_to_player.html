@@ -13,8 +13,8 @@
 						<th>#</th>
 						<th>Imagen</th>
 						<th>Nombre</th>
-						<th>Audio</th>	
-						<th>Eliminar</th>						
+						<th>Audio</th>
+						<th>Eliminar</th>
 
 			    	</tr>
 				</thead>
@@ -38,10 +38,10 @@
 									{% csrf_token %}
 										<input type="hidden" name="son_id" value="{{ son.id_contenido }}"/>
 										<button type="submit" class="btn btn-danger btn-sm">
-											<p>✖</p>
+											<p>x</p>
 										</button>
 								</form>
-							</td>							
+							</td>
 		    			</tr>
 
 					{% endfor %}

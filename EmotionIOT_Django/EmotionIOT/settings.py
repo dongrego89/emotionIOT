@@ -1,3 +1,9 @@
+"""!
+@package settings.py
+@brief Archivo de configuracion del proyecto Django EmotionIOT
+@author Gregorio Corpas Prieto
+@date 13/03/2019
+"""
 """
 Django settings for EmotionIOT project.
 

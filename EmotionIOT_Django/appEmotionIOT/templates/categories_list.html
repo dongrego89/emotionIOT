@@ -18,19 +18,19 @@
 		<a href="{% url 'create_category' %}">
 			<div class="btn btn-sm btn-info">
 				<p>Añadir nueva categoría</p>
-			</div>	
+			</div>
 		</a>
 <a href="{% url 'add_category_player' %}">
 			<div class="btn btn-sm btn-info">
 				<p>Vincular categoría con actividad</p>
-			</div>	
+			</div>
 		</a>
 		<div class="QRM_wrapper_table">
 			<table class="table table-hover">
 				<thead>
 					<tr>
-						<th>Nombre</th>	
-						<th>Eliminar</th>						
+						<th>Nombre</th>
+						<th>Eliminar</th>
 			    	</tr>
 				</thead>
 				<tbody>
@@ -38,7 +38,7 @@
 						<tr onclick="document.location = '{% url 'update_category' object.id_categoria %}';">
 
 		      				<td style="width: 20%; vertical-align: middle;">
-		      					{{ object }}  					
+		      					{{ object }}
                             </td>
 
 							<td style=" vertical-align: middle;">
@@ -47,11 +47,11 @@
 
 										<input type="hidden" name="object_id" value="{{ object.id_categoria }}"/>
 										<button type="submit" class="btn btn-danger btn-sm">
-											<p>✖</p>
+											<p>x</p>
 										</button>
 
 								</form>
-							</td>	
+							</td>
 
 		    			</tr>
 					{% endfor %}
@@ -62,12 +62,12 @@
 		<a href="{% url 'create_category' %}">
 			<div class="btn btn-sm btn-info">
 				<p>Añadir nueva categoria</p>
-			</div>	
+			</div>
 		</a>
 <a href="{% url 'add_category_player' %}">
 			<div class="btn btn-sm btn-info">
 				<p>Vincular categoria con actividad</p>
-			</div>	
+			</div>
 		</a>
 	</div>
 </div>
@@ -76,7 +76,7 @@
 function  toggle_select(id) {
     var object = document.getElementById(id);
  	object.enabled = !object.enabled;
-}	
+}
 
 </script>
 

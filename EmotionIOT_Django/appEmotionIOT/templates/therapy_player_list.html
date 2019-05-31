@@ -17,7 +17,7 @@
 		<a href="{% url 'add_therapy_player' %}">
 			<div class="btn btn-sm btn-info">
 				<p>Vincular terapia con actividad</p>
-			</div>	
+			</div>
 		</a>
 		<div class="QRM_wrapper_table">
 
@@ -40,11 +40,11 @@
 								    <form action="{% url 'delete_therapy_player' i.id %}" style="display:inline" method="post">
 									    {% csrf_token %}
 										    <input type="hidden" name="son_id" value="{{ i.id }}"/>
-										    <button type="submit" class="btn btn-danger btn-sm"><p>✖</p></button>
+										    <button type="submit" class="btn btn-danger btn-sm"><p>x</p></button>
 								    </form>
             					{% endif %}
 			        		{% endfor %}
-                            </td>							
+                            </td>
 		    			</tr>
 					{% endfor %}
 				</tbody>
@@ -54,7 +54,7 @@
 		<a href="{% url 'add_therapy_player' %}">
 			<div class="btn btn-sm btn-info">
 				<p>Vincular terapia con actividad</p>
-			</div>	
+			</div>
 		</a>
 </div>
 
