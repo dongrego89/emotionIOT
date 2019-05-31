@@ -743,8 +743,13 @@ def Evoca(request,idActividad,idTerapiaTratamiento,idTerapia):
 	context['idActividad'] = idActividad
 	context['idTerapia'] = idTerapia
 	context['idTerapiaTratamiento'] = idTerapiaTratamiento
+	
 	actividad=Actividad.objects.get(id=idActividad)
+	tratamiento=Terapia_Tratamiento.objects.get(id=idTerapiaTratamiento).tratamiento
+
 	context['actividad'] = actividad
+	context['tratamiento'] = tratamiento.id
+
 
 	if global_vars.evocaInicializado == False:
 		"""
