@@ -12,7 +12,6 @@ from appEmotionIOT.Funciones import *
 from . import global_vars
 from django.conf import settings
 
-
 def listarPuertos():
     """!
     @brief Devuelve los nombres de los puertos serial que tienen un dispositivo Arduino conectado
@@ -50,6 +49,9 @@ def conexionSerial(puerto,baudios,timeout):
 	conexionArduino = serial.Serial(puerto, baudios, timeout=timeout)
 	time.sleep(3)
 	return conexionArduino
+
+conexionArduino=conexionSerial(listarPuertos()[0][0],9600,1,)
+
 
 def encenderAvisoSerial():
 	"""!

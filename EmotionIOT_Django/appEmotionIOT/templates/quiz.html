@@ -86,7 +86,7 @@
 
   {% if visualizacion == "Unica" %}
     <div class="row justify-content-center align-items-center text-center animated zoomInDown delay-1s" style="min-height:55%;">
-      <div class="col-xl-7">
+      <div class="col-xl-5">
 
       {% if formato == "Imagen" and preguntaMultimedia.imagen %}
       <img class="img-fluid rounded animated bounceIn delay-3s" src="/{{preguntaMultimedia.imagen.url}}">
@@ -120,7 +120,7 @@
     </div>
 
    <div class="row justify-content-center align-items-center text-center mt-1" style="height:5%;">
-     <div class="col-8 text-center">
+     <div class="col-10 text-center">
        {% for i in opciones %}
          {% if forloop.first == True %}
            <div class="row justify-content-center align-items-center text-center">
@@ -195,7 +195,7 @@
 
 {% endif %}
   <div class="row justify-content-center align-items-center text-center" style="height:10%;">
-    <div class="col-md-12 text-center animated bounceInUp fast delay-4s">
+    <div class="col-md-12 text-center animated bounceInUp fast delay-4s mt-2 pt-2">
       <h1 style="font-size:70px;"><div id="mensaje"> &nbsp;</div></h1>
     </div>
   </div>

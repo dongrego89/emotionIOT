@@ -102,9 +102,7 @@ from math import *
 
 from appEmotionIOT.Funciones import *
 
-
-#conexionArduino=conexionSerial(listarPuertos()[0][0],9600,1,)
-#arranqueSerial(conexionArduino)
+arranqueSerial(conexionArduino)
 
 arranqueMQTT(("Boton","Tarjeta"))
 arranqueReproductor()
