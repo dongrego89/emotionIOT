@@ -44,20 +44,6 @@ const char* ssid = "EmotionIOT-Network";
 const char* password = "InternetOfThings";
 const char* mqtt_server = "192.168.0.50";
 
-
-/** Configuración pruebas en casa*/
-/*
-const char* ssid = "TVALCOLEA_CP";
-const char* password = "123tvalcolea";
-const char* mqtt_server = "192.168.2.130";
-/** Configuración pruebas en departamento*/
-/*
-const char* ssid = "UCOTEAM";
-const char* password = "-polonio210alfileres-";
-const char* mqtt_server = "192.168.1.64";
-*/
-
-
 /** Instancia de objeto cliente WiFi */
 WiFiClient espClient;
 

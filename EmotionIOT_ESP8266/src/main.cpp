@@ -21,11 +21,6 @@ void setup_wifi() {
 
     now = millis();
 
-    //if (now - lastMsg > 5000) {
-    //  lastMsg = now;
-    //    Serial.print("2;;10,11;2;;;500;1;4;Conectando a;2;6;red WiFi;");
-  //}
-
     //Parpadear el led de estado azul
     digitalWrite(LEDAZUL,LOW);
     delay(250);
