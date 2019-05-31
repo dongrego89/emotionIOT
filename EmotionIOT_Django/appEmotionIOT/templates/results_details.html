@@ -21,6 +21,8 @@
 				</thead>
 				<tbody>
 
+{% comment %}
+
 {% for i in success %}
     {% for j in failures %}
 
@@ -42,6 +44,30 @@
 
     {% endfor %}
 {% endfor %}
+{% for k,v in i.items %}
+    H1:<h1>{{k}}</h1>
+    H2:<h2>{{v}}</h2>
+  {% endfor %}
+{% endcomment %}
+
+{% for i in resultados %}
+  <tr>
+  		 	<td style="width: 5%; vertical-align: middle;">{{i.0}}</td>
+
+              <td style="width: 10%; vertical-align: left;">
+              <p><button class="btn btn-info glyphicon glyphicon-plus-sign" onclick="addCorrectData('{{i.1}}', '{{i.2}}', '{{i.3}}')"></button></p>
+              </td>
+  		 	<td style="width: 15%; vertical-align: middle;">{{i.4}}</td>
+
+  		 	<td style="width: 70%; vertical-align: middle;">{{i.3}}</td>
+
+
+  </tr>
+{% endfor %}
+
+
+
+
 
             </tbody>
 			</table>
@@ -65,9 +91,28 @@
 				</thead>
 				<tbody>
 
+
+{% for i in tiempo %}
+<tr>
+		 	<td style="width: 5%; vertical-align: middle;">{{ i.0 }}</td>
+
+            <td style="width: 10%; vertical-align: left;">
+            <p><button class="btn btn-info glyphicon glyphicon-plus-sign" onclick="addDataTiming({{i.1}}, '{{i.2}}')"></button></p>
+            </td>
+
+		 	<td style="width: 15%; vertical-align: middle;">{{ i.3 }}</td>
+
+		 	<td style="width: 70%; vertical-align: middle;">{{i.2}}</td>
+
+
+</tr>
+{% endfor %}
+
+
+{% comment %}
 {% for i in time %}
 <tr>
-		 	<td style="width: 5%; vertical-align: middle;">{{ i.sesion.id_sesion }}</td>
+		 	<td style="width: 5%; vertical-align: middle;">{{ i.0 }}</td>
 
             <td style="width: 10%; vertical-align: left;">
             <p><button class="btn btn-info glyphicon glyphicon-plus-sign" onclick="addDataTiming({{i.resultado}}, '{{i.sesion.fecha}}')"></button></p>
@@ -80,6 +125,7 @@
 
 </tr>
 {% endfor %}
+{% endcomment %}
                 </tbody>
 			</table>
 		</div>

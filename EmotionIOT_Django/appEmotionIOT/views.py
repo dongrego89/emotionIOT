@@ -743,7 +743,7 @@ def Evoca(request,idActividad,idTerapiaTratamiento,idTerapia):
 	context['idActividad'] = idActividad
 	context['idTerapia'] = idTerapia
 	context['idTerapiaTratamiento'] = idTerapiaTratamiento
-	
+
 	actividad=Actividad.objects.get(id=idActividad)
 	tratamiento=Terapia_Tratamiento.objects.get(id=idTerapiaTratamiento).tratamiento
 
@@ -2064,13 +2064,29 @@ def ResultadosTratamiento(request, pk):
 def Resultados_details(request, pk):
 
 	objects_treat = Tratamiento.objects.filter(id=pk)
+
 	objects = Resultado_Sesion.objects.filter(sesion_id__in=Sesion.objects.filter(terapia_tratamiento__tratamiento__in=objects_treat))
 	success = objects.filter(indicador_id=1)
 	fail = objects.filter(indicador_id=2)
 	timing = objects.filter(indicador_id=3)
-	print(success)
-	print(fail)
-	print(timing)
+
+	resultados = list()
+	for i in range(0,len(success)):
+		resultados.append([success[i].sesion.id,success[i].resultado,fail[i].resultado,fail[i].sesion.fecha,success[i].sesion.actividad])
+
+	resultados.reverse()
+
+	print(resultados)
+
+	tiempo = list()
+
+	for i in range(0,len(timing)):
+		tiempo.append([timing[i].sesion.id,timing[i].resultado,timing[i].sesion.fecha,timing[i].sesion.actividad])
+
+	tiempo.reverse()
+
+	print(tiempo)
+
 	context = {
 		'QRM_color' : "QRM_orange",
 		'message_alert' : "alert-info",
@@ -2079,6 +2095,8 @@ def Resultados_details(request, pk):
 		'title' : "Resultados",
 		'success' : success,
 		'failures' : fail,
+		'resultados' : resultados,
+		'tiempo' : tiempo,
 		'time' : timing,
 		#'data' : data,
 		'objects_treat' : objects_treat,
