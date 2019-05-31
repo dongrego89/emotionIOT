@@ -387,14 +387,18 @@ class Multimedia(Contenido):
     def __str__(self):
         return self.nombre
 
-"""
+    """!
+    @brief Clase que relaciona Actividad con Contenido (Deprecated)
+    """
 class Actividad_Contenido(models.Model):
+    ##Actividad a relacionar
     actividad= models.ForeignKey(Actividad,on_delete=models.CASCADE)
+    ##Contenido a relacionar
     contenido = models.ForeignKey(Contenido,on_delete=models.CASCADE)
     class Meta:
         verbose_name_plural = "Actividad_Contenido"
         unique_together = ("actividad","contenido")
-"""
+
 
 class Pregunta(models.Model):
     """!

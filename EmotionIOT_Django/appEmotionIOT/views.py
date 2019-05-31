@@ -8,102 +8,107 @@
 # -*- coding: utf-8 -*-
 from __future__ import unicode_literals
 
+## Variables Globales
+from . import global_vars
+
+## Librerías propias
 from appEmotionIOT.GoogleTTS import *
 from appEmotionIOT.Serial import *
 from appEmotionIOT.Audio import *
 from appEmotionIOT.MQTT import *
+from appEmotionIOT.Funciones import *
 
-from django.shortcuts import render, get_object_or_404, redirect
-from django.views.generic import TemplateView, ListView, DetailView, DeleteView, UpdateView, CreateView
-from datetime import datetime, time, date
-
-
-#Users
-from django.contrib.auth.models import User
-
-# Login
-from django.contrib.auth import authenticate, login, logout
-from django.http import HttpResponseRedirect, HttpResponse
-from django.contrib.auth.decorators import login_required
-
-# Settings
-from django.contrib.auth.mixins import LoginRequiredMixin
-
-# Play + Multimedia
-from .models import Actividad
-from . import global_vars
-
-# Multimedia
-from .models import Multimedia, Contenido, Pregunta_Quiz, Pregunta_Matching, Pregunta, Actividad_Pregunta, Respuesta
-import os
-from PIL import Image
+## Librerías de Django
 from django.conf import settings
 from django.views.generic.edit import FormView
+from django.shortcuts import render, get_object_or_404, redirect
+from django.views.generic import TemplateView, ListView, DetailView, DeleteView, UpdateView, CreateView
+from django.urls import reverse_lazy, reverse
+from django.contrib.auth.models import User
+from django.http import HttpResponseRedirect, HttpResponse
+from django.contrib.auth.hashers import make_password
+from django.http import JsonResponse
+
+## Librería MQTT Paho
+import paho.mqtt.client as mqtt
+import paho.mqtt.publish as publish
+
+## Gestión de autenticación y login
+from django.contrib.auth import authenticate, login, logout
+from django.contrib.auth.decorators import login_required
+from django.contrib.auth.mixins import LoginRequiredMixin
+
+## Librería de fecha
+from datetime import datetime, time, date
+
+## Librería de sistema operativo
+import os
+
+## Librería de tratamiento de imágenes
+from PIL import Image
+
+## Librería para uso de hilos
+import threading
+
+## Librería para uso multiprocesamiento
+import subprocess
+
+## Librería de tiempo
+import time
+
+## Librería para uso de números aleatorios
+import random
+
+## Librería matemática para redondeo de valores
+from math import *
+
+## Clases utilizadas en Actividades
+from .models import Actividad, Multimedia, Contenido, Pregunta_Quiz, Pregunta_Matching, Pregunta, Actividad_Pregunta, Respuesta
 from .forms import UploadMultimediaForm
 
-# Player
+## User Settings
+from .forms import EditNameForm, EditEmailForm, EditPassForm
+
+
+## Player
 from .models import Actividad
 from .forms import FormularioActividad
-from django.urls import reverse_lazy, reverse
 
-# Paciente
+## Paciente
 from .models import Paciente
 from .forms import UploadUserForm
 
-# Especialista
+## Especialista
 from .models import Especialista
 from .forms import FormularioEspecialista
 
-# Terapia
+## Terapia
 from .models import Terapia, Terapia_Tratamiento, Especialista_Terapia_Tratamiento, Terapia_Actividad
 from .forms import UploadTherapyForm, UploadAsign, UploadTherapyFormActividad, UploadAsignTherapyForm, UploadOneActividadTherapyForm, UploadOnePlayerTerapiaForm
 
-# Tratamiento
+## Tratamiento
 from .models import Tratamiento, Supervisa
 from .forms import UploadTreatmentForm
 
-# Diagnostico
+## Diagnostico
 from .models import Diagnostico
 from .forms import UploadDiagnosticForm
 
-# Indicador
+## Indicador
 from .models import Indicador
 
-#, Terapia_Indicador
+##, Terapia_Indicador
 from .forms import UploadIndicatorForm
 
-# Categoria
+## Categoria
 from .models import Categoria, Categoria_Actividad
 from .forms import UploadCategoryForm, FormularioCategoriaActividad
 
-#Sesion
+##Sesion
 from .models import Sesion, Resultado_Sesion, Registro_Sesion
 
-#Player Game
-import threading
-import subprocess
-import time
-import random
-
-
-# User Settings
-from .forms import EditNameForm, EditEmailForm, EditPassForm
-from django.contrib.auth.hashers import make_password
-
-from django.http import JsonResponse
-
-
-import paho.mqtt.client as mqtt
-import paho.mqtt.publish as publish
-import time
-import threading
-
-from math import *
-
-from appEmotionIOT.Funciones import *
-
+## Arranque de servicios
 arranqueSerial(conexionArduino)
-
 arranqueMQTT(("Boton","Tarjeta"))
 arranqueReproductor()
 
@@ -276,13 +281,16 @@ def Matching(request,idActividad,idTerapiaTratamiento,idTerapia):
 	"""
 	context={}
 
-
 	context['jugador'] = global_vars.jugador
 	context['idActividad'] = idActividad
 	context['idTerapia'] = idTerapia
 	context['idTerapiaTratamiento'] = idTerapiaTratamiento
+
 	actividad=Actividad.objects.get(id=idActividad)
+	tratamiento=Terapia_Tratamiento.objects.get(id=idTerapiaTratamiento).tratamiento
+
 	context['actividad'] = actividad
+	context['tratamiento'] = tratamiento.id
 
 	if global_vars.matchingInicializado == False:
 		"""
@@ -497,8 +505,12 @@ def Quiz(request,idActividad,idTerapiaTratamiento,idTerapia):
 	context['idActividad'] = idActividad
 	context['idTerapia'] = idTerapia
 	context['idTerapiaTratamiento'] = idTerapiaTratamiento
+
 	actividad=Actividad.objects.get(id=idActividad)
+	tratamiento=Terapia_Tratamiento.objects.get(id=idTerapiaTratamiento).tratamiento
+
 	context['actividad'] = actividad
+	context['tratamiento'] = tratamiento.id
 
 	if global_vars.quizInicializado == False:
 		"""

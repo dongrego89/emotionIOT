@@ -3,7 +3,7 @@
 {% block content_wrapper %}
 
 {% for i in objects_treat %}
-<center><strong><h1>PACIENTE : {{i.paciente}} <> TRATAMIENTO : {{i}}</h1></strong></center>
+<center><strong><h1>PACIENTE : {{i.paciente}} | TRATAMIENTO : {{i}}</h1></strong></center>
 {% endfor %}
 <div class="col-sm-5 QRM_box {{QRM_color}}"">
     <strong><p style="color:white">Aciertos/Fallos</p></strong>

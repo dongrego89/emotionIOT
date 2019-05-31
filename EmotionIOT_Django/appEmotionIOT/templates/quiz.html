@@ -40,9 +40,18 @@
       <h1 style="font-size:3rem;" class="font-weight-bold">¡Buen trabajo {{jugador}}!</h1>
     </div>
   </div>
-  <div class="row justify-content-center align-items-begin text-center animated tada infinite slow" style="height:5%;">
-    <div class="col-lg-8">
-      <h1 style="font-size:3rem;" class="font-weight-bold"><a href="/elegirActividad/{{idTerapia}}/{{idTerapiaTratamiento}}"><h1>Volver</h1></a></h1>
+  <div class="row justify-content-center align-items-begin text-center" style="height:5%;">
+    <div class="col-lg-4 animated tada infinite slow">
+      <a href="/elegirActividad/{{idTerapia}}/{{idTerapiaTratamiento}}">
+        <img class="img-fluid" src="/files/static/volver.png" style="width:50px;height:50px;">
+        <h1 style="font-size:2.5rem;" class="font-weight-bold">Volver</h1>
+      </a>
+    </div>
+    <div class="col-lg-4 animated tada infinite slow">
+      <a href="/settings/Results/{{tratamiento}}/Details/">
+        <img class="img-fluid" src="/files/static/estadisticas.png" style="width:50px;height:50px;">
+      <h1 style="font-size:2.5rem;" class="font-weight-bold">Estadísticas</h1>
+    </a>
     </div>
   </div>
 </div>
