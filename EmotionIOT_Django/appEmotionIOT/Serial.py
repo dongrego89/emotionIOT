@@ -50,7 +50,7 @@ def conexionSerial(puerto,baudios,timeout):
 	time.sleep(3)
 	return conexionArduino
 
-conexionArduino=conexionSerial(listarPuertos()[0][0],9600,1,)
+#conexionArduino=conexionSerial(listarPuertos()[0][0],9600,1,)
 
 
 def encenderAvisoSerial():
@@ -59,7 +59,7 @@ def encenderAvisoSerial():
 	"""
 	if global_vars.avisoSerial==False:
 		global_vars.avisoSerial=True
-		conexionArduino.write(b'1;')
+		#conexionArduino.write(b'1;')
 		music = settings.MEDIA_ROOT + '/songs/bloop.ogg'
 		cargarAudios([music])
 
@@ -69,7 +69,7 @@ def apagarAvisoSerial():
 	"""
 	if global_vars.avisoSerial==True:
 		global_vars.avisoSerial=False
-		conexionArduino.write(b'2;')
+		#conexionArduino.write(b'2;')
 
 def escuchaSerial(conexionArduino):
 	"""!

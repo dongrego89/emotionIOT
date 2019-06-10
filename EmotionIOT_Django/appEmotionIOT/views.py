@@ -108,7 +108,7 @@ from .forms import UploadCategoryForm, FormularioCategoriaActividad
 from .models import Sesion, Resultado_Sesion, Registro_Sesion
 
 ## Arranque de servicios
-arranqueSerial(conexionArduino)
+#arranqueSerial(conexionArduino)
 arranqueMQTT(("Boton","Tarjeta"))
 arranqueReproductor()
 
