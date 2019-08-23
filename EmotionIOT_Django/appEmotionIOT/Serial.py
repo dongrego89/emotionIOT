@@ -50,7 +50,7 @@ def conexionSerial(puerto,baudios,timeout):
 	time.sleep(3)
 	return conexionArduino
 
-conexionArduino=conexionSerial(listarPuertos()[0][0],9600,1,)
+#conexionArduino=conexionSerial(listarPuertos()[0][0],9600,1,)
 
 
 def encenderAvisoSerial():
